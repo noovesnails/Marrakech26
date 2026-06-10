@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Marrakech 2026 — Daniel &amp; Laura 🇲🇦</title>
+<style>
+:root{
+  --gold:#C9851C;--gl:#E8A84C;--gp:#F5E0BE;
+  --dk:#1A0E05;--dk2:#2D1A08;--mid:#7A4A1A;
+  --cr:#FAF3E8;--cr2:#F0DEC8;
+  --red:#B03030;--grn:#2D6A45;--blu:#2A4A7A;
+  --th:56px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;}
+html,body{height:100%;overscroll-behavior:none;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--cr);color:var(--dk);padding-bottom:calc(var(--th) + env(safe-area-inset-bottom,0px) + 8px);}
+
+/* HERO */
+.hero{background:var(--dk2);background-image:radial-gradient(ellipse 70% 60% at 25% 70%,rgba(201,133,28,.25),transparent),radial-gradient(ellipse 50% 50% at 80% 15%,rgba(176,48,48,.14),transparent);padding:28px 16px 22px;text-align:center;}
+.hero-flag{font-size:38px;display:block;margin-bottom:4px;}
+.hero h1{font-size:clamp(1.7rem,6vw,2.8rem);font-weight:800;color:var(--gl);line-height:1.1;letter-spacing:-.5px;}
+.hero h1 em{font-style:italic;color:#fff;}
+.hero-sub{font-size:.65rem;color:rgba(255,255,255,.5);margin-top:5px;letter-spacing:2px;text-transform:uppercase;}
+.hero-pax{display:flex;gap:7px;justify-content:center;margin-top:11px;flex-wrap:wrap;}
+.pax{background:rgba(201,133,28,.18);border:1px solid rgba(201,133,28,.35);color:var(--gl);padding:3px 11px;border-radius:50px;font-size:.72rem;font-weight:600;}
+
+/* PROGRESS */
+.pg-wrap{background:var(--dk);padding:8px 16px;}
+.pg-txt{color:var(--gp);font-size:.68rem;letter-spacing:.8px;font-weight:600;}
+.pg-bg{background:#333;border-radius:3px;height:4px;margin-top:4px;}
+#pg-fill{height:4px;background:linear-gradient(90deg,var(--gold),var(--gl));border-radius:3px;width:0;transition:width .4s;}
+
+/* SYNC BAR */
+.sync-bar{background:#111;padding:5px 14px;display:flex;align-items:center;gap:7px;}
+#sync-dot{width:8px;height:8px;border-radius:50%;background:#888;flex-shrink:0;}
+.sync-txt{font-size:.63rem;color:rgba(255,255,255,.55);font-weight:600;}
+
+/* TABBAR */
+.tabbar{
+  position:fixed;bottom:0;left:0;right:0;
+  height:calc(var(--th) + env(safe-area-inset-bottom,0px));
+  background:var(--dk2);border-top:1px solid rgba(201,133,28,.25);
+  display:flex;z-index:9999;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+.tb{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;background:none;border:none;color:rgba(255,255,255,.4);
+  font-size:.56rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase;
+  padding:0 2px;cursor:pointer;
+  touch-action:manipulation;-webkit-appearance:none;
+  min-height:44px;min-width:44px;
+  -webkit-user-select:none;user-select:none;
+  transition:color .15s;
+  font-family:-apple-system,sans-serif;
+}
+.tb .ico{font-size:17px;line-height:1.1;}
+.tb.on{color:var(--gl);}
+.tb.on .ico{background:rgba(201,133,28,.18);border-radius:8px;padding:2px 8px;}
+
+/* PAGES */
+.pg{display:none;padding:12px 13px 0;}
+.pg.on{display:block;}
+
+/* SECTION TITLE */
+.sec{font-size:.95rem;font-weight:800;margin:16px 0 9px;display:flex;align-items:center;gap:8px;color:var(--dk);}
+.sec::after{content:'';flex:1;height:1px;background:var(--cr2);}
+
+/* INFO CARDS */
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.ic{background:var(--dk2);border:1px solid rgba(201,133,28,.2);border-radius:10px;padding:10px 12px;color:#fff;}
+.ic-l{font-size:.55rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:2px;}
+.ic-v{font-size:.78rem;line-height:1.4;}
+.ic-v small{font-size:.65rem;color:rgba(255,255,255,.4);display:block;margin-top:1px;}
+.mono{font-family:'Courier New',monospace;color:var(--gl);font-weight:700;font-size:.85rem;letter-spacing:1px;}
+
+/* DAY HEADER */
+.dh{display:flex;align-items:center;gap:10px;margin:4px 0 12px;padding-bottom:10px;border-bottom:2px solid var(--cr2);}
+.dn{background:var(--dk2);color:var(--gl);font-size:1.1rem;font-weight:800;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold);flex-shrink:0;}
+.dt{font-size:1.1rem;font-weight:800;}
+.ds{font-size:.68rem;color:#888;margin-top:1px;}
+
+/* MAP BOX */
+.mapsec{margin-bottom:12px;}
+.map-links-box{background:var(--dk2);border-radius:11px;padding:11px 12px;border:1px solid rgba(201,133,28,.25);}
+.map-links-title{font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.map-direct-btn{display:block;background:rgba(201,133,28,.15);border:1px solid rgba(201,133,28,.3);color:var(--gl);border-radius:8px;padding:9px 12px;font-size:.74rem;font-weight:600;text-decoration:none;margin-bottom:6px;touch-action:manipulation;}
+.map-direct-btn:last-child{margin-bottom:0;}
+
+/* TIMELINE */
+.tl{position:relative;padding-left:24px;margin-bottom:12px;}
+.tl::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,var(--gp),var(--cr2));}
+
+/* ITEM */
+.ti{position:relative;margin-bottom:9px;}
+.tdot{position:absolute;left:-20px;top:14px;width:10px;height:10px;border-radius:50%;background:var(--cr);border:2.5px solid var(--gold);transition:all .2s;}
+.ti.dn2 .tdot{background:var(--grn);border-color:var(--grn);}
+.tc{background:#fff;border:1px solid #eee;border-radius:11px;padding:11px 12px;box-shadow:0 1px 5px rgba(26,14,5,.09);transition:border-color .15s;}
+.ti.dn2 .tc{background:#f6fdf7;border-color:#bde0c8;opacity:.75;}
+
+.cr1{display:flex;align-items:flex-start;gap:7px;}
+.ct{font-size:.62rem;font-weight:700;color:var(--gold);letter-spacing:.8px;white-space:nowrap;padding-top:3px;min-width:40px;}
+.cn{font-size:.92rem;font-weight:700;flex:1;line-height:1.25;}
+.ti.dn2 .cn{color:#5a8a66;text-decoration:line-through;text-decoration-color:#bde0c8;}
+.eico{background:none;border:none;cursor:pointer;font-size:17px;flex-shrink:0;padding:0 2px;color:#ccc;touch-action:manipulation;-webkit-appearance:none;}
+.ckb{background:none;border:none;cursor:pointer;font-size:19px;flex-shrink:0;padding:0 2px;touch-action:manipulation;-webkit-appearance:none;-webkit-user-select:none;user-select:none;}
+.cd{font-size:.74rem;color:#555;margin-top:5px;line-height:1.45;padding-left:47px;}
+.ti.dn2 .cd{text-decoration:line-through;text-decoration-color:#bde0c8;color:#8a9a8a;}
+.ctags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;padding-left:47px;}
+.tag{display:inline-flex;align-items:center;gap:2px;font-size:.62rem;font-weight:700;padding:2px 7px;border-radius:20px;}
+.tf{background:#FFF0E0;color:#B05010;}
+.tt{background:#E0EEFF;color:#1A3A8A;}
+.ts{background:#F0E0FF;color:#6A1A9A;}
+.te{background:#EFFFEF;color:#1A6A3A;}
+.tw{background:#FFF4E0;color:#B04000;}
+.tp{background:#FFE8F5;color:#A01060;}
+.tb2{background:#E0F4FF;color:#104080;}
+.tm{background:#FFF5E0;color:#8A5000;}
+.clnks{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;padding-left:47px;}
+.lnk{display:inline-flex;align-items:center;gap:3px;font-size:.68rem;font-weight:700;text-decoration:none;padding:3px 9px;border-radius:6px;touch-action:manipulation;}
+.lm{background:#E8F0FF;color:#1A3A9A;}
+.lb{background:#FFE8E8;color:#9A1A1A;}
+.li{background:#F0E8FF;color:#5A1A9A;}
+
+/* EXPENSE ROW */
+.exp-row{display:flex;align-items:center;gap:6px;margin-top:7px;padding-left:47px;flex-wrap:wrap;}
+.exp-lbl{font-size:.65rem;color:#888;font-weight:600;white-space:nowrap;}
+.exp-inp{border:1px solid var(--cr2);border-radius:6px;padding:4px 8px;font-size:.75rem;color:var(--dk);background:#fff;width:90px;font-family:-apple-system,sans-serif;-webkit-appearance:none;}
+.exp-inp:focus{outline:none;border-color:var(--gold);}
+.exp-unit{font-size:.65rem;color:#aaa;}
+.pay-sel{border:1px solid var(--cr2);border-radius:6px;padding:4px 6px;font-size:.7rem;color:var(--dk);background:#fff;font-family:-apple-system,sans-serif;-webkit-appearance:none;cursor:pointer;}
+.exp-note-inp{border:1px solid var(--cr2);border-radius:6px;padding:4px 7px;font-size:.7rem;color:var(--dk);background:#fff;width:90px;font-family:-apple-system,sans-serif;-webkit-appearance:none;}
+
+/* EDIT */
+.ced{display:none;padding:8px 0 4px 47px;}
+.ced.op{display:block;}
+.ef{width:100%;border:1px solid var(--cr2);border-radius:7px;padding:6px 9px;font-family:-apple-system,sans-serif;font-size:.74rem;color:var(--dk);background:#fff;margin-bottom:5px;resize:vertical;-webkit-appearance:none;}
+.ef:focus{outline:none;border-color:var(--gold);}
+.eas{display:flex;gap:6px;flex-wrap:wrap;}
+.bs{padding:5px 11px;border-radius:6px;font-size:.68rem;font-weight:700;border:none;cursor:pointer;font-family:-apple-system,sans-serif;touch-action:manipulation;-webkit-appearance:none;}
+.bsave{background:var(--grn);color:#fff;}
+.bcanc{background:#eee;color:#555;}
+.bdel{background:var(--red);color:#fff;}
+
+/* TRANSIT */
+.trn{display:flex;align-items:center;margin-bottom:3px;padding-left:0;}
+.trn-pill{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1px dashed #ccc;border-radius:20px;padding:3px 10px;font-size:.65rem;color:#666;font-weight:500;}
+
+/* ADD STOP */
+.addbtn{width:100%;background:none;border:2px dashed rgba(201,133,28,.4);border-radius:11px;padding:10px;color:var(--gold);font-size:.78rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:12px;touch-action:manipulation;-webkit-appearance:none;font-family:-apple-system,sans-serif;}
+.addfrm{background:#fff;border:1px solid var(--cr2);border-radius:11px;padding:13px;margin-bottom:12px;display:none;}
+.addfrm.op{display:block;}
+.addfrm h4{font-size:.76rem;font-weight:800;margin-bottom:9px;}
+.addfrm label{font-size:.66rem;font-weight:700;color:var(--mid);display:block;margin-bottom:2px;margin-top:7px;}
+.addfrm input,.addfrm textarea{width:100%;border:1px solid var(--cr2);border-radius:7px;padding:7px 9px;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--dk);-webkit-appearance:none;}
+.addfrm textarea{resize:vertical;min-height:55px;}
+.addfrm input:focus,.addfrm textarea:focus{outline:none;border-color:var(--gold);}
+.afrm-acts{display:flex;gap:7px;margin-top:10px;}
+
+/* INFO BLOCKS */
+.ib{background:var(--dk2);border-left:4px solid var(--gold);border-radius:0 9px 9px 0;padding:12px 14px;margin-bottom:10px;color:#fff;}
+.ib h4{font-size:.88rem;font-weight:700;color:var(--gl);margin-bottom:6px;}
+.ib p,.ib li{font-size:.74rem;line-height:1.55;color:rgba(255,255,255,.8);}
+.ib ol,.ib ul{padding-left:15px;}
+.ib li{margin-bottom:2px;}
+.ib code{background:rgba(201,133,28,.2);color:var(--gl);padding:1px 5px;border-radius:4px;font-size:.85em;font-weight:700;}
+
+.alert{background:#FFF5E0;border-left:4px solid #E8A020;border-radius:0 9px 9px 0;padding:10px 13px;margin-bottom:10px;font-size:.74rem;line-height:1.5;color:#5A3800;}
+.alert-pend{background:#FFF8F0;border-left:4px solid var(--gold);border-radius:0 9px 9px 0;padding:10px 13px;margin-bottom:10px;font-size:.74rem;line-height:1.5;color:#6A3000;}
+
+/* FLIGHT */
+.flt{background:linear-gradient(135deg,var(--dk2) 0%,#3A2010 100%);border:1px solid rgba(201,133,28,.28);border-radius:13px;padding:14px;margin-bottom:10px;color:#fff;position:relative;overflow:hidden;}
+.flt::after{content:'✈';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:44px;opacity:.06;}
+.fl{font-size:.58rem;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.fr{display:flex;align-items:center;gap:9px;}
+.fc{font-size:1.4rem;font-weight:900;}
+.fc small{font-size:.58rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:1px;display:block;margin-top:1px;font-weight:400;}
+.fa{color:var(--gold);font-size:1.2rem;}
+.fm{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
+.fi{font-size:.68rem;color:rgba(255,255,255,.55);}
+.fi strong{color:var(--gl);display:block;font-size:.84rem;}
+
+/* RESERVE */
+.rl{display:flex;flex-direction:column;gap:7px;margin-bottom:12px;}
+.ri{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--cr2);border-radius:9px;padding:10px 12px;}
+.ri .ric{font-size:17px;flex-shrink:0;}
+.ri .rib{flex:1;}
+.ri .rn{font-size:.8rem;font-weight:700;}
+.ri .rs{font-size:.67rem;color:#888;margin-top:1px;}
+.rbtn{background:var(--red);color:#fff;border:none;border-radius:6px;padding:5px 11px;font-size:.68rem;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap;flex-shrink:0;font-family:-apple-system,sans-serif;touch-action:manipulation;}
+
+/* GASTOS TAB */
+.exp-summary{background:#fff;border:1px solid var(--cr2);border-radius:12px;overflow:hidden;margin-bottom:14px;}
+.exp-sumhdr{background:var(--dk2);color:var(--gl);padding:12px 15px;font-size:.88rem;font-weight:800;display:flex;align-items:center;gap:8px;}
+.exp-table{width:100%;border-collapse:collapse;}
+.exp-table th{background:var(--gp);color:var(--dk2);font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;padding:7px 10px;text-align:left;}
+.exp-table td{font-size:.76rem;padding:7px 10px;border-bottom:1px solid #f0e8d8;vertical-align:top;}
+.exp-table tr:last-child td{border-bottom:none;}
+.exp-amt{text-align:right;font-family:monospace;white-space:nowrap;}
+.total-row td{font-weight:800;background:var(--gp);font-size:.82rem;}
+.pair-total{text-align:right;font-family:monospace;}
+.pair-card{background:#fff;border:1px solid var(--cr2);border-radius:11px;padding:12px 14px;margin-bottom:0;}
+.pair-total-big{font-size:1.5rem;font-weight:900;font-family:monospace;}
+.recalc-btn{width:100%;background:var(--dk2);color:var(--gl);border:none;border-radius:10px;padding:11px;font-size:.82rem;font-weight:700;cursor:pointer;margin-bottom:14px;font-family:-apple-system,sans-serif;touch-action:manipulation;}
+.reset-btn{width:100%;background:#fff;color:var(--red);border:1px solid var(--red);border-radius:10px;padding:10px;font-size:.76rem;font-weight:700;cursor:pointer;margin-bottom:14px;font-family:-apple-system,sans-serif;touch-action:manipulation;}
+
+/* PENDING badge */
+.pend-badge{display:inline-block;background:#FFF0CC;color:#9A5500;border:1px solid #E8A020;border-radius:6px;font-size:.6rem;font-weight:800;padding:2px 7px;letter-spacing:.5px;text-transform:uppercase;margin-left:6px;}
+
+/* FOOD TABLE */
+.food-table{width:100%;border-collapse:collapse;font-size:.74rem;margin-top:8px;}
+.food-table th{background:var(--gp);color:var(--dk2);font-weight:800;padding:6px 9px;text-align:left;font-size:.65rem;text-transform:uppercase;letter-spacing:.8px;}
+.food-table td{padding:7px 9px;border-bottom:1px solid var(--cr2);color:var(--dk);line-height:1.4;}
+.food-table tr:last-child td{border-bottom:none;}
+.food-table .price{text-align:right;font-family:monospace;color:var(--mid);font-weight:700;white-space:nowrap;}
+
+/* IPHONE LARGE TEXT */
+@media (min-width:375px){
+.cn{font-size:.95rem !important;}
+.ct{font-size:.75rem !important;min-width:46px !important;}
+.ctags{padding-left:54px !important;}
+.ctags .tag{font-size:.75rem !important;padding:3px 10px !important;}
+.clnks{padding-left:54px !important;}
+.lnk{font-size:.82rem !important;padding:6px 12px !important;min-height:36px !important;}
+.exp-row{padding-left:54px !important;}
+.exp-lbl{font-size:.78rem !important;}
+.exp-inp{font-size:.9rem !important;width:100px !important;}
+.ckb{font-size:24px !important;min-width:40px !important;min-height:40px !important;}
+.eico{font-size:20px !important;min-width:36px !important;min-height:36px !important;}
+.tb{font-size:.68rem !important;}
+.tb .ico{font-size:22px !important;}
+.tabbar{height:calc(64px + env(safe-area-inset-bottom,0px)) !important;border-top-width:2px !important;}
+.dh{margin-bottom:14px !important;padding-bottom:12px !important;}
+.dt{font-size:1.2rem !important;}
+.ds{font-size:.8rem !important;}
+.dn{width:46px !important;height:46px !important;font-size:1.3rem !important;}
+.ic{padding:14px 16px !important;}
+.ic-l{font-size:.68rem !important;}
+.ic-v{font-size:.92rem !important;}
+.igrid{display:flex !important;flex-direction:column !important;gap:9px !important;}
+.tc{padding:14px 15px !important;}
+.ti{margin-bottom:12px !important;}
+.trn-pill{font-size:.78rem !important;padding:5px 13px !important;}
+.map-direct-btn{font-size:.88rem !important;padding:11px 13px !important;margin-bottom:8px !important;}
+.ib p,.ib li{font-size:.88rem !important;}
+.ib h4{font-size:1rem !important;}
+.alert{font-size:.88rem !important;padding:12px 15px !important;}
+.alert-pend{font-size:.88rem !important;padding:12px 15px !important;}
+.fi{font-size:.78rem !important;}
+.fi strong{font-size:.96rem !important;}
+.ri .rn{font-size:.92rem !important;}
+.ri .rs{font-size:.78rem !important;}
+.recalc-btn{font-size:.9rem !important;min-height:48px !important;padding:13px !important;}
+.pair-total-big{font-size:1.8rem !important;}
+.pair-card h3{font-size:.96rem !important;}
+.addbtn{font-size:.9rem !important;padding:13px !important;}
+.addfrm h4{font-size:.9rem !important;}
+.addfrm label{font-size:.78rem !important;}
+.addfrm input,.addfrm textarea{font-size:.88rem !important;}
+.bs{font-size:.82rem !important;min-height:40px !important;}
+.rbtn{min-height:40px !important;}
+body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px) + 10px) !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-flag">🇲🇦</span>
+  <h1>Marrakech<br><em>Daniel &amp; Laura</em></h1>
+  <p class="hero-sub">29 Jun — 2 Jul 2026 &nbsp;·&nbsp; 3 noches · 4 días</p>
+  <div class="hero-pax">
+    <span class="pax">👨 Daniel</span>
+    <span class="pax">👩 Laura</span>
+  </div>
+</div>
+
+<!-- CURRENCY CONVERTER -->
+<div style="background:var(--dk2);padding:12px 14px;border-bottom:1px solid rgba(201,133,28,.2);">
+  <div style="max-width:480px;margin:0 auto;">
+    <div style="font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:8px;text-align:center;">💱 Calculadora EUR ↔ MAD · ~10,7 MAD = 1€</div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="flex:1;">
+        <div style="font-size:.6rem;color:rgba(255,255,255,.5);font-weight:600;margin-bottom:3px;text-align:center;">€ EUROS</div>
+        <input type="number" id="eur-inp" placeholder="0.00" min="0" step="0.01"
+          style="width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(201,133,28,.4);border-radius:8px;padding:10px 12px;color:#fff;font-size:1.1rem;font-weight:700;text-align:center;font-family:-apple-system,sans-serif;-webkit-appearance:none;"
+          oninput="convEUR(this.value)">
+      </div>
+      <div style="color:var(--gold);font-size:1.4rem;font-weight:700;padding-top:14px;">⇄</div>
+      <div style="flex:1;">
+        <div style="font-size:.6rem;color:rgba(255,255,255,.5);font-weight:600;margin-bottom:3px;text-align:center;">درهم DIRHAM (MAD)</div>
+        <input type="number" id="mad-inp" placeholder="0" min="0" step="1"
+          style="width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(201,133,28,.4);border-radius:8px;padding:10px 12px;color:var(--gl);font-size:1.1rem;font-weight:700;text-align:center;font-family:-apple-system,sans-serif;-webkit-appearance:none;"
+          oninput="convMAD(this.value)">
+      </div>
+    </div>
+    <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;justify-content:center;">
+      <button type="button" onclick="convEUR(1)" style="background:rgba(201,133,28,.15);border:1px solid rgba(201,133,28,.3);color:var(--gl);border-radius:6px;padding:4px 10px;font-size:.68rem;font-weight:700;cursor:pointer;font-family:-apple-system,sans-serif;touch-action:manipulation;">1€</button>
+      <button type="button" onclick="convEUR(5)" style="background:rgba(201,133,28,.15);border:1px solid rgba(201,133,28,.3);color:var(--gl);border-radius:6px;padding:4px 10px;font-size:.68rem;font-weight:700;cursor:pointer;font-family:-apple-system,sans-serif;touch-action:manipulation;">5€</button>
+      <button type="button" onclick="convEUR(10)" style="background:rgba(201,133,28,.15);border:1px solid rgba(201,133,28,.3);color:var(--gl);border-radius:6px;padding:4px 10px;font-size:.68rem;font-weight:700;cursor:pointer;font-family:-apple-system,sans-serif;touch-action:manipulation;">10€</button>
+      <button type="button" onclick="convEUR(20)" style="background:rgba(201,133,28,.15);border:1px solid rgba(201,133,28,.3);color:var(--gl);border-radius:6px;padding:4px 10px;font-size:.68rem;font-weight:700;cursor:pointer;font-family:-apple-system,sans-serif;touch-action:manipulation;">20€</button>
+      <button type="button" onclick="convEUR(50)" style="background:rgba(201,133,28,.15);border:1px solid rgba(201,133,28,.3);color:var(--gl);border-radius:6px;padding:4px 10px;font-size:.68rem;font-weight:700;cursor:pointer;font-family:-apple-system,sans-serif;touch-action:manipulation;">50€</button>
+      <button type="button" onclick="convMAD(50)" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);border-radius:6px;padding:4px 10px;font-size:.68rem;font-weight:700;cursor:pointer;font-family:-apple-system,sans-serif;touch-action:manipulation;">50 MAD</button>
+      <button type="button" onclick="convMAD(100)" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);border-radius:6px;padding:4px 10px;font-size:.68rem;font-weight:700;cursor:pointer;font-family:-apple-system,sans-serif;touch-action:manipulation;">100 MAD</button>
+      <button type="button" onclick="convMAD(200)" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);border-radius:6px;padding:4px 10px;font-size:.68rem;font-weight:700;cursor:pointer;font-family:-apple-system,sans-serif;touch-action:manipulation;">200 MAD</button>
+      <button type="button" onclick="convMAD(500)" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);border-radius:6px;padding:4px 10px;font-size:.68rem;font-weight:700;cursor:pointer;font-family:-apple-system,sans-serif;touch-action:manipulation;">500 MAD</button>
+    </div>
+  </div>
+</div>
+
+<div class="pg-wrap">
+  <div class="pg-txt" id="pg-txt">—</div>
+  <div class="pg-bg"><div id="pg-fill"></div></div>
+</div>
+
+<!-- SYNC BAR -->
+<div class="sync-bar">
+  <div id="sync-dot"></div>
+  <span class="sync-txt" id="sync-txt">Sincronización</span>
+</div>
+
+<!-- TABBAR -->
+<nav class="tabbar" role="navigation">
+  <button type="button" class="tb on" id="tb-info" onclick="ST('info')"><span class="ico">📋</span>Info</button>
+  <button type="button" class="tb" id="tb-d1" onclick="ST('d1')"><span class="ico">✈️</span>Lun 29</button>
+  <button type="button" class="tb" id="tb-d2" onclick="ST('d2')"><span class="ico">🕌</span>Mar 30</button>
+  <button type="button" class="tb" id="tb-d3" onclick="ST('d3')"><span class="ico">🐪</span>Mié 1</button>
+  <button type="button" class="tb" id="tb-d4" onclick="ST('d4')"><span class="ico">🛫</span>Jue 2</button>
+  <button type="button" class="tb" id="tb-exp" onclick="ST('exp')"><span class="ico">💶</span>Gastos</button>
+</nav>
+
+<!-- ═══ PAGE INFO ═══ -->
+<div class="pg on" id="pg-info">
+
+  <div id="jsonbin-setup" style="display:none;background:#1A0E05;border:2px solid var(--gold);border-radius:12px;padding:14px;margin-bottom:14px;color:#fff;">
+    <div style="font-size:.8rem;font-weight:800;color:var(--gl);margin-bottom:8px;">☁️ Activar sincronización en tiempo real</div>
+    <div style="font-size:.72rem;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:10px;">Para compartir checks y gastos entre los dos en tiempo real:<br>
+    1. Ve a <strong style="color:var(--gl)">jsonbin.io</strong> → Sign Up gratis<br>
+    2. Dashboard → <strong style="color:var(--gl)">Create Bin</strong> → contenido: <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;">{}</code> → Create<br>
+    3. Copia el <strong style="color:var(--gl)">BIN ID</strong> y tu <strong style="color:var(--gl)">API Key</strong> (Account → API Keys)<br>
+    4. Abre el .html en un editor de texto y pega los valores en las variables <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;">JSONBIN_ID</code> y <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;">JSONBIN_KEY</code></div>
+    <a href="https://jsonbin.io" target="_blank" style="display:inline-block;background:var(--gold);color:#1A0E05;font-weight:800;font-size:.74rem;padding:7px 14px;border-radius:7px;text-decoration:none;">Ir a JSONBin →</a>
+  </div>
+
+  <button type="button" class="reset-btn" onclick="resetAll()">🗑️ Borrar todos los datos guardados</button>
+
+  <!-- PRESUPUESTO ESTIMADO -->
+  <div style="background:var(--dk2);border-radius:11px;padding:14px;margin-bottom:14px;color:#fff;">
+    <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:10px;">💶 Presupuesto total estimado del viaje</div>
+    <table style="width:100%;border-collapse:collapse;font-size:.78rem;">
+      <tr style="border-bottom:1px solid rgba(255,255,255,.1);"><td style="padding:6px 4px;">✈️ Lun 29 Jun — Llegada</td><td style="text-align:right;color:var(--gl);font-weight:700;">≈20-40€/pareja</td></tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,.1);"><td style="padding:6px 4px;">🕌 Mar 30 Jun — Medina</td><td style="text-align:right;color:var(--gl);font-weight:700;">≈60-90€/pareja</td></tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,.1);"><td style="padding:6px 4px;">🐪 Mié 1 Jul — Excursión</td><td style="text-align:right;color:var(--gl);font-weight:700;">≈70-100€/pareja</td></tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,.1);"><td style="padding:6px 4px;">🛫 Jue 2 Jul — Vuelta</td><td style="text-align:right;color:var(--gl);font-weight:700;">≈15-30€/pareja</td></tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,.15);"><td style="padding:8px 4px;font-size:.65rem;color:rgba(255,255,255,.4);" colspan="2">* Sin vuelos ni alojamiento · Incluye comidas, transporte local, entradas y compras</td></tr>
+      <tr style="background:rgba(201,133,28,.15);"><td style="padding:8px 4px;font-weight:800;font-size:.88rem;">🏆 TOTAL ESTIMADO/PAREJA</td><td style="text-align:right;font-weight:900;font-size:1.1rem;color:var(--gl);">165-260€</td></tr>
+    </table>
+    <div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:8px;">💡 Usa la calculadora EUR↔MAD de arriba para convertir precios en el momento</div>
+  </div>
+
+  <!-- VUELOS -->
+  <div class="sec">✈️ Vuelos · Loc. aéreo: NRGUYB</div>
+  <div class="flt">
+    <div class="fl">✈ IDA — Lunes 29 Junio 2026</div>
+    <div class="fr">
+      <div class="fc">VLC<small>Valencia</small></div>
+      <div class="fa">→</div>
+      <div class="fc">RAK<small>Marrakech</small></div>
+    </div>
+    <div class="fm">
+      <div class="fi"><strong>06:05</strong>Salida</div>
+      <div class="fi"><strong>07:10</strong>Llegada</div>
+      <div class="fi"><strong>2h 05m</strong>Duración</div>
+      <div class="fi"><strong>FR 5035</strong>Ryanair</div>
+      <div class="fi"><strong>NRGUYB</strong>Loc.</div>
+      <div class="fi"><strong>Maleta peq.</strong>Equipaje</div>
+    </div>
+  </div>
+  <div class="flt">
+    <div class="fl">✈ VUELTA — Jueves 2 Julio 2026</div>
+    <div class="fr">
+      <div class="fc">RAK<small>Marrakech</small></div>
+      <div class="fa">→</div>
+      <div class="fc">VLC<small>Valencia</small></div>
+    </div>
+    <div class="fm">
+      <div class="fi"><strong>17:45</strong>Salida</div>
+      <div class="fi"><strong>20:40</strong>Llegada</div>
+      <div class="fi"><strong>1h 55m</strong>Duración</div>
+      <div class="fi"><strong>FR 2217</strong>Ryanair</div>
+      <div class="fi"><strong>NRGUYB</strong>Loc.</div>
+      <div class="fi"><strong>Maleta peq.</strong>Equipaje</div>
+    </div>
+  </div>
+  <div class="alert">💡 <strong>Atención vuelo ida:</strong> Salida 06:05 desde Valencia — hay que estar en el aeropuerto hacia las <strong>04:00-04:30</strong>. Salir de casa muy temprano o dormir cerca del aeropuerto.</div>
+
+  <!-- PASAJEROS -->
+  <div class="sec">👥 Pasajeros</div>
+  <div class="igrid">
+    <div class="ic"><div class="ic-l">Pasajero 1</div><div class="ic-v">Daniel Chillarón Vela<small>Adulto · 03-08-2002</small></div></div>
+    <div class="ic"><div class="ic-l">Pasajero 2</div><div class="ic-v">Laura V. Florez Pinto<small>Adulta · 23-06-2005</small></div></div>
+    <div class="ic"><div class="ic-l">Loc. eDreams</div><div class="ic-v"><span class="mono">25176189681</span></div></div>
+    <div class="ic"><div class="ic-l">Loc. aéreo</div><div class="ic-v"><span class="mono">NRGUYB</span></div></div>
+  </div>
+
+  <!-- ALOJAMIENTO -->
+  <div class="sec">🏨 Alojamiento ✅</div>
+  <div class="igrid">
+    <div class="ic"><div class="ic-l">Riad</div><div class="ic-v"><strong>Riad Jibril</strong><small>Kasbah · Medina</small></div></div>
+    <div class="ic"><div class="ic-l">Dirección</div><div class="ic-v">384 Rue de la Kasbah<br>Marrakech 40000<small>MA</small></div></div>
+    <div class="ic"><div class="ic-l">Check-in</div><div class="ic-v">29 Jun · desde <span class="mono">14:00</span><small>Maletas antes si hace falta</small></div></div>
+    <div class="ic"><div class="ic-l">Check-out</div><div class="ic-v">2 Jul · hasta <span class="mono">12:00</span><small>Guardar maletas hasta 14h</small></div></div>
+    <div class="ic"><div class="ic-l">Teléfono</div><div class="ic-v"><span class="mono">+212 611-252320</span><small>Personal en recepción</small></div></div>
+    <div class="ic"><div class="ic-l">Coste</div><div class="ic-v"><span class="mono">98€</span> total<br>3 noches<small>Acepta tarjeta</small></div></div>
+  </div>
+  <div class="ib">
+    <h4>ℹ️ Info importante del Riad Jibril</h4>
+    <ul>
+      <li>Llevar <strong>DNI o pasaporte</strong> para el registro + tarjeta de crédito o depósito para gastos imprevistos</li>
+      <li>El riad ofrece <strong>traslado desde el aeropuerto</strong> — llamar 72h antes al +212 611-252320 para organizarlo</li>
+      <li>El personal de recepción estará esperando a vuestra llegada</li>
+      <li>Solicitudes especiales sujetas a disponibilidad en el momento</li>
+      <li>Edad mínima para registrarse: 18 años</li>
+      <li>Las calles de la Kasbah son laberínticas — pedir instrucciones detalladas de acceso al confirmar la reserva</li>
+    </ul>
+  </div>
+  <div class="clnks" style="margin-bottom:12px;">
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Riad+Jibril,+384+RUE+de+la+kasbah,+Marrakech,+MA&dir_action=navigate" target="_blank" class="lnk lm">📍 Cómo llegar al Riad</a>
+    <a href="tel:+212611252320" class="lnk lb">📞 Llamar al Riad</a>
+  </div>
+
+  <!-- INFO PRÁCTICA -->
+  <div class="sec">📱 Info práctica</div>
+  <div class="igrid">
+    <div class="ic"><div class="ic-l">Moneda</div><div class="ic-v">Dirham marroquí<br><span class="mono">~10,7 MAD=1€</span><small>Llevar efectivo</small></div></div>
+    <div class="ic"><div class="ic-l">Idioma</div><div class="ic-v">Árabe · Bereber<br>Francés (turismo)<small>Español poco</small></div></div>
+    <div class="ic"><div class="ic-l">Aeropuerto</div><div class="ic-v">RAK · Menara<br>~7 km del centro<small>Taxi: 80-120 MAD</small></div></div>
+    <div class="ic"><div class="ic-l">Clima Jul/Ago</div><div class="ic-v">☀️ 38-42°C<br>Muy seco<small>Protección solar vital</small></div></div>
+    <div class="ic"><div class="ic-l">Dress code</div><div class="ic-v">Hombros y rodillas<br>cubiertos en Medina<small>Ropa ligera</small></div></div>
+    <div class="ic"><div class="ic-l">Propinas</div><div class="ic-v">10-15% restaurantes<br>Guías: 20-50 MAD<small>Tener monedas</small></div></div>
+  </div>
+
+  <div class="ib">
+    <h4>⚠️ Consejos esenciales Marrakech</h4>
+    <ul>
+      <li><strong>Regateo:</strong> es obligatorio en los souks. Empieza ofreciendo 30-40% del precio pedido</li>
+      <li><strong>Falsos guías:</strong> mucha gente se ofrece a "ayudarte" y luego pide dinero — di "no gracias" con firmeza</li>
+      <li><strong>Djemaa el-Fna:</strong> los encantadores de serpientes y fotógrafos cobran si sacas foto — pregunta antes el precio</li>
+      <li><strong>Agua:</strong> beber siempre agua embotellada · calor extremo en agosto → hidrataros mucho</li>
+      <li><strong>Tarjeta/efectivo:</strong> los souks solo aceptan efectivo (dirhams) · los restaurantes turísticos suelen aceptar tarjeta</li>
+      <li><strong>Ramadán:</strong> en agosto NO hay Ramadán, todo abierto normal</li>
+    </ul>
+  </div>
+
+  <!-- COMIDA TÍPICA -->
+  <div class="sec">🍽️ Comida marroquí a probar</div>
+  <div style="background:#fff;border-radius:11px;overflow:hidden;border:1px solid var(--cr2);margin-bottom:14px;">
+    <table class="food-table">
+      <thead><tr><th>Plato</th><th>Descripción</th><th>Precio orient.</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tajine</strong></td><td>Guiso de carne o pollo con verduras y especias, cocido en barro</td><td class="price">60-100 MAD</td></tr>
+        <tr><td><strong>Couscous</strong></td><td>El plato nacional · con verduras y carne · típico los viernes</td><td class="price">50-90 MAD</td></tr>
+        <tr><td><strong>Pastilla</strong></td><td>Hojaldre relleno de paloma/pollo con almendras y azúcar glas</td><td class="price">80-130 MAD</td></tr>
+        <tr><td><strong>Harira</strong></td><td>Sopa de tomate, lentejas y garbanzos · muy reconfortante</td><td class="price">15-25 MAD</td></tr>
+        <tr><td><strong>Merguez</strong></td><td>Salchicha especiada a la brasa · perfecta de street food</td><td class="price">20-30 MAD</td></tr>
+        <tr><td><strong>Msemen</strong></td><td>Pan marroquí hojaldrado · con miel y mantequilla en el desayuno</td><td class="price">5-10 MAD</td></tr>
+        <tr><td><strong>Té de menta</strong></td><td>La bebida nacional · muy dulce · símbolo de hospitalidad</td><td class="price">10-20 MAD</td></tr>
+        <tr><td><strong>Chebakia</strong></td><td>Pasta frita con miel y sésamo · dulce típico marroquí</td><td class="price">5-15 MAD</td></tr>
+        <tr><td><strong>Sfenj</strong></td><td>Donuts fritos callejeros · para desayunar paseando por la Medina</td><td class="price">3-5 MAD</td></tr>
+        <tr><td><strong>Argan oil</strong></td><td>No es comida pero úsalo todo: aceite de argán en ensaladas y cremas</td><td class="price">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /pg-info -->
+
+<!-- ═══ HELPER MACRO — parada de timeline ═══
+  Uso interno para copiar/pegar paradas más rápido. No visible al usuario. -->
+
+<!-- ═══ PAGE DÍA 1 — LUNES 29 JUNIO ═══ -->
+<div class="pg" id="pg-d1">
+  <div class="dh"><div class="dn">1</div><div><div class="dt">Lunes 29 Junio ✈️🏟️</div><div class="ds">Llegada · Medina · Koutoubia · Djemaa el-Fna de noche</div></div></div>
+
+  <div class="alert">⏰ <strong>Vuelo muy temprano:</strong> Salida VLC 06:05 — estar en el aeropuerto a las 04:00-04:30. Llegada Marrakech 07:10. Check-in Riad Jibril desde las 14:00 — pueden dejar las maletas antes y salir a explorar.</div>
+
+  <div class="mapsec">
+    <div class="map-links-box">
+      <div class="map-links-title">🗺️ Mapas — Día 1</div>
+      <a href="https://www.google.com/maps/search/Aeropuerto+Marrakech+Menara+RAK" target="_blank" class="map-direct-btn">✈️ Aeropuerto Menara RAK</a>
+      <a href="https://www.google.com/maps/dir/Aeropuerto+Marrakech+Menara/384+Rue+de+la+Kasbah+Marrakech" target="_blank" class="map-direct-btn">🚕 Ruta aeropuerto → Riad Jibril</a>
+      <a href="https://www.google.com/maps/search/Palacio+Bahia+Marrakech" target="_blank" class="map-direct-btn">🏰 Palacio de la Bahia</a>
+      <a href="https://www.google.com/maps/search/Tumbas+Saadies+Marrakech" target="_blank" class="map-direct-btn">⚰️ Tumbas Saadíes</a>
+      <a href="https://www.google.com/maps/search/Mezquita+Koutoubia+Marrakech" target="_blank" class="map-direct-btn">🕌 Mezquita Koutoubia</a>
+      <a href="https://www.google.com/maps/search/Le+Jardin+Secret+Marrakech" target="_blank" class="map-direct-btn">🌿 Le Jardin Secret</a>
+      <a href="https://www.google.com/maps/search/Djemaa+el+Fna+Marrakech" target="_blank" class="map-direct-btn">🌅 Plaza Djemaa el-Fna</a>
+    </div>
+  </div>
+
+  <div class="tl" id="tl-d1">
+
+    <div class="ti" id="d1-1">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">04:00</span><span class="cn">🚗 Salida hacia aeropuerto Valencia (VLC)</span><button type="button" class="eico" onclick="OE('d1-1')">✏️</button><button type="button" class="ckb" onclick="CD('d1-1')">⬜</button></div>
+        <div class="cd">DNI o pasaporte + loc. NRGUYB. Facturar online antes de salir. Solo maleta de cabina.</div>
+        <div class="ctags"><span class="tag tw">⚠ 04:00 · Muy temprano</span><span class="tag tt">🚗 Transporte</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Aeropuerto+Valencia+VLC" target="_blank" class="lnk lm">📍 Aeropuerto VLC</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-1" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-1')" /><span class="exp-unit">€</span><select id="pay-d1-1" class="pay-sel" onchange="saveExp('d1-1')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-1" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-1')" /></div>
+        <div class="ced" id="ced-d1-1"><input class="ef" data-f="time" value="04:00"><input class="ef" data-f="name" value="🚗 Salida hacia aeropuerto Valencia (VLC)"><textarea class="ef" data-f="desc">DNI/pasaporte + loc. NRGUYB. Facturar online. Solo maleta de cabina.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Aeropuerto+Valencia+VLC"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-1')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-1')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-1')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">✈️ FR5035 · 2h 05m</div></div>
+
+    <div class="ti" id="d1-2">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">06:05</span><span class="cn">🛫 Despegue FR5035 VLC → RAK</span><button type="button" class="eico" onclick="OE('d1-2')">✏️</button><button type="button" class="ckb" onclick="CD('d1-2')">⬜</button></div>
+        <div class="cd">Ryanair FR5035 · Valencia → Marrakech Menara · Llegada 07:10 · Loc.: NRGUYB</div>
+        <div class="ctags"><span class="tag tt">✈ FR5035 · NRGUYB</span><span class="tag te">2h 05m</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-2" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-2')" /><span class="exp-unit">€</span><select id="pay-d1-2" class="pay-sel" onchange="saveExp('d1-2')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-2" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-2')" /></div>
+        <div class="ced" id="ced-d1-2"><input class="ef" data-f="time" value="06:05"><input class="ef" data-f="name" value="🛫 Despegue FR5035 VLC → RAK"><textarea class="ef" data-f="desc">Ryanair FR5035 · Llegada 07:10 · Loc.: NRGUYB</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-2')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-2')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-2')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚕 Taxi oficial · ~80-120 MAD · 20 min</div></div>
+
+    <div class="ti" id="d1-3">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">07:10</span><span class="cn">🛬 Llegada RAK · Taxi al Riad Jibril</span><button type="button" class="eico" onclick="OE('d1-3')">✏️</button><button type="button" class="ckb" onclick="CD('d1-3')">⬜</button></div>
+        <div class="cd">Recoger equipaje · cambiar dinero en el aeropuerto o cajero · taxi oficial a Riad Jibril (384 Rue de la Kasbah). Precio fijo ~80-120 MAD. Dejar maletas en recepción — check-in oficial desde las 14:00. ⚠️ El riad ofrece traslado del aeropuerto — llamar con 72h de antelación al +212 611-252320.</div>
+        <div class="ctags"><span class="tag tt">🚕 Taxi · 20 min</span><span class="tag te">80-120 MAD</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/dir/?api=1&destination=Riad+Jibril,+384+RUE+de+la+kasbah,+Marrakech,+MA&dir_action=navigate" target="_blank" class="lnk lm">📍 Riad Jibril</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-3" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-3')" /><span class="exp-unit">€</span><select id="pay-d1-3" class="pay-sel" onchange="saveExp('d1-3')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-3" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-3')" /></div>
+        <div class="ced" id="ced-d1-3"><input class="ef" data-f="time" value="07:10"><input class="ef" data-f="name" value="🛬 Llegada RAK · Taxi al Riad Jibril"><textarea class="ef" data-f="desc">Taxi oficial ~80-120 MAD. Dejar maletas en riad. Check-in desde 14:00. Tel: +212 611-252320.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/dir/?api=1&destination=Riad+Jibril,+384+RUE+de+la+kasbah,+Marrakech,+MA&dir_action=navigate"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-3')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-3')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-3')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 5 min</div></div>
+
+    <div class="ti" id="d1-4">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">08:00</span><span class="cn">☕ Desayuno — Café Kif Kif</span><button type="button" class="eico" onclick="OE('d1-4')">✏️</button><button type="button" class="ckb" onclick="CD('d1-4')">⬜</button></div>
+        <div class="cd">Rue Koutoubia 28, junto a la mezquita. Cocina 100% casera, ambiente local, precios económicos. 🍽️ Pedir: msemen (pan hojaldrado) con miel + zumo de naranja natural + té de menta · ~30-40 MAD/persona.</div>
+        <div class="ctags"><span class="tag tf">☕ Desayuno</span><span class="tag te">~35 MAD/p</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Cafe+Kif+Kif+Marrakech+Rue+Koutoubia" target="_blank" class="lnk lm">📍 Café Kif Kif</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-4" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-4')" /><span class="exp-unit">€</span><select id="pay-d1-4" class="pay-sel" onchange="saveExp('d1-4')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-4" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-4')" /></div>
+        <div class="ced" id="ced-d1-4"><input class="ef" data-f="time" value="08:00"><input class="ef" data-f="name" value="☕ Desayuno — Café Kif Kif"><textarea class="ef" data-f="desc">Rue Koutoubia 28. Casero y económico. Msemen con miel + zumo naranja + té menta. ~35 MAD/p.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Cafe+Kif+Kif+Marrakech+Rue+Koutoubia"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-4')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-4')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-4')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 10 min</div></div>
+
+    <div class="ti" id="d1-5">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">09:00</span><span class="cn">🏰 Palacio de la Bahia</span><button type="button" class="eico" onclick="OE('d1-5')">✏️</button><button type="button" class="ckb" onclick="CD('d1-5')">⬜</button></div>
+        <div class="cd">Palacio del siglo XIX · 160 estancias · patios de mosaicos zellij y techos de cedro tallado · arquitectura hispano-morisca impresionante. Horario: 9:00-17:00 todos los días · Entrada: 70 MAD (~6,50€) · ~45 min.</div>
+        <div class="ctags"><span class="tag ts">🏰 Palacio</span><span class="tag te">70 MAD · ~45 min</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Palacio+Bahia+Marrakech" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-5" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-5')" /><span class="exp-unit">€</span><select id="pay-d1-5" class="pay-sel" onchange="saveExp('d1-5')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-5" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-5')" /></div>
+        <div class="ced" id="ced-d1-5"><input class="ef" data-f="time" value="09:00"><input class="ef" data-f="name" value="🏰 Palacio de la Bahia"><textarea class="ef" data-f="desc">Siglo XIX · 160 estancias · mosaicos zellij · 70 MAD · 9:00-17:00 · ~45 min.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Palacio+Bahia+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-5')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-5')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-5')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 5 min</div></div>
+
+    <div class="ti" id="d1-6">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">10:00</span><span class="cn">⚰️ Tumbas Saadíes</span><button type="button" class="eico" onclick="OE('d1-6')">✏️</button><button type="button" class="ckb" onclick="CD('d1-6')">⬜</button></div>
+        <div class="cd">Mausoleo del siglo XVI de la dinastía Saadí · redescubiertas en 1917 · sala de las 12 columnas de mármol de Carrara · 100 tumbas · acceso por pasadizo estrecho. ⚠️ Horario: 8:30-12:00 y 14:30-18:00 · Entrada: 70 MAD · ~30 min. Visitar POR LA MAÑANA (cierran al mediodía).</div>
+        <div class="ctags"><span class="tag ts">⚰️ S. XVI</span><span class="tag te">70 MAD · ~30 min</span><span class="tag tw">⚠ Mañana (cierra 12:00)</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Tumbas+Saadies+Marrakech" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-6" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-6')" /><span class="exp-unit">€</span><select id="pay-d1-6" class="pay-sel" onchange="saveExp('d1-6')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-6" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-6')" /></div>
+        <div class="ced" id="ced-d1-6"><input class="ef" data-f="time" value="10:00"><input class="ef" data-f="name" value="⚰️ Tumbas Saadíes"><textarea class="ef" data-f="desc">S. XVI · sala 12 columnas mármol · 70 MAD · 8:30-12:00 y 14:30-18:00 · ~30 min.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Tumbas+Saadies+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-6')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-6')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-6')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 10 min</div></div>
+
+    <div class="ti" id="d1-7">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">10:45</span><span class="cn">🕌 Mezquita Koutoubia — jardines exteriores</span><button type="button" class="eico" onclick="OE('d1-7')">✏️</button><button type="button" class="ckb" onclick="CD('d1-7')">⬜</button></div>
+        <div class="cd">Símbolo de Marrakech · minarete de 77m · inspiró la Giralda de Sevilla y la Torre de la Vela de Granada · solo exterior para no musulmanes. Pasear por los jardines. Gratis · ~20 min.</div>
+        <div class="ctags"><span class="tag ts">🕌 Patrimonio</span><span class="tag te">Gratis · exterior</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Mezquita+Koutoubia+Marrakech" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-7" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-7')" /><span class="exp-unit">€</span><select id="pay-d1-7" class="pay-sel" onchange="saveExp('d1-7')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-7" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-7')" /></div>
+        <div class="ced" id="ced-d1-7"><input class="ef" data-f="time" value="10:45"><input class="ef" data-f="name" value="🕌 Mezquita Koutoubia — jardines exteriores"><textarea class="ef" data-f="desc">Minarete 77m · inspiró la Giralda de Sevilla · solo exterior · gratis · ~20 min.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Mezquita+Koutoubia+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-7')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-7')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-7')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 10 min · Norte de la Medina</div></div>
+
+    <div class="ti" id="d1-8">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">11:15</span><span class="cn">🌿 Le Jardin Secret</span><button type="button" class="eico" onclick="OE('d1-8')">✏️</button><button type="button" class="ckb" onclick="CD('d1-8')">⬜</button></div>
+        <div class="cd">Oasis restaurado en 2016 en plena Medina · jardín islámico geométrico inspirado en el Corán + jardín exótico con plantas de todo el mundo. Refugio del calor y el bullicio. Entrada: 50 MAD · ~45 min.</div>
+        <div class="ctags"><span class="tag te">🌿 Jardín</span><span class="tag ts">50 MAD · ~45 min</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Le+Jardin+Secret+Marrakech" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-8" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-8')" /><span class="exp-unit">€</span><select id="pay-d1-8" class="pay-sel" onchange="saveExp('d1-8')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-8" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-8')" /></div>
+        <div class="ced" id="ced-d1-8"><input class="ef" data-f="time" value="11:15"><input class="ef" data-f="name" value="🌿 Le Jardin Secret"><textarea class="ef" data-f="desc">Oasis en la Medina · jardín islámico + exótico · 50 MAD · ~45 min.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Le+Jardin+Secret+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-8')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-8')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-8')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 5 min</div></div>
+
+    <div class="ti" id="d1-9">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">12:15</span><span class="cn">🍽️ Almuerzo — Kafé Merstan</span><button type="button" class="eico" onclick="OE('d1-9')">✏️</button><button type="button" class="ckb" onclick="CD('d1-9')">⬜</button></div>
+        <div class="cd">Terraza en plena Medina con pulverizadores de agua para el calor. Cocina marroquí tradicional casera. 🍽️ Pedir: harira (sopa de tomate y lentejas) + brochetas de kefta (cordero especiado) + pan · ~60-80 MAD/persona.</div>
+        <div class="ctags"><span class="tag tf">🍽️ Almuerzo</span><span class="tag te">~70 MAD/p</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Kafe+Merstan+Marrakech" target="_blank" class="lnk lm">📍 Kafé Merstan</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-9" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-9')" /><span class="exp-unit">€</span><select id="pay-d1-9" class="pay-sel" onchange="saveExp('d1-9')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-9" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-9')" /></div>
+        <div class="ced" id="ced-d1-9"><input class="ef" data-f="time" value="12:15"><input class="ef" data-f="name" value="🍽️ Almuerzo — Kafé Merstan"><textarea class="ef" data-f="desc">Terraza Medina · harira + kefta · ~70 MAD/p. Pulverizadores de agua para el calor.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Kafe+Merstan+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-9')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-9')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-9')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 10 min · Riad Jibril</div></div>
+
+    <div class="ti" id="d1-10">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">14:00</span><span class="cn">🏨 Check-in Riad Jibril</span><button type="button" class="eico" onclick="OE('d1-10')">✏️</button><button type="button" class="ckb" onclick="CD('d1-10')">⬜</button></div>
+        <div class="cd">384 Rue de la Kasbah · Check-in desde las 14:00 · Tel: +212 611-252320 · Coste: 98€ total (3 noches) · Hasta 12:00 el día de salida. Llevar DNI para registro. El riad acepta tarjeta de crédito. ⚠️ Ducharse y descansar del vuelo — el calor de mediodía es brutal.</div>
+        <div class="ctags"><span class="tag tp">🏨 Check-in 14:00</span><span class="tag te">98€ · 3 noches</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/dir/?api=1&destination=Riad+Jibril,+384+RUE+de+la+kasbah,+Marrakech,+MA&dir_action=navigate" target="_blank" class="lnk lm">📍 Riad Jibril</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-10" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-10')" /><span class="exp-unit">€</span><select id="pay-d1-10" class="pay-sel" onchange="saveExp('d1-10')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-10" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-10')" /></div>
+        <div class="ced" id="ced-d1-10"><input class="ef" data-f="time" value="14:00"><input class="ef" data-f="name" value="🏨 Check-in Riad Jibril"><textarea class="ef" data-f="desc">384 Rue de la Kasbah · desde 14:00 · 98€ total · Tel: +212 611-252320.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/dir/?api=1&destination=Riad+Jibril,+384+RUE+de+la+kasbah,+Marrakech,+MA&dir_action=navigate"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-10')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-10')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-10')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · tarde fresca</div></div>
+
+    <div class="ti" id="d1-11">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">16:00</span><span class="cn">🛍️ Primera exploración Souks</span><button type="button" class="eico" onclick="OE('d1-11')">✏️</button><button type="button" class="ckb" onclick="CD('d1-11')">⬜</button></div>
+        <div class="cd">Souk Smarine (textiles, babuchas) · Rahba Kedima (especias, jabón beldi) · perderse sin prisa por los callejones de la Medina. Tiempo libre sin horario. ⚠️ Regatear siempre: empezar al 30-40% del precio pedido. Solo efectivo.</div>
+        <div class="ctags"><span class="tag tm">🛍️ Souks</span><span class="tag tw">💵 Solo efectivo</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Souk+Smarine+Marrakech" target="_blank" class="lnk lm">📍 Souk Smarine</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-11" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-11')" /><span class="exp-unit">€</span><select id="pay-d1-11" class="pay-sel" onchange="saveExp('d1-11')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-11" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-11')" /></div>
+        <div class="ced" id="ced-d1-11"><input class="ef" data-f="time" value="16:00"><input class="ef" data-f="name" value="🛍️ Primera exploración Souks"><textarea class="ef" data-f="desc">Souk Smarine · Rahba Kedima · regatear al 30-40% · solo efectivo.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Souk+Smarine+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-11')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-11')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-11')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 10 min</div></div>
+
+    <div class="ti" id="d1-12">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">18:30</span><span class="cn">🌅 Atardecer Djemaa el-Fna desde terraza</span><button type="button" class="eico" onclick="OE('d1-12')">✏️</button><button type="button" class="ckb" onclick="CD('d1-12')">⬜</button></div>
+        <div class="cd">El atardecer sobre la Koutoubia desde las terrazas de los cafés de la plaza. El espectáculo empieza: músicos gnaoua, acróbatas, narradores. Pedir un té de menta y disfrutar. ¡NO sacar foto a encantadores/monos sin acordar precio antes!</div>
+        <div class="ctags"><span class="tag tp">🌅 Atardecer</span><span class="tag te">Gratis · té ~15 MAD</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Djemaa+el+Fna+Marrakech" target="_blank" class="lnk lm">📍 Djemaa el-Fna</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-12" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-12')" /><span class="exp-unit">€</span><select id="pay-d1-12" class="pay-sel" onchange="saveExp('d1-12')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-12" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-12')" /></div>
+        <div class="ced" id="ced-d1-12"><input class="ef" data-f="time" value="18:30"><input class="ef" data-f="name" value="🌅 Atardecer Djemaa el-Fna desde terraza"><textarea class="ef" data-f="desc">Atardecer sobre la Koutoubia · té de menta · espectáculo de la plaza · gratis.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Djemaa+el+Fna+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-12')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-12')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-12')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · plaza</div></div>
+
+    <div class="ti" id="d1-13">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">20:00</span><span class="cn">🍽️ Cena — Puestos de Djemaa el-Fna</span><button type="button" class="eico" onclick="OE('d1-13')">✏️</button><button type="button" class="ckb" onclick="CD('d1-13')">⬜</button></div>
+        <div class="cd">Cientos de puestos numerados · ambiente único en el mundo · narradores de cuentos · música en directo. 🍽️ Pedir: tajine de pollo con limón encurtido y aceitunas + pan marroquí khobz · ~70-100 MAD/persona. Preguntar precio antes de sentarse.</div>
+        <div class="ctags"><span class="tag tf">🍽️ Cena</span><span class="tag tp">🌙 Noche mágica</span><span class="tag te">~85 MAD/p</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Djemaa+el+Fna+food+stalls+Marrakech" target="_blank" class="lnk lm">📍 Puestos Djemaa</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-13" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-13')" /><span class="exp-unit">€</span><select id="pay-d1-13" class="pay-sel" onchange="saveExp('d1-13')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d1-13" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-13')" /></div>
+        <div class="ced" id="ced-d1-13"><input class="ef" data-f="time" value="20:00"><input class="ef" data-f="name" value="🍽️ Cena — Puestos de Djemaa el-Fna"><textarea class="ef" data-f="desc">Puestos numerados · tajine pollo con limón y aceitunas · ~85 MAD/p · preguntar precio antes.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Djemaa+el+Fna+food+stalls+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-13')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-13')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-13')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+  </div><!-- /tl-d1 -->
+  <button type="button" class="addbtn" onclick="TAF('add-d1')">＋ Añadir parada al día</button>
+  <div class="addfrm" id="add-d1">
+    <h4>➕ Nueva parada — Día 1</h4>
+    <label>Hora</label><input type="text" id="add-d1-time" placeholder="ej. 15:00">
+    <label>Nombre del sitio</label><input type="text" id="add-d1-name" placeholder="ej. 🕌 Mezquita Koutoubia">
+    <label>Descripción</label><textarea id="add-d1-desc" placeholder="Qué hacer, precio..."></textarea>
+    <label>Link Google Maps (opcional)</label><input type="url" id="add-d1-map">
+    <div class="afrm-acts"><button type="button" class="bs bsave" onclick="AS('d1')">✅ Añadir</button><button type="button" class="bs bcanc" onclick="TAF('add-d1')">Cancelar</button></div>
+  </div>
+</div><!-- /pg-d1 -->
+
+<!-- ═══ PAGE DÍA 2 — MARTES 30 JUNIO ═══ -->
+<div class="pg" id="pg-d2">
+  <div class="dh"><div class="dn">2</div><div><div class="dt">Martes 30 Junio 🕍🐪</div><div class="ds">Mañana Medina · Tarde Excursión Agafay · Noche Jaima</div></div></div>
+
+  <div class="alert">🐪 <strong>Excursión Agafay:</strong> Recogida en el Riad Jibril a las ~14:30. Reservar en Civitatis antes del viaje (civitatis.com/es/marrakech/noche-desierto-agafay). 79€/persona. Llevar bañador, ropa de noche (refresca), efectivo para extras (camello 25€/p, bebidas).</div>
+
+  <div class="mapsec">
+    <div class="map-links-box">
+      <div class="map-links-title">🗺️ Mapas — Día 2</div>
+      <a href="https://www.google.com/maps/search/Medersa+Ben+Youssef+Marrakech" target="_blank" class="map-direct-btn">🕍 Medersa Ben Youssef</a>
+      <a href="https://www.google.com/maps/search/Museo+Marrakech+Palacio+Mnebhi" target="_blank" class="map-direct-btn">🏛️ Museo de Marrakech</a>
+      <a href="https://www.google.com/maps/search/Souk+Haddadine+Marrakech" target="_blank" class="map-direct-btn">🛍️ Souks de los artesanos</a>
+      <a href="https://www.google.com/maps/search/Desierto+Agafay+Marrakech" target="_blank" class="map-direct-btn">🏜️ Desierto de Agafay</a>
+    </div>
+  </div>
+
+  <div class="tl" id="tl-d2">
+
+    <div class="ti" id="d2-1">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">08:00</span><span class="cn">☕ Desayuno — sfenj callejero cerca del riad</span><button type="button" class="eico" onclick="OE('d2-1')">✏️</button><button type="button" class="ckb" onclick="CD('d2-1')">⬜</button></div>
+        <div class="cd">Sfenj: donuts fritos marroquíes recién hechos en la calle, con miel o azúcar. Buscar un puesto cerca de la Rue de la Kasbah. Café marroquí con especias (café-spris). Desayuno de los locales de verdad. 🍽️ Pedir: sfenj + café con especias · ~20-30 MAD/persona.</div>
+        <div class="ctags"><span class="tag tf">☕ Desayuno callejero</span><span class="tag te">~25 MAD/p</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-1" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-1')" /><span class="exp-unit">€</span><select id="pay-d2-1" class="pay-sel" onchange="saveExp('d2-1')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-1" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-1')" /></div>
+        <div class="ced" id="ced-d2-1"><input class="ef" data-f="time" value="08:00"><input class="ef" data-f="name" value="☕ Desayuno — sfenj callejero cerca del riad"><textarea class="ef" data-f="desc">Sfenj (donuts fritos) + café con especias · ~25 MAD/p · desayuno local auténtico.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-1')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-1')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-1')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 15 min · Norte de la Medina</div></div>
+
+    <div class="ti" id="d2-2">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">09:00</span><span class="cn">🕍 Medersa Ben Youssef</span><button type="button" class="eico" onclick="OE('d2-2')">✏️</button><button type="button" class="ckb" onclick="CD('d2-2')">⬜</button></div>
+        <div class="cd">La escuela coránica más grande de Marruecos · siglo XIV, reconstruida en el XVI · azulejos zellij, estuco tallado y madera de cedro de una belleza impresionante. Alojó hasta 900 estudiantes. Uno de los monumentos más fotogénicos. ⚠️ Reservar online para evitar colas largas. Entrada: 70 MAD · ~45 min · abre 9:00.</div>
+        <div class="ctags"><span class="tag ts">🕍 S. XVI · UNESCO</span><span class="tag te">70 MAD · ~45 min</span><span class="tag tw">⚠ Reservar online</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Medersa+Ben+Youssef+Marrakech" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-2" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-2')" /><span class="exp-unit">€</span><select id="pay-d2-2" class="pay-sel" onchange="saveExp('d2-2')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-2" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-2')" /></div>
+        <div class="ced" id="ced-d2-2"><input class="ef" data-f="time" value="09:00"><input class="ef" data-f="name" value="🕍 Medersa Ben Youssef"><textarea class="ef" data-f="desc">Escuela coránica más grande de Marruecos · S.XVI · zellij + estuco · 70 MAD · ~45 min.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Medersa+Ben+Youssef+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-2')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-2')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-2')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 2 min · contiguo</div></div>
+
+    <div class="ti" id="d2-3">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">10:00</span><span class="cn">🏛️ Museo de Marrakech — Palacio Mnebhi</span><button type="button" class="eico" onclick="OE('d2-3')">✏️</button><button type="button" class="ckb" onclick="CD('d2-3')">⬜</button></div>
+        <div class="cd">Antiguo palacio con el patio central más espectacular de la Medina · araña de lámparas de bronce monumental · cerámica, joyería, manuscritos, trajes tradicionales. Arte marroquí contemporáneo. Cafetería en la azotea con vistas a los tejados. Entrada: 70 MAD · ~30 min.</div>
+        <div class="ctags"><span class="tag ts">🏛️ Museo</span><span class="tag te">70 MAD · ~30 min</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Museo+de+Marrakech+Palacio+Mnebhi" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-3" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-3')" /><span class="exp-unit">€</span><select id="pay-d2-3" class="pay-sel" onchange="saveExp('d2-3')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-3" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-3')" /></div>
+        <div class="ced" id="ced-d2-3"><input class="ef" data-f="time" value="10:00"><input class="ef" data-f="name" value="🏛️ Museo de Marrakech — Palacio Mnebhi"><textarea class="ef" data-f="desc">Patio monumental · araña de lámparas · arte marroquí · 70 MAD · ~30 min.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Museo+de+Marrakech+Palacio+Mnebhi"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-3')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-3')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-3')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · Souks artesanos</div></div>
+
+    <div class="ti" id="d2-4">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">10:45</span><span class="cn">🛍️ Souks artesanos — herrería y tenerías</span><button type="button" class="eico" onclick="OE('d2-4')">✏️</button><button type="button" class="ckb" onclick="CD('d2-4')">⬜</button></div>
+        <div class="cd">Souk Haddadine (herrería · lámparas artesanales) · Souk Chouara (tenerías de cuero · ver desde las terrazas gratuitas de las tiendas de arriba, ofrece hierbabuena para el olor) · Souk de las lámparas · tiempo para compras. Regatear siempre.</div>
+        <div class="ctags"><span class="tag tm">🛍️ Artesanía</span><span class="tag tw">💵 Solo efectivo</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Souk+Haddadine+Marrakech" target="_blank" class="lnk lm">📍 Souk Herrería</a><a href="https://www.google.com/maps/search/Chouara+tannery+Marrakech" target="_blank" class="lnk lm">📍 Tenerías</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-4" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-4')" /><span class="exp-unit">€</span><select id="pay-d2-4" class="pay-sel" onchange="saveExp('d2-4')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-4" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-4')" /></div>
+        <div class="ced" id="ced-d2-4"><input class="ef" data-f="time" value="10:45"><input class="ef" data-f="name" value="🛍️ Souks artesanos — herrería y tenerías"><textarea class="ef" data-f="desc">Souk Haddadine · Chouara (ver desde terraza gratis) · lámparas · regatear.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Souk+Haddadine+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-4')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-4')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-4')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 10 min</div></div>
+
+    <div class="ti" id="d2-5">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">12:30</span><span class="cn">🍽️ Almuerzo ligero — Chez Brahim o local cercano</span><button type="button" class="eico" onclick="OE('d2-5')">✏️</button><button type="button" class="ckb" onclick="CD('d2-5')">⬜</button></div>
+        <div class="cd">Almuerzo rápido antes de preparar la excursión. Buscar restaurante local sin carta turística cerca de los souks del norte. 🍽️ Pedir: couscous de verduras con caldo + ensalada marroquí (tomate, pepino, perejil) · ~50-70 MAD/persona.</div>
+        <div class="ctags"><span class="tag tf">🍽️ Almuerzo</span><span class="tag te">~60 MAD/p</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/restaurante+barato+medina+Marrakech+norte" target="_blank" class="lnk lm">📍 Zona restaurantes</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-5" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-5')" /><span class="exp-unit">€</span><select id="pay-d2-5" class="pay-sel" onchange="saveExp('d2-5')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-5" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-5')" /></div>
+        <div class="ced" id="ced-d2-5"><input class="ef" data-f="time" value="12:30"><input class="ef" data-f="name" value="🍽️ Almuerzo ligero — Chez Brahim o local cercano"><textarea class="ef" data-f="desc">Couscous de verduras + ensalada marroquí · ~60 MAD/p.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/restaurante+barato+medina+Marrakech+norte"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-5')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-5')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-5')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · vuelta al riad</div></div>
+
+    <div class="ti" id="d2-6">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">13:30</span><span class="cn">🎒 Preparar mochila excursión — Riad Jibril</span><button type="button" class="eico" onclick="OE('d2-6')">✏️</button><button type="button" class="ckb" onclick="CD('d2-6')">⬜</button></div>
+        <div class="cd">Meter en la mochila: bañador + toalla + ropa de noche (en el desierto refresca después del sol) + efectivo para camello (~25€/p) y bebidas + cargador + protector solar. El minibús recoge en la puerta.</div>
+        <div class="ctags"><span class="tag tw">🎒 Preparar mochila</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-6" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-6')" /><span class="exp-unit">€</span><select id="pay-d2-6" class="pay-sel" onchange="saveExp('d2-6')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-6" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-6')" /></div>
+        <div class="ced" id="ced-d2-6"><input class="ef" data-f="time" value="13:30"><input class="ef" data-f="name" value="🎒 Preparar mochila excursión — Riad Jibril"><textarea class="ef" data-f="desc">Bañador · ropa noche · efectivo camello 25€/p · protector solar.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-6')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-6')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-6')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚐 Minibús Civitatis · ~50 min</div></div>
+
+    <div class="ti" id="d2-7">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">14:30</span><span class="cn">🚐 Recogida excursión Agafay — Civitatis</span><button type="button" class="eico" onclick="OE('d2-7')">✏️</button><button type="button" class="ckb" onclick="CD('d2-7')">⬜</button></div>
+        <div class="cd">Minibús Civitatis recoge en el Riad Jibril o punto más cercano accesible. Guía en español (Rabie). ~50 min hasta el campamento. Precio excursión: 79€/persona (transporte + jaima + cena + desayuno + quad). Camello aparte: 25€/p opcional.</div>
+        <div class="ctags"><span class="tag tt">🚐 Civitatis</span><span class="tag te">79€/p incl. todo</span></div>
+        <div class="clnks"><a href="https://www.civitatis.com/es/marrakech/noche-desierto-agafay/" target="_blank" class="lnk lm">🎟️ Civitatis</a><a href="https://www.google.com/maps/search/Desierto+Agafay+Marrakech" target="_blank" class="lnk lm">📍 Agafay</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-7" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-7')" /><span class="exp-unit">€</span><select id="pay-d2-7" class="pay-sel" onchange="saveExp('d2-7')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-7" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-7')" /></div>
+        <div class="ced" id="ced-d2-7"><input class="ef" data-f="time" value="14:30"><input class="ef" data-f="name" value="🚐 Recogida excursión Agafay — Civitatis"><textarea class="ef" data-f="desc">Minibús en el riad · guía Rabie · 79€/p todo incl. · camello aparte 25€/p.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Desierto+Agafay+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-7')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-7')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-7')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🏜️ Llegada campamento Agafay</div></div>
+
+    <div class="ti" id="d2-8">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">16:00</span><span class="cn">🏕️ Llegada campamento · té de bienvenida · piscina</span><button type="button" class="eico" onclick="OE('d2-8')">✏️</button><button type="button" class="ckb" onclick="CD('d2-8')">⬜</button></div>
+        <div class="cd">Paisaje lunar rocoso con vistas al Atlas nevado. Té de menta de bienvenida. Tiempo libre en la piscina del campamento antes del camello. Agafay no tiene dunas de arena — es desierto rocoso, diferente al Sahara pero impresionante.</div>
+        <div class="ctags"><span class="tag te">🏊 Piscina incl.</span><span class="tag ts">🏔️ Vistas Atlas</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-8" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-8')" /><span class="exp-unit">€</span><select id="pay-d2-8" class="pay-sel" onchange="saveExp('d2-8')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-8" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-8')" /></div>
+        <div class="ced" id="ced-d2-8"><input class="ef" data-f="time" value="16:00"><input class="ef" data-f="name" value="🏕️ Llegada campamento · té de bienvenida · piscina"><textarea class="ef" data-f="desc">Desierto rocoso · vistas Atlas · piscina · té bienvenida. Incluido en excursión.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-8')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-8')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-8')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🐫 Paseo atardecer</div></div>
+
+    <div class="ti" id="d2-9">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">17:00</span><span class="cn">🐫 Paseo en camello al atardecer (opcional)</span><button type="button" class="eico" onclick="OE('d2-9')">✏️</button><button type="button" class="ckb" onclick="CD('d2-9')">⬜</button></div>
+        <div class="cd">30 minutos a lomos de camello por el desierto rocoso mientras el sol se pone sobre el Atlas. La foto del viaje. Precio: 25€/persona · opcional · pagar en efectivo en el campamento. Después: quad.</div>
+        <div class="ctags"><span class="tag tp">🐫 Opcional</span><span class="tag te">25€/p · 30 min</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-9" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-9')" /><span class="exp-unit">€</span><select id="pay-d2-9" class="pay-sel" onchange="saveExp('d2-9')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-9" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-9')" /></div>
+        <div class="ced" id="ced-d2-9"><input class="ef" data-f="time" value="17:00"><input class="ef" data-f="name" value="🐫 Paseo en camello al atardecer (opcional)"><textarea class="ef" data-f="desc">30 min · puesta de sol sobre el Atlas · 25€/p · efectivo · opcional.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-9')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-9')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-9')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🏍️ ¡A toda velocidad!</div></div>
+
+    <div class="ti" id="d2-10">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">18:30</span><span class="cn">🏍️ Quad por el desierto — 1 hora</span><button type="button" class="eico" onclick="OE('d2-10')">✏️</button><button type="button" class="ckb" onclick="CD('d2-10')">⬜</button></div>
+        <div class="cd">1 quad para los dos · 1 hora por el desierto rocoso de Agafay · adrenalina pura con las vistas del Atlas. ¡El momento favorito de Dani! Incluido en el precio de Civitatis (79€/p).</div>
+        <div class="ctags"><span class="tag tw">🏍️ Adrenalina</span><span class="tag te">Incluido · 1h</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-10" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-10')" /><span class="exp-unit">€</span><select id="pay-d2-10" class="pay-sel" onchange="saveExp('d2-10')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-10" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-10')" /></div>
+        <div class="ced" id="ced-d2-10"><input class="ef" data-f="time" value="18:30"><input class="ef" data-f="name" value="🏍️ Quad por el desierto — 1 hora"><textarea class="ef" data-f="desc">1 quad para 2 · 1h · desierto rocoso Agafay · incluido en Civitatis.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-10')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-10')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-10')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🍽️ Cena espectáculo</div></div>
+
+    <div class="ti" id="d2-11">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">20:30</span><span class="cn">🍽️ Cena bereber con espectáculo bajo las estrellas</span><button type="button" class="eico" onclick="OE('d2-11')">✏️</button><button type="button" class="ckb" onclick="CD('d2-11')">⬜</button></div>
+        <div class="cd">Cena incluida en la gran jaima del campamento · música bereber · danza del vientre · hombre de fuego · espectáculo gnaoua. Cielo sin contaminación lumínica — estrellas impresionantes. 🍽️ Pedir: tajine de cordero con ciruelas y almendras + pastilla de postre · incluido en el precio.</div>
+        <div class="ctags"><span class="tag tp">✨ Espectáculo</span><span class="tag tf">🍽️ Cena incl.</span><span class="tag ts">🌟 Estrellas</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-11" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-11')" /><span class="exp-unit">€</span><select id="pay-d2-11" class="pay-sel" onchange="saveExp('d2-11')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-11" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-11')" /></div>
+        <div class="ced" id="ced-d2-11"><input class="ef" data-f="time" value="20:30"><input class="ef" data-f="name" value="🍽️ Cena bereber con espectáculo bajo las estrellas"><textarea class="ef" data-f="desc">Gran jaima · música bereber · danza del vientre · fuego · tajine cordero · incluido.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-11')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-11')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-11')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="ti" id="d2-12">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">23:00</span><span class="cn">🌙 Noche en la jaima privada</span><button type="button" class="eico" onclick="OE('d2-12')">✏️</button><button type="button" class="ckb" onclick="CD('d2-12')">⬜</button></div>
+        <div class="cd">Jaima privada con baño · cama doble · sin luz artificial · cielo estrellado del Atlas. Incluido en precio Civitatis. ⚠️ Llevar una capa extra — en el desierto las noches de verano bajan a 18-22°C.</div>
+        <div class="ctags"><span class="tag te">🏕️ Jaima privada incl.</span><span class="tag tw">🌡️ Lleva ropa noche</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-12" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-12')" /><span class="exp-unit">€</span><select id="pay-d2-12" class="pay-sel" onchange="saveExp('d2-12')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d2-12" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-12')" /></div>
+        <div class="ced" id="ced-d2-12"><input class="ef" data-f="time" value="23:00"><input class="ef" data-f="name" value="🌙 Noche en la jaima privada"><textarea class="ef" data-f="desc">Jaima privada con baño · cielo estrellado Atlas · noches 18-22°C · llevar ropa.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-12')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-12')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-12')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+  </div><!-- /tl-d2 -->
+  <button type="button" class="addbtn" onclick="TAF('add-d2')">＋ Añadir parada al día</button>
+  <div class="addfrm" id="add-d2">
+    <h4>➕ Nueva parada — Día 2</h4>
+    <label>Hora</label><input type="text" id="add-d2-time" placeholder="ej. 10:00">
+    <label>Nombre del sitio</label><input type="text" id="add-d2-name" placeholder="ej. 🛍️ Souk especias">
+    <label>Descripción</label><textarea id="add-d2-desc" placeholder="Qué hacer, precio..."></textarea>
+    <label>Link Google Maps (opcional)</label><input type="url" id="add-d2-map">
+    <div class="afrm-acts"><button type="button" class="bs bsave" onclick="AS('d2')">✅ Añadir</button><button type="button" class="bs bcanc" onclick="TAF('add-d2')">Cancelar</button></div>
+  </div>
+</div><!-- /pg-d2 -->
+
+<!-- ═══ PAGE DÍA 3 — MIÉRCOLES 1 JULIO ═══ -->
+<div class="pg" id="pg-d3">
+  <div class="dh"><div class="dn">3</div><div><div class="dt">Miércoles 1 Julio 🌅🕌</div><div class="ds">Amanecer desierto · vuelta · tarde Medina · Majorelle</div></div></div>
+
+  <div class="alert">🌅 <strong>Amanecer en el desierto:</strong> Despertarse temprano para no perdérselo — es el momento más especial de la excursión. El minibús vuelve a Marrakech ~12:30. Por la tarde: Jardín Majorelle (reservar online antes del viaje — se agota).</div>
+
+  <div class="mapsec">
+    <div class="map-links-box">
+      <div class="map-links-title">🗺️ Mapas — Día 3</div>
+      <a href="https://www.google.com/maps/search/Jardin+Majorelle+Marrakech" target="_blank" class="map-direct-btn">🌺 Jardín Majorelle</a>
+      <a href="https://www.google.com/maps/search/Palacio+Badi+Marrakech" target="_blank" class="map-direct-btn">🏛️ Palacio Badi (ruinas)</a>
+      <a href="https://www.google.com/maps/search/Rahba+Kedima+Marrakech+especias" target="_blank" class="map-direct-btn">🧂 Rahba Kedima — Plaza Especias</a>
+      <a href="https://www.google.com/maps/search/Djemaa+el+Fna+Marrakech" target="_blank" class="map-direct-btn">🌅 Koutoubia — atardecer</a>
+    </div>
+  </div>
+
+  <div class="tl" id="tl-d3">
+
+    <div class="ti" id="d3-1">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">07:00</span><span class="cn">🌅 Amanecer en el desierto de Agafay</span><button type="button" class="eico" onclick="OE('d3-1')">✏️</button><button type="button" class="ckb" onclick="CD('d3-1')">⬜</button></div>
+        <div class="cd">No dormir hasta tarde — el amanecer en el desierto es el momento más fotogénico y emocionante del viaje. Cielo que pasa de negro a naranja sobre el Atlas. Silencio total. Salir de la jaima antes de que salga el sol.</div>
+        <div class="ctags"><span class="tag tp">🌅 Momento único</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-1" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-1')" /><span class="exp-unit">€</span><select id="pay-d3-1" class="pay-sel" onchange="saveExp('d3-1')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d3-1" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-1')" /></div>
+        <div class="ced" id="ced-d3-1"><input class="ef" data-f="time" value="07:00"><input class="ef" data-f="name" value="🌅 Amanecer en el desierto de Agafay"><textarea class="ef" data-f="desc">El momento más especial del viaje. Salir de la jaima antes del amanecer.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-1')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-1')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-1')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="ti" id="d3-2">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">08:00</span><span class="cn">☕ Desayuno bereber en el campamento</span><button type="button" class="eico" onclick="OE('d3-2')">✏️</button><button type="button" class="ckb" onclick="CD('d3-2')">⬜</button></div>
+        <div class="cd">Pan con aceite de argán y miel · huevos · té de menta · mermelada casera. Desayuno incluido en el precio de la excursión. Vistas al Atlas con la luz de la mañana. 🍽️ Pedirle al guía que expliquen el aceite de argán — es de la región.</div>
+        <div class="ctags"><span class="tag tf">☕ Desayuno incl.</span><span class="tag te">Aceite de argán</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-2" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-2')" /><span class="exp-unit">€</span><select id="pay-d3-2" class="pay-sel" onchange="saveExp('d3-2')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d3-2" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-2')" /></div>
+        <div class="ced" id="ced-d3-2"><input class="ef" data-f="time" value="08:00"><input class="ef" data-f="name" value="☕ Desayuno bereber en el campamento"><textarea class="ef" data-f="desc">Pan + aceite argán + miel + té · incluido. Última hora en el desierto.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-2')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-2')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-2')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚐 Minibús de vuelta · ~50 min</div></div>
+
+    <div class="ti" id="d3-3">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">12:30</span><span class="cn">🏨 Vuelta al Riad Jibril · ducharse</span><button type="button" class="eico" onclick="OE('d3-3')">✏️</button><button type="button" class="ckb" onclick="CD('d3-3')">⬜</button></div>
+        <div class="cd">El minibús deja en la plaza o punto más cercano al riad. Ducharse, descansar un poco y prepararse para la tarde. El calor del mediodía obliga a una pausa (13:00-15:00).</div>
+        <div class="ctags"><span class="tag tw">☀️ Pausa mediodía</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/dir/?api=1&destination=Riad+Jibril,+384+RUE+de+la+kasbah,+Marrakech,+MA&dir_action=navigate" target="_blank" class="lnk lm">📍 Riad Jibril</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-3" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-3')" /><span class="exp-unit">€</span><select id="pay-d3-3" class="pay-sel" onchange="saveExp('d3-3')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d3-3" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-3')" /></div>
+        <div class="ced" id="ced-d3-3"><input class="ef" data-f="time" value="12:30"><input class="ef" data-f="name" value="🏨 Vuelta al Riad Jibril · ducharse"><textarea class="ef" data-f="desc">Vuelta del desierto · pausa mediodía · prepararse para tarde Medina.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/dir/?api=1&destination=Riad+Jibril,+384+RUE+de+la+kasbah,+Marrakech,+MA&dir_action=navigate"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-3')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-3')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-3')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🍽️ Almuerzo cerca del riad</div></div>
+
+    <div class="ti" id="d3-4">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">13:30</span><span class="cn">🍽️ Almuerzo — Amal Restaurant (ONG)</span><button type="button" class="eico" onclick="OE('d3-4')">✏️</button><button type="button" class="ckb" onclick="CD('d3-4')">⬜</button></div>
+        <div class="cd">Restaurante social de la ONG Amal — forma a mujeres desfavorecidas. Auténtica cocina marroquí casera a precio muy justo. Zona Gueliz (cerca de Majorelle). 🍽️ Pedir: pastilla de pollo con almendras y azúcar glas (el plato más único de Marruecos) · ~60-80 MAD/persona.</div>
+        <div class="ctags"><span class="tag tf">🍽️ Almuerzo</span><span class="tag te">~70 MAD/p · ONG</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Amal+Restaurant+Marrakech" target="_blank" class="lnk lm">📍 Amal Restaurant</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-4" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-4')" /><span class="exp-unit">€</span><select id="pay-d3-4" class="pay-sel" onchange="saveExp('d3-4')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d3-4" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-4')" /></div>
+        <div class="ced" id="ced-d3-4"><input class="ef" data-f="time" value="13:30"><input class="ef" data-f="name" value="🍽️ Almuerzo — Amal Restaurant (ONG)"><textarea class="ef" data-f="desc">ONG que forma mujeres · pastilla de pollo con almendras · ~70 MAD/p.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Amal+Restaurant+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-4')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-4')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-4')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚕 Taxi · ~20 min · 30 MAD</div></div>
+
+    <div class="ti" id="d3-5">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">15:30</span><span class="cn">🌺 Jardín Majorelle</span><button type="button" class="eico" onclick="OE('d3-5')">✏️</button><button type="button" class="ckb" onclick="CD('d3-5')">⬜</button></div>
+        <div class="cd">El jardín más famoso de Marruecos · creado por el pintor Jacques Majorelle en 1924 · adquirido por Yves Saint Laurent · azul cobalto Majorelle · cactus de 5 continentes · estanque de nenúfares. Fuera de la Medina (Gueliz). ⚠️ RESERVAR ONLINE con antelación — se agota en julio (majorelle-garden.com). Entrada: ~150 MAD. Abre hasta 18:00 en verano · ~1,5h.</div>
+        <div class="ctags"><span class="tag te">🌺 Imprescindible</span><span class="tag ts">150 MAD · ~1,5h</span><span class="tag tw">⚠ Reservar online</span></div>
+        <div class="clnks"><a href="https://majorelle-garden.com/es" target="_blank" class="lnk lm">🎟️ Reservar</a><a href="https://www.google.com/maps/search/Jardin+Majorelle+Marrakech" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-5" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-5')" /><span class="exp-unit">€</span><select id="pay-d3-5" class="pay-sel" onchange="saveExp('d3-5')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d3-5" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-5')" /></div>
+        <div class="ced" id="ced-d3-5"><input class="ef" data-f="time" value="15:30"><input class="ef" data-f="name" value="🌺 Jardín Majorelle"><textarea class="ef" data-f="desc">Azul cobalto · cactus · YSL · 150 MAD · reservar online · abre 8:00-18:00 verano.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Jardin+Majorelle+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-5')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-5')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-5')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚕 Taxi · ~20 min · 30 MAD</div></div>
+
+    <div class="ti" id="d3-6">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">17:30</span><span class="cn">🛍️ Últimas vueltas a los souks</span><button type="button" class="eico" onclick="OE('d3-6')">✏️</button><button type="button" class="ckb" onclick="CD('d3-6')">⬜</button></div>
+        <div class="cd">Lo que quedó pendiente: especias (comino, ras el hanout, azafrán), jabón beldi, aceite de argán, babuchas de cuero, lámparas. Los souks siguen abiertos hasta las 21:00. Solo efectivo, regatear siempre.</div>
+        <div class="ctags"><span class="tag tm">🛍️ Compras finales</span><span class="tag tw">💵 Efectivo · regatear</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Rahba+Kedima+Marrakech" target="_blank" class="lnk lm">📍 Rahba Kedima</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-6" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-6')" /><span class="exp-unit">€</span><select id="pay-d3-6" class="pay-sel" onchange="saveExp('d3-6')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d3-6" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-6')" /></div>
+        <div class="ced" id="ced-d3-6"><input class="ef" data-f="time" value="17:30"><input class="ef" data-f="name" value="🛍️ Últimas vueltas a los souks"><textarea class="ef" data-f="desc">Especias · jabón beldi · aceite argán · babuchas · lámparas · regatear.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Rahba+Kedima+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-6')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-6')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-6')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 5 min</div></div>
+
+    <div class="ti" id="d3-7">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">19:30</span><span class="cn">🌅 Té en terraza con vistas a la Koutoubia</span><button type="button" class="eico" onclick="OE('d3-7')">✏️</button><button type="button" class="ckb" onclick="CD('d3-7')">⬜</button></div>
+        <div class="cd">Subir a cualquier terraza de los cafés que rodean la Djemaa el-Fna. El atardecer sobre el minarete de la Koutoubia desde arriba es la foto más icónica de Marrakech. Té de menta + pastas marroquíes. ~20 MAD/persona.</div>
+        <div class="ctags"><span class="tag tp">📸 La foto del viaje</span><span class="tag te">~20 MAD/p</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/terraza+cafe+Djemaa+el+Fna+Marrakech" target="_blank" class="lnk lm">📍 Terrazas Djemaa</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-7" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-7')" /><span class="exp-unit">€</span><select id="pay-d3-7" class="pay-sel" onchange="saveExp('d3-7')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d3-7" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-7')" /></div>
+        <div class="ced" id="ced-d3-7"><input class="ef" data-f="time" value="19:30"><input class="ef" data-f="name" value="🌅 Té en terraza con vistas a la Koutoubia"><textarea class="ef" data-f="desc">Atardecer sobre la Koutoubia desde terraza · té menta · ~20 MAD/p.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/terraza+cafe+Djemaa+el+Fna+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-7')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-7')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-7')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 5 min</div></div>
+
+    <div class="ti" id="d3-8">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">20:30</span><span class="cn">🍽️ Cena — Dar Anika Kitchen</span><button type="button" class="eico" onclick="OE('d3-8')">✏️</button><button type="button" class="ckb" onclick="CD('d3-8')">⬜</button></div>
+        <div class="cd">Restaurante dentro de un riad precioso · carta tradicional marroquí excelente · ambiente íntimo. 🍽️ Pedir: mechoui (cordero a la brasa entero, lento) + briouats de queso y miel de postre · ~100-150 MAD/persona. Reservar si es posible (lleno habitualmente).</div>
+        <div class="ctags"><span class="tag tf">🍽️ Cena</span><span class="tag ts">~125 MAD/p</span><span class="tag tw">📞 Reservar si posible</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Dar+Anika+Kitchen+Marrakech" target="_blank" class="lnk lm">📍 Dar Anika</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-8" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-8')" /><span class="exp-unit">€</span><select id="pay-d3-8" class="pay-sel" onchange="saveExp('d3-8')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d3-8" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-8')" /></div>
+        <div class="ced" id="ced-d3-8"><input class="ef" data-f="time" value="20:30"><input class="ef" data-f="name" value="🍽️ Cena — Dar Anika Kitchen"><textarea class="ef" data-f="desc">Riad con cocina tradicional · mechoui + briouats · ~125 MAD/p · reservar.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Dar+Anika+Kitchen+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-8')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-8')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-8')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+  </div><!-- /tl-d3 -->
+  <button type="button" class="addbtn" onclick="TAF('add-d3')">＋ Añadir parada al día</button>
+  <div class="addfrm" id="add-d3">
+    <h4>➕ Nueva parada — Día 3</h4>
+    <label>Hora</label><input type="text" id="add-d3-time" placeholder="ej. 10:00">
+    <label>Nombre del sitio</label><input type="text" id="add-d3-name" placeholder="ej. 🧖 Hammam">
+    <label>Descripción</label><textarea id="add-d3-desc" placeholder="Qué hacer, precio..."></textarea>
+    <label>Link Google Maps (opcional)</label><input type="url" id="add-d3-map">
+    <div class="afrm-acts"><button type="button" class="bs bsave" onclick="AS('d3')">✅ Añadir</button><button type="button" class="bs bcanc" onclick="TAF('add-d3')">Cancelar</button></div>
+  </div>
+</div><!-- /pg-d3 -->
+
+<!-- ═══ PAGE DÍA 4 — JUEVES 2 JULIO ═══ -->
+<div class="pg" id="pg-d4">
+  <div class="dh"><div class="dn">4</div><div><div class="dt">Jueves 2 Julio 🛫🏛️</div><div class="ds">Mañana visitas · Check-out 12:00 · Vuelo 17:45</div></div></div>
+
+  <div class="alert">✈️ <strong>Vuelo FR2217 a las 17:45:</strong> Estar en el aeropuerto a las <strong>15:30</strong>. Check-out Riad Jibril a las 12:00 — llamar al +212 611-252320 para guardar maletas hasta las 13:30-14:00. Taxi al aeropuerto ~20 min.</div>
+
+  <div class="mapsec">
+    <div class="map-links-box">
+      <div class="map-links-title">🗺️ Mapas — Día 4</div>
+      <a href="https://www.google.com/maps/search/Palacio+Badi+Marrakech" target="_blank" class="map-direct-btn">🏛️ Palacio Badi (ruinas)</a>
+      <a href="https://www.google.com/maps/search/Rahba+Kedima+plaza+especias+Marrakech" target="_blank" class="map-direct-btn">🧂 Plaza de las Especias</a>
+      <a href="https://www.google.com/maps/search/Djemaa+el+Fna+Marrakech" target="_blank" class="map-direct-btn">☕ Última mañana Medina</a>
+      <a href="https://www.google.com/maps/search/Aeropuerto+Marrakech+Menara" target="_blank" class="map-direct-btn">✈️ Aeropuerto RAK</a>
+    </div>
+  </div>
+
+  <div class="tl" id="tl-d4">
+
+    <div class="ti" id="d4-1">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">08:00</span><span class="cn">☕ Desayuno — terraza Djemaa el-Fna</span><button type="button" class="eico" onclick="OE('d4-1')">✏️</button><button type="button" class="ckb" onclick="CD('d4-1')">⬜</button></div>
+        <div class="cd">Última mañana tranquila. La plaza casi vacía de madrugada tiene una magia especial. Subir a una terraza con vistas y desayunar despacio. 🍽️ Pedir: msemen hojaldrado con mantequilla y miel + zumo de naranja natural + café · ~30-40 MAD/persona.</div>
+        <div class="ctags"><span class="tag tf">☕ Último desayuno</span><span class="tag te">~35 MAD/p</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/terraza+cafe+Djemaa+el+Fna+Marrakech" target="_blank" class="lnk lm">📍 Terrazas plaza</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-1" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-1')" /><span class="exp-unit">€</span><select id="pay-d4-1" class="pay-sel" onchange="saveExp('d4-1')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d4-1" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-1')" /></div>
+        <div class="ced" id="ced-d4-1"><input class="ef" data-f="time" value="08:00"><input class="ef" data-f="name" value="☕ Desayuno — terraza Djemaa el-Fna"><textarea class="ef" data-f="desc">Msemen + miel + zumo naranja + café · terraza con vistas · ~35 MAD/p.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/terraza+cafe+Djemaa+el+Fna+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-1')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-1')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-1')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 8 min</div></div>
+
+    <div class="ti" id="d4-2">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">09:00</span><span class="cn">🏛️ Palacio Badi — ruinas del sultán</span><button type="button" class="eico" onclick="OE('d4-2')">✏️</button><button type="button" class="ckb" onclick="CD('d4-2')">⬜</button></div>
+        <div class="cd">Ruinas del palacio más opulento del siglo XVI · el sultán Ahmad al-Mansur lo construyó con mármol de Carrara y oro · hoy solo quedan las paredes y los estanques · cigüeñas nidificando en lo alto · vistas panorámicas desde las murallas. Entrada: 30 MAD · ~30 min. Muy cercano al Riad Jibril.</div>
+        <div class="ctags"><span class="tag ts">🏛️ S. XVI</span><span class="tag te">30 MAD · ~30 min</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Palacio+Badi+Marrakech" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-2" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-2')" /><span class="exp-unit">€</span><select id="pay-d4-2" class="pay-sel" onchange="saveExp('d4-2')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d4-2" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-2')" /></div>
+        <div class="ced" id="ced-d4-2"><input class="ef" data-f="time" value="09:00"><input class="ef" data-f="name" value="🏛️ Palacio Badi — ruinas del sultán"><textarea class="ef" data-f="desc">Ruinas S.XVI · cigüeñas · vistas panorámicas · 30 MAD · ~30 min.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Palacio+Badi+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-2')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-2')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-2')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · 5 min</div></div>
+
+    <div class="ti" id="d4-3">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">09:45</span><span class="cn">🧂 Rahba Kedima — Plaza de las Especias</span><button type="button" class="eico" onclick="OE('d4-3')">✏️</button><button type="button" class="ckb" onclick="CD('d4-3')">⬜</button></div>
+        <div class="cd">La plaza más fotogénica de los souks · montañas de especias de colores · jabón beldi · henna · remedios bereber. Perfecta para los últimos recuerdos. ⚠️ Regatear sí o sí — los precios iniciales son 3-4x el precio real. Solo efectivo.</div>
+        <div class="ctags"><span class="tag tm">🧂 Especias</span><span class="tag tw">💵 Regatear siempre</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Rahba+Kedima+Marrakech" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-3" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-3')" /><span class="exp-unit">€</span><select id="pay-d4-3" class="pay-sel" onchange="saveExp('d4-3')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d4-3" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-3')" /></div>
+        <div class="ced" id="ced-d4-3"><input class="ef" data-f="time" value="09:45"><input class="ef" data-f="name" value="🧂 Rahba Kedima — Plaza de las Especias"><textarea class="ef" data-f="desc">Montañas de especias · jabón beldi · recuerdos · regatear siempre · efectivo.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Rahba+Kedima+Marrakech"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-3')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-3')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-3')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚶 A pie · vuelta al riad</div></div>
+
+    <div class="ti" id="d4-4">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">11:00</span><span class="cn">🧖 Hammam tradicional (opcional)</span><button type="button" class="eico" onclick="OE('d4-4')">✏️</button><button type="button" class="ckb" onclick="CD('d4-4')">⬜</button></div>
+        <div class="cd">Si queda tiempo y energía, un hammam local es la experiencia más auténtica de Marruecos. Pedir al riad que recomienden uno de confianza con precio fijo (evitar los que ofrecen en la calle). Precio local: ~40-80 MAD. Duración: ~45 min.</div>
+        <div class="ctags"><span class="tag tp">🧖 Opcional</span><span class="tag te">40-80 MAD · ~45 min</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-4" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-4')" /><span class="exp-unit">€</span><select id="pay-d4-4" class="pay-sel" onchange="saveExp('d4-4')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d4-4" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-4')" /></div>
+        <div class="ced" id="ced-d4-4"><input class="ef" data-f="time" value="11:00"><input class="ef" data-f="name" value="🧖 Hammam tradicional (opcional)"><textarea class="ef" data-f="desc">Pedir recomendación al riad · precio fijo · 40-80 MAD · ~45 min.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-4')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-4')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-4')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🏨 Check-out Riad Jibril</div></div>
+
+    <div class="ti" id="d4-5">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">12:00</span><span class="cn">🏨 Check-out Riad Jibril · guardar maletas</span><button type="button" class="eico" onclick="OE('d4-5')">✏️</button><button type="button" class="ckb" onclick="CD('d4-5')">⬜</button></div>
+        <div class="cd">Check-out obligatorio a las 12:00. Llamar antes al +212 611-252320 para confirmar guardarmaletas hasta las 13:30-14:00. Hacer las maletas la noche anterior para no correr.</div>
+        <div class="ctags"><span class="tag tw">⚠ Check-out 12:00</span></div>
+        <div class="clnks"><a href="tel:+212611252320" class="lnk lb">📞 +212 611-252320</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-5" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-5')" /><span class="exp-unit">€</span><select id="pay-d4-5" class="pay-sel" onchange="saveExp('d4-5')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d4-5" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-5')" /></div>
+        <div class="ced" id="ced-d4-5"><input class="ef" data-f="time" value="12:00"><input class="ef" data-f="name" value="🏨 Check-out Riad Jibril · guardar maletas"><textarea class="ef" data-f="desc">Check-out 12:00 · guardar maletas hasta 13:30 · Tel: +212 611-252320.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-5')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-5')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-5')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🍽️ Última comida</div></div>
+
+    <div class="ti" id="d4-6">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">12:30</span><span class="cn">🍽️ Almuerzo de despedida — mercado local</span><button type="button" class="eico" onclick="OE('d4-6')">✏️</button><button type="button" class="ckb" onclick="CD('d4-6')">⬜</button></div>
+        <div class="cd">Último sabor de Marrakech. Buscar un puesto o restaurante local sencillo cerca del riad. 🍽️ Pedir: merguez a la brasa con pan marroquí + chebakia de postre (pasta frita con miel y sésamo) · ~50-70 MAD/persona.</div>
+        <div class="ctags"><span class="tag tf">🍽️ Despedida</span><span class="tag te">~60 MAD/p</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-6" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-6')" /><span class="exp-unit">€</span><select id="pay-d4-6" class="pay-sel" onchange="saveExp('d4-6')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d4-6" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-6')" /></div>
+        <div class="ced" id="ced-d4-6"><input class="ef" data-f="time" value="12:30"><input class="ef" data-f="name" value="🍽️ Almuerzo de despedida — mercado local"><textarea class="ef" data-f="desc">Merguez a la brasa + pan + chebakia de postre · ~60 MAD/p.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-6')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-6')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-6')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">🚕 Taxi al aeropuerto · ~80-120 MAD · 20 min</div></div>
+
+    <div class="ti" id="d4-7">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">15:30</span><span class="cn">🏁 Check-in aeropuerto RAK</span><button type="button" class="eico" onclick="OE('d4-7')">✏️</button><button type="button" class="ckb" onclick="CD('d4-7')">⬜</button></div>
+        <div class="cd">Estar en el aeropuerto mínimo 2 horas antes. Localizador: NRGUYB. Facturar online antes de salir del riad. Recoger maletas del guardarropa antes del taxi.</div>
+        <div class="ctags"><span class="tag tt">🏁 2h antes</span><span class="tag tw">⚠ NRGUYB</span></div>
+        <div class="clnks"><a href="https://www.google.com/maps/search/Aeropuerto+Marrakech+Menara" target="_blank" class="lnk lm">📍 Aeropuerto RAK</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-7" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-7')" /><span class="exp-unit">€</span><select id="pay-d4-7" class="pay-sel" onchange="saveExp('d4-7')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d4-7" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-7')" /></div>
+        <div class="ced" id="ced-d4-7"><input class="ef" data-f="time" value="15:30"><input class="ef" data-f="name" value="🏁 Check-in aeropuerto RAK"><textarea class="ef" data-f="desc">Aeropuerto 2h antes · loc. NRGUYB · facturar online antes.</textarea><input class="ef" data-f="map" value="https://www.google.com/maps/search/Aeropuerto+Marrakech+Menara"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-7')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-7')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-7')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+    <div class="trn"><div class="trn-pill">✈️ FR2217 · 1h 55m</div></div>
+
+    <div class="ti" id="d4-8">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">17:45</span><span class="cn">🛫 Vuelo FR2217 RAK → VLC</span><button type="button" class="eico" onclick="OE('d4-8')">✏️</button><button type="button" class="ckb" onclick="CD('d4-8')">⬜</button></div>
+        <div class="cd">Ryanair FR2217 · Marrakech Menara → Valencia · Llegada VLC 20:40 · Localizador: NRGUYB · ¡Hasta la próxima, Marrakech! 🇲🇦❤️</div>
+        <div class="ctags"><span class="tag tt">✈ FR2217 · NRGUYB</span><span class="tag te">Llegada VLC 20:40</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-8" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-8')" /><span class="exp-unit">€</span><select id="pay-d4-8" class="pay-sel" onchange="saveExp('d4-8')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-d4-8" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-8')" /></div>
+        <div class="ced" id="ced-d4-8"><input class="ef" data-f="time" value="17:45"><input class="ef" data-f="name" value="🛫 Vuelo FR2217 RAK → VLC"><textarea class="ef" data-f="desc">Ryanair FR2217 · Llegada VLC 20:40 · Loc.: NRGUYB · ¡Hasta la próxima Marrakech! 🇲🇦</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-8')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-8')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-8')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+
+  </div><!-- /tl-d4 -->
+  <button type="button" class="addbtn" onclick="TAF('add-d4')">＋ Añadir parada al día</button>
+  <div class="addfrm" id="add-d4">
+    <h4>➕ Nueva parada — Día 4</h4>
+    <label>Hora</label><input type="text" id="add-d4-time" placeholder="ej. 10:00">
+    <label>Nombre del sitio</label><input type="text" id="add-d4-name" placeholder="ej. ☕ Última parada">
+    <label>Descripción</label><textarea id="add-d4-desc" placeholder="Qué hacer, precio..."></textarea>
+    <label>Link Google Maps (opcional)</label><input type="url" id="add-d4-map">
+    <div class="afrm-acts"><button type="button" class="bs bsave" onclick="AS('d4')">✅ Añadir</button><button type="button" class="bs bcanc" onclick="TAF('add-d4')">Cancelar</button></div>
+  </div>
+</div><!-- /pg-d4 -->
+
+<!-- ═══ PAGE GASTOS ═══ -->
+<div class="pg" id="pg-exp">
+  <div class="sec">💶 Resumen de Gastos del Viaje</div>
+  <button type="button" class="recalc-btn" onclick="calcExp()">🔄 Actualizar totales</button>
+
+  <div id="exp-pairs"></div>
+
+  <div class="exp-summary">
+    <div class="exp-sumhdr">📋 Desglose completo por actividad</div>
+    <table class="exp-table" id="exp-table">
+      <thead><tr><th>Actividad</th><th>Total</th><th>Paga</th><th>Debe Daniel</th><th>Debe Laura</th></tr></thead>
+      <tbody id="exp-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+//  MARRAKECH 2026 — Daniel & Laura
+//  Sincronización en la nube (JSONBin.io)
+// ═══════════════════════════════════════════════════════════
+var S = {done:{}, edits:{}, exps:{}, payer:{}, notes:{}};
+
+// ── Configuración JSONBin ──────────────────────────────────
+// INSTRUCCIONES PARA ACTIVAR:
+//   1. Ve a https://jsonbin.io → "Sign Up" gratis
+//   2. Dashboard → "Create Bin" → pega {} → Create
+//   3. Copia el BIN ID
+//   4. Ve a Account → API Keys → copia tu Master Key
+//   5. Pega ambos valores aquí abajo y sube el archivo
+var JSONBIN_ID  = 'PEGAR_BIN_ID_AQUI';
+var JSONBIN_KEY = 'PEGAR_API_KEY_AQUI';
+var JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_ID;
+var saveTimer   = null;
+var CONFIGURED  = (JSONBIN_ID.length > 10 && JSONBIN_KEY.length > 10 && JSONBIN_ID.indexOf('PEGAR') === -1 && JSONBIN_KEY.indexOf('PEGAR') === -1);
+
+// ── Indicador de sync ─────────────────────────────────────
+function setSyncStatus(st){
+  var el = document.getElementById('sync-dot');
+  var tx = document.getElementById('sync-txt');
+  var map = {
+    loading: {bg:'#888',    txt:'Cargando datos...'},
+    ok:      {bg:'#2D6A45', txt:'🟢 Guardado — los dos ven los cambios'},
+    saving:  {bg:'#C9851C', txt:'🟡 Guardando...'},
+    error:   {bg:'#B03030', txt:'🔴 Sin conexión — datos locales'},
+    local:   {bg:'#2A4A7A', txt:'📱 Modo local · Configura JSONBin para sincronizar'}
+  };
+  var m = map[st] || map.local;
+  if(el){ el.style.background = m.bg; }
+  if(tx){ tx.textContent = m.txt; }
+}
+
+// ── Cargar estado desde JSONBin ───────────────────────────
+function lsLoad(){
+  if(!CONFIGURED){ loadFromLS(); return; }
+  setSyncStatus('loading');
+  fetch(JSONBIN_URL + '/latest', {
+    headers: {'X-Master-Key': JSONBIN_KEY}
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    var saved = (data.record) ? data.record : {};
+    applyState(saved);
+    setSyncStatus('ok');
+  })
+  .catch(function(){
+    loadFromLS();
+    setSyncStatus('error');
+  });
+}
+
+// ── Guardar estado en JSONBin (con debounce 800ms) ────────
+function lsSave(){
+  try{ localStorage.setItem('mrk26', JSON.stringify(S)); } catch(e){}
+  if(!CONFIGURED){ setSyncStatus('local'); return; }
+  clearTimeout(saveTimer);
+  setSyncStatus('saving');
+  saveTimer = setTimeout(function(){
+    fetch(JSONBIN_URL, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_KEY
+      },
+      body: JSON.stringify(S)
+    })
+    .then(function(){ setSyncStatus('ok'); })
+    .catch(function(){ setSyncStatus('error'); });
+  }, 800);
+}
+
+// ── Fallback: localStorage ────────────────────────────────
+function loadFromLS(){
+  try{
+    var d = localStorage.getItem('mrk26');
+    applyState(d ? JSON.parse(d) : {});
+  } catch(e){ applyState({}); }
+  setSyncStatus(CONFIGURED ? 'error' : 'local');
+}
+
+// ─── TAB SWITCH ───
+function ST(id){
+  var pages = document.querySelectorAll('.pg');
+  var tabs  = document.querySelectorAll('.tb');
+  for(var i=0;i<pages.length;i++) pages[i].classList.remove('on');
+  for(var i=0;i<tabs.length;i++)  tabs[i].classList.remove('on');
+  var p = document.getElementById('pg-'+id);
+  var t = document.getElementById('tb-'+id);
+  if(p) p.classList.add('on');
+  if(t) t.classList.add('on');
+  try{ window.scrollTo(0,0); }catch(e){}
+  if(id==='exp') calcExp();
+}
+
+// ── CURRENCY CONVERTER ──
+var RATE = 10.7; // MAD per EUR
+function convEUR(v){
+  var eur = parseFloat(v)||0;
+  document.getElementById('eur-inp').value = eur ? eur.toFixed(2) : '';
+  document.getElementById('mad-inp').value = eur ? Math.round(eur * RATE) : '';
+}
+function convMAD(v){
+  var mad = parseFloat(v)||0;
+  document.getElementById('mad-inp').value = mad ? Math.round(mad) : '';
+  document.getElementById('eur-inp').value = mad ? (mad / RATE).toFixed(2) : '';
+}
+
+// ─── CHECK / DONE ───
+function CD(id){
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.classList.toggle('dn2');
+  var btn = el.querySelector('.ckb');
+  if(btn) btn.textContent = el.classList.contains('dn2') ? '✅' : '⬜';
+  S.done[id] = el.classList.contains('dn2');
+  lsSave();
+  updProg();
+}
+
+// ─── EDIT ───
+function OE(id){
+  closeAllEdits();
+  var ed = document.getElementById('ced-'+id);
+  if(ed){ ed.classList.add('op'); ed.style.display='block'; }
+}
+function CE(id){
+  var ed = document.getElementById('ced-'+id);
+  if(ed){ ed.classList.remove('op'); ed.style.display=''; }
+}
+function closeAllEdits(){
+  var eds = document.querySelectorAll('.ced');
+  for(var i=0;i<eds.length;i++){ eds[i].classList.remove('op'); eds[i].style.display=''; }
+}
+function SE(id){
+  var el = document.getElementById(id);
+  var ed = document.getElementById('ced-'+id);
+  if(!el||!ed) return;
+  var tf = ed.querySelector('[data-f="time"]');
+  var nf = ed.querySelector('[data-f="name"]');
+  var df = ed.querySelector('[data-f="desc"]');
+  var mf = ed.querySelector('[data-f="map"]');
+  if(tf){ var ct=el.querySelector('.ct'); if(ct) ct.textContent=tf.value; }
+  if(nf){ var cn=el.querySelector('.cn'); if(cn) cn.textContent=nf.value; }
+  if(df){ var cd=el.querySelector('.cd'); if(cd) cd.textContent=df.value; }
+  if(mf && mf.value){
+    var lnks=el.querySelector('.clnks');
+    if(!lnks){ lnks=document.createElement('div'); lnks.className='clnks'; el.querySelector('.tc').appendChild(lnks); }
+    var ex=lnks.querySelector('.lm');
+    if(ex){ ex.href=mf.value; } else { var a=document.createElement('a'); a.href=mf.value; a.target='_blank'; a.className='lnk lm'; a.textContent='📍 Maps'; lnks.appendChild(a); }
+  }
+  S.edits[id]={time:tf?tf.value:'',name:nf?nf.value:'',desc:df?df.value:'',map:mf?mf.value:''};
+  lsSave();
+  CE(id);
+}
+function DEL(id){
+  if(!confirm('¿Eliminar esta parada?')) return;
+  var el=document.getElementById(id);
+  if(el) el.remove();
+  S.custom = S.custom||{};
+  S.custom['del_'+id]=true;
+  lsSave();
+  updProg();
+}
+
+// ─── ADD STOP ───
+function TAF(fid){
+  var f=document.getElementById(fid);
+  if(!f) return;
+  var isOp=f.classList.contains('op');
+  var all=document.querySelectorAll('.addfrm');
+  for(var i=0;i<all.length;i++) all[i].classList.remove('op');
+  if(!isOp) f.classList.add('op');
+}
+var addC=200;
+function AS(day){
+  var pre='add-'+day+'-';
+  var time=document.getElementById(pre+'time').value.trim();
+  var name=document.getElementById(pre+'name').value.trim();
+  var desc=document.getElementById(pre+'desc').value.trim();
+  var mapv=document.getElementById(pre+'map').value.trim();
+  if(!name){ alert('Pon un nombre'); return; }
+  var id=day+'-c'+(++addC);
+  var tl=document.getElementById('tl-'+day);
+  if(!tl) return;
+  var div=document.createElement('div');
+  div.className='ti';
+  div.id=id;
+  div.innerHTML='<div class="tdot"></div><div class="tc"><div class="cr1"><span class="ct">'+(time||'--:--')+'</span><span class="cn">'+name+'</span><button type="button" class="eico" onclick="OE(\''+id+'\')">✏️</button><button type="button" class="ckb" onclick="CD(\''+id+'\')">⬜</button></div><div class="cd">'+(desc||'')+'</div>'+(mapv?'<div class="clnks"><a href="'+mapv+'" target="_blank" class="lnk lm">📍 Maps</a></div>':'')+'<div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-'+id+'" placeholder="0.00" min="0" step="0.01" onchange="saveExp(\''+id+'\')" /> <span class="exp-unit">€</span><select id="pay-'+id+'" class="pay-sel" onchange="saveExp(\''+id+'\')"><option value="split">50/50</option><option value="dl">Paga Daniel</option><option value="lv">Paga Laura</option></select><input type="text" id="note-'+id+'" class="exp-note-inp" placeholder="nota..." onchange="saveExp(\''+id+'\')" /></div><div class="ced" id="ced-'+id+'"><input class="ef" data-f="time" value="'+(time||'')+'"><input class="ef" data-f="name" value="'+name+'"><textarea class="ef" data-f="desc">'+(desc||'')+'</textarea><input class="ef" data-f="map" value="'+(mapv||'')+'"><div class="eas"><button type="button" class="bs bsave" onclick="SE(\''+id+'\')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE(\''+id+'\')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL(\''+id+'\')">🗑 Eliminar</button></div></div></div>';
+  tl.appendChild(div);
+  ['time','name','desc','map'].forEach(function(f){ var el=document.getElementById(pre+f); if(el) el.value=''; });
+  document.getElementById('add-'+day).classList.remove('op');
+  updProg();
+}
+
+// ─── EXPENSES ───
+function saveExp(id){
+  var inp  = document.getElementById('exp-'  + id);
+  var sel  = document.getElementById('pay-'  + id);
+  var note = document.getElementById('note-' + id);
+  if(inp)  { S.exps[id]  = parseFloat(inp.value) || 0; }
+  if(sel)  { if(!S.payer) S.payer = {}; S.payer[id] = sel.value; }
+  if(note) { if(!S.notes) S.notes = {}; S.notes[id] = note.value; }
+  lsSave();
+}
+function getExp(id){
+  var inp=document.getElementById('exp-'+id);
+  if(inp){ var v=parseFloat(inp.value); return isNaN(v)?0:v; }
+  return S.exps[id]||0;
+}
+
+function calcExp(){
+  var days=['d1','d2','d3','d4'];
+  var dayNames={'d1':'Lun 29 Jun','d2':'Mar 30 Jun','d3':'Mié 1 Jul','d4':'Jue 2 Jul'};
+  var grandTotal=0;
+  var totalDL=0;
+  var totalLV=0;
+  var tbody=document.getElementById('exp-tbody');
+  if(!tbody) return;
+  tbody.innerHTML='';
+
+  days.forEach(function(day){
+    var items=document.querySelectorAll('[id^="'+day+'-"]');
+    var dayRows=[];
+    items.forEach(function(item){
+      if(!item.classList.contains('ti')) return;
+      var id=item.id;
+      var name=item.querySelector('.cn');
+      var expInp=document.getElementById('exp-'+id);
+      var amt=expInp ? (parseFloat(expInp.value)||0) : 0;
+      if(amt>0 || expInp){
+        var n=name?name.textContent.replace(/✅.*$/,'').trim():id;
+        var paysel2 = document.getElementById('pay-' + id);
+        var noteEl  = document.getElementById('note-' + id);
+        var payer   = (paysel2 ? paysel2.value : (S.payer && S.payer[id] ? S.payer[id] : 'split'));
+        var noteVal = (noteEl  ? noteEl.value  : (S.notes && S.notes[id] ? S.notes[id] : ''));
+        if(amt > 0) {
+          dayRows.push({name:n, amt:amt, payer:payer, note:noteVal});
+          if(payer==='dl')     totalDL += amt;
+          else if(payer==='lv') totalLV += amt;
+          else { totalDL += amt/2; totalLV += amt/2; }
+        }
+      }
+    });
+
+    dayRows.forEach(function(r){
+      var half = r.amt / 2;
+      var oweDL, oweLV;
+      if(r.payer==='dl')     { oweDL=0;    oweLV=half; }
+      else if(r.payer==='lv'){ oweLV=0;    oweDL=half; }
+      else                   { oweDL=half; oweLV=half; }
+      var payLabel = r.payer==='dl' ? '<span style="color:#1A6A3A;font-weight:700;">Daniel</span>'
+                   : r.payer==='lv' ? '<span style="color:#1A3A8A;font-weight:700;">Laura</span>'
+                   : '<span style="color:#888;">50/50</span>';
+      var dlStyle = oweDL===0 ? ' style="color:#1A6A3A;font-weight:700;"' : '';
+      var lvStyle = oweLV===0 ? ' style="color:#1A3A8A;font-weight:700;"' : '';
+      var nameCell = r.name.substring(0,35)+(r.note?'<span style="font-size:.68rem;color:#888;font-style:italic;"> ('+r.note+')</span>':'');
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td>'+nameCell+'</td>'
+        +'<td class="exp-amt">'+r.amt.toFixed(2)+'&euro;</td>'
+        +'<td>'+payLabel+'</td>'
+        +'<td class="exp-amt"'+dlStyle+'>'+(oweDL===0?'&#x2705; 0.00':oweDL.toFixed(2))+'&euro;</td>'
+        +'<td class="exp-amt"'+lvStyle+'>'+(oweLV===0?'&#x2705; 0.00':oweLV.toFixed(2))+'&euro;</td>';
+      tbody.appendChild(tr);
+      grandTotal += r.amt;
+    });
+  });
+
+  // Total row
+  var half=(grandTotal/2).toFixed(2);
+  var tr=document.createElement('tr');
+  tr.className='total-row';
+  tr.innerHTML='<td><strong>TOTAL VIAJE</strong></td><td class="pair-total">'+grandTotal.toFixed(2)+'€</td><td class="pair-total">—</td><td class="pair-total">'+half+'€</td><td class="pair-total">'+half+'€</td>';
+  tbody.appendChild(tr);
+
+  // Pair cards / liquidación
+  var pc=document.getElementById('exp-pairs');
+  if(pc){
+    var mitadJusta = grandTotal / 2;
+    var balDL = totalDL - mitadJusta;
+    var balLV = totalLV - mitadJusta;
+    var diff = Math.abs(balDL);
+    var resumen='';
+    if(diff < 0.01){
+      resumen='<div style="background:#2D6A45;border-radius:12px;padding:18px;text-align:center;margin-bottom:14px;">'
+        +'<div style="font-size:1.8rem;margin-bottom:6px;">🤝</div>'
+        +'<div style="color:#fff;font-weight:800;font-size:1.1rem;">¡Estáis en paz!</div>'
+        +'<div style="color:rgba(255,255,255,.7);font-size:.82rem;margin-top:4px;">Los gastos están perfectamente equilibrados</div>'
+        +'</div>';
+    } else if(balDL>0){
+      resumen='<div style="background:var(--dk2);border-radius:12px;padding:18px;text-align:center;margin-bottom:14px;border:2px solid var(--gold);">'
+        +'<div style="font-size:.65rem;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:700;margin-bottom:10px;">💸 LIQUIDACIÓN FINAL</div>'
+        +'<div style="color:rgba(255,255,255,.65);font-size:.88rem;margin-bottom:6px;">Laura debe a</div>'
+        +'<div style="color:#fff;font-size:1rem;font-weight:800;margin-bottom:12px;">Daniel</div>'
+        +'<div style="font-size:2.8rem;font-weight:900;color:var(--gl);font-family:monospace;line-height:1;">'+diff.toFixed(2)+'€</div>'
+        +'</div>';
+    } else {
+      resumen='<div style="background:var(--dk2);border-radius:12px;padding:18px;text-align:center;margin-bottom:14px;border:2px solid #88aaff;">'
+        +'<div style="font-size:.65rem;text-transform:uppercase;letter-spacing:2px;color:#88aaff;font-weight:700;margin-bottom:10px;">💸 LIQUIDACIÓN FINAL</div>'
+        +'<div style="color:rgba(255,255,255,.65);font-size:.88rem;margin-bottom:6px;">Daniel debe a</div>'
+        +'<div style="color:#fff;font-size:1rem;font-weight:800;margin-bottom:12px;">Laura</div>'
+        +'<div style="font-size:2.8rem;font-weight:900;color:#88aaff;font-family:monospace;line-height:1;">'+diff.toFixed(2)+'€</div>'
+        +'</div>';
+    }
+
+    var cards='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">'
+      +'<div class="pair-card" style="border-left:4px solid #1A6A3A;">'
+        +'<div style="font-size:.65rem;font-weight:700;color:#1A6A3A;margin-bottom:5px;">DANIEL</div>'
+        +'<div style="font-size:1.3rem;font-weight:900;font-family:monospace;">'+totalDL.toFixed(2)+'€</div>'
+        +'<div style="font-size:.72rem;color:#888;margin-top:2px;">pagado</div>'
+        +'<div style="font-size:.78rem;margin-top:6px;color:#555;">Mitad justa: <strong>'+mitadJusta.toFixed(2)+'€</strong></div>'
+        +'<div style="font-size:.82rem;font-weight:700;margin-top:3px;color:'+(balDL>=0?'#1A6A3A':'#B03030')+';">'
+          +(balDL>0.01?'✅ Pagó '+balDL.toFixed(2)+'€ de más':balDL<-0.01?'⚠️ Debe '+Math.abs(balDL).toFixed(2)+'€':'✅ En paz')
+        +'</div>'
+      +'</div>'
+      +'<div class="pair-card" style="border-left:4px solid #1A3A8A;">'
+        +'<div style="font-size:.65rem;font-weight:700;color:#1A3A8A;margin-bottom:5px;">LAURA</div>'
+        +'<div style="font-size:1.3rem;font-weight:900;font-family:monospace;">'+totalLV.toFixed(2)+'€</div>'
+        +'<div style="font-size:.72rem;color:#888;margin-top:2px;">pagado</div>'
+        +'<div style="font-size:.78rem;margin-top:6px;color:#555;">Mitad justa: <strong>'+mitadJusta.toFixed(2)+'€</strong></div>'
+        +'<div style="font-size:.82rem;font-weight:700;margin-top:3px;color:'+(balLV>=0?'#1A6A3A':'#B03030')+';">'
+          +(balLV>0.01?'✅ Pagó '+balLV.toFixed(2)+'€ de más':balLV<-0.01?'⚠️ Debe '+Math.abs(balLV).toFixed(2)+'€':'✅ En paz')
+        +'</div>'
+      +'</div>'
+    +'</div>';
+
+    pc.innerHTML=resumen+cards
+      +'<div style="background:var(--gp);border-radius:9px;padding:10px 13px;margin-bottom:12px;font-size:.75rem;color:var(--dk2);">'
+      +'💡 Selecciona <strong>Paga Daniel</strong> o <strong>Paga Laura</strong> en cada gasto para calcular quién debe a quién.'
+      +'</div>';
+  }
+}
+
+// ─── PROGRESS ───
+function updProg(){
+  var all=document.querySelectorAll('.ti');
+  var done=document.querySelectorAll('.ti.dn2');
+  var pct=all.length?Math.round(done.length/all.length*100):0;
+  var fill=document.getElementById('pg-fill');
+  var txt=document.getElementById('pg-txt');
+  if(fill) fill.style.width=pct+'%';
+  if(txt) txt.textContent=done.length+' de '+all.length+' paradas completadas ('+pct+'%)';
+}
+
+// ─── APPLY STATE ───
+function applyState(saved){
+  if(saved.done)   S.done   = saved.done;
+  if(saved.edits)  S.edits  = saved.edits;
+  if(saved.exps)   S.exps   = saved.exps;
+  if(saved.payer)  S.payer  = saved.payer;  else if(!S.payer)  S.payer  = {};
+  if(saved.notes)  S.notes  = saved.notes;  else if(!S.notes)  S.notes  = {};
+
+  Object.keys(S.done).forEach(function(id){
+    if(!S.done[id]) return;
+    var el=document.getElementById(id);
+    if(!el) return;
+    el.classList.add('dn2');
+    var btn=el.querySelector('.ckb');
+    if(btn) btn.textContent='✅';
+  });
+
+  Object.keys(S.exps).forEach(function(id){
+    var inp=document.getElementById('exp-'+id);
+    if(inp && S.exps[id]) inp.value=S.exps[id];
+    var sel=document.getElementById('pay-'+id);
+    if(sel && S.payer && S.payer[id]) sel.value=S.payer[id];
+    var noteEl=document.getElementById('note-'+id);
+    if(noteEl && S.notes && S.notes[id]) noteEl.value=S.notes[id];
+  });
+
+  Object.keys(S.edits).forEach(function(id){
+    var el=document.getElementById(id);
+    var d=S.edits[id];
+    if(!el||!d) return;
+    if(d.time){ var ct=el.querySelector('.ct'); if(ct) ct.textContent=d.time; }
+    if(d.name){ var cn=el.querySelector('.cn'); if(cn) cn.textContent=d.name; }
+    if(d.desc){ var cd=el.querySelector('.cd'); if(cd) cd.textContent=d.desc; }
+  });
+
+  updProg();
+  calcExp();
+}
+
+// ─── RESET ───
+function resetAll(){
+  if(!confirm('¿Borrar todos los checks, gastos y ediciones? Esta acción no se puede deshacer.')) return;
+  S={done:{},edits:{},exps:{},payer:{},notes:{}};
+  lsSave();
+  location.reload();
+}
+
+// ─── INIT ───
+window.addEventListener('load', function(){ lsLoad(); });
+</script>
+</body>
+</html>
