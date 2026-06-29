@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1F6F5F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Plan Nutricional · Rocío</title>
+<style>
+:root {
+  --verde: #1F6F5F;
+  --verde-dark: #155048;
+  --verde-light: #e8f4f1;
+  --dorado: #C8A96A;
+  --dorado-light: #fdf5e6;
+  --rojo: #D94F4F;
+  --rojo-light: #fdeaea;
+  --antracita: #2E2E2E;
+  --gris: #6B7280;
+  --gris-claro: #F3F4F6;
+  --gris-borde: #E5E7EB;
+  --blanco: #FFFFFF;
+  --sombra: 0 2px 12px rgba(0,0,0,0.1);
+  --radio: 14px;
+  --radio-sm: 8px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#f0f2f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--antracita);overscroll-behavior:none}
+#app{display:flex;flex-direction:column;height:100vh;max-width:480px;margin:0 auto;background:var(--blanco);position:relative;overflow:hidden}
+
+/* HEADER */
+#app-header{background:var(--verde);color:#fff;padding:env(safe-area-inset-top,0) 0 0 0;z-index:100;flex-shrink:0}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 12px}
+.header-name{font-size:17px;font-weight:700;letter-spacing:-0.3px}
+.header-sub{font-size:11px;opacity:0.75;margin-top:1px}
+.header-right{display:flex;align-items:center;gap:10px}
+.sync-badge{font-size:10px;background:rgba(255,255,255,0.2);border-radius:20px;padding:4px 9px;display:flex;align-items:center;gap:5px}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:#4ade80}
+.sync-dot.syncing{background:var(--dorado);animation:pulse 1s infinite}
+.sync-dot.error{background:var(--rojo)}
+.role-badge{font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:10px;background:var(--dorado);color:white}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+
+/* BOTTOM NAV */
+#bottom-nav{display:flex;background:var(--blanco);border-top:1px solid var(--gris-borde);padding:8px 0 calc(8px + env(safe-area-inset-bottom, 0px));flex-shrink:0;z-index:100}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 4px;color:var(--gris);transition:color .2s}
+.nav-btn.active{color:var(--verde)}
+.nav-icon{font-size:22px;line-height:1}
+.nav-label{font-size:10px;font-weight:600;letter-spacing:0.3px}
+
+/* CONTENT */
+#content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.tab-panel{display:none;min-height:100%}
+.tab-panel.active{display:block}
+
+/* CARDS */
+.card{background:var(--blanco);border-radius:var(--radio);margin:10px 12px;box-shadow:0 1px 6px rgba(0,0,0,0.08);overflow:hidden}
+.card-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;cursor:pointer;user-select:none}
+.card-body{padding:0 14px 12px}
+
+/* WEEK TABS */
+.week-section{padding:10px 12px 0}
+.week-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.week-tabs::-webkit-scrollbar{display:none}
+.week-tab{flex-shrink:0;padding:7px 14px;border-radius:20px;border:2px solid var(--gris-borde);background:var(--blanco);font-size:13px;font-weight:600;color:var(--gris);cursor:pointer;transition:all .2s;white-space:nowrap}
+.week-tab.active{border-color:var(--verde);background:var(--verde);color:white}
+.week-tab.add-week{border-style:dashed;color:var(--verde);border-color:var(--verde)}
+
+/* DAY PILLS */
+.day-pills-wrap{padding:8px 12px}
+.day-pills{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.day-pill{display:flex;flex-direction:column;align-items:center;padding:6px 4px;border-radius:10px;border:2px solid var(--gris-borde);background:var(--blanco);cursor:pointer;transition:all .2s;gap:3px}
+.day-pill.active{border-color:var(--verde);background:var(--verde)}
+.day-pill.completed{border-color:var(--verde);background:var(--verde-light)}
+.day-pill.skipped{border-color:var(--rojo);background:var(--rojo-light)}
+.day-pill.active.skipped{background:var(--rojo);border-color:var(--rojo)}
+.day-pill-name{font-size:9px;font-weight:700;color:var(--gris);letter-spacing:0.5px;text-transform:uppercase}
+.day-pill.active .day-pill-name,.day-pill.active .day-pill-num{color:white}
+.day-pill.completed .day-pill-name{color:var(--verde)}
+.day-pill.skipped .day-pill-name{color:var(--rojo)}
+.day-pill-num{font-size:14px;font-weight:700;color:var(--antracita)}
+.day-pill-dot{width:5px;height:5px;border-radius:50%;background:var(--gris-borde)}
+.day-pill.completed .day-pill-dot{background:var(--verde)}
+.day-pill.skipped .day-pill-dot{background:var(--rojo)}
+.day-pill.active .day-pill-dot{background:rgba(255,255,255,0.7)}
+
+/* DAY VIEW */
+.day-header{padding:12px 14px 8px;background:var(--gris-claro);margin:0 12px;border-radius:var(--radio) var(--radio) 0 0;border:1px solid var(--gris-borde);border-bottom:none}
+.day-title-row{display:flex;align-items:center;justify-content:space-between}
+.day-title{font-size:16px;font-weight:700}
+.day-kcal{font-size:12px;color:var(--gris)}
+.day-kcal span{font-weight:700;color:var(--verde)}
+.progress-bar-wrap{margin-top:8px}
+.progress-bar-label{display:flex;justify-content:space-between;font-size:11px;color:var(--gris);margin-bottom:4px}
+.progress-bar-bg{height:6px;background:var(--gris-borde);border-radius:3px;overflow:hidden}
+.progress-bar-fill{height:100%;background:var(--verde);border-radius:3px;transition:width .5s}
+.progress-bar-fill.red{background:var(--rojo)}
+.day-actions{display:flex;gap:8px;padding:10px 12px 12px;margin:0 12px;background:var(--gris-claro);border-radius:0 0 var(--radio) var(--radio);border:1px solid var(--gris-borde);border-top:none}
+.day-action-btn{flex:1;padding:10px;border-radius:var(--radio-sm);border:none;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.day-action-btn.done{background:var(--verde);color:white}
+.day-action-btn.skip{background:var(--rojo-light);color:var(--rojo);border:2px solid var(--rojo-light)}
+.day-action-btn.active-done{background:var(--verde);color:white;opacity:1}
+.day-action-btn.active-skip{background:var(--rojo);color:white}
+
+/* SKIPPED INPUT */
+.skipped-input-wrap{margin:0 12px 6px;padding:10px 14px;background:var(--rojo-light);border-radius:var(--radio-sm);border:1px solid #f9c0c0}
+.skipped-label{font-size:11px;font-weight:700;color:var(--rojo);margin-bottom:5px}
+.skipped-textarea{width:100%;border:1px solid #f9c0c0;border-radius:6px;padding:8px;font-size:13px;resize:none;background:white;color:var(--antracita);font-family:inherit}
+
+/* MEAL CARD */
+.meal-card{margin:6px 12px;border-radius:var(--radio);border:1px solid var(--gris-borde);overflow:hidden;background:white}
+.meal-card.done-meal{border-color:var(--verde)}
+.meal-card-head{display:flex;align-items:center;padding:12px 14px;cursor:pointer;gap:10px;background:white}
+.meal-card-head.done-head{background:var(--verde-light)}
+.meal-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--gris-borde);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;cursor:pointer}
+.meal-check.checked{background:var(--verde);border-color:var(--verde)}
+.meal-time-badge{font-size:10px;font-weight:700;color:white;background:var(--verde);padding:3px 8px;border-radius:10px;flex-shrink:0}
+.meal-name-wrap{flex:1;min-width:0}
+.meal-name{font-size:14px;font-weight:700;color:var(--antracita)}
+.meal-kcal{font-size:11px;color:var(--gris)}
+.meal-chevron{font-size:12px;color:var(--gris);transition:transform .2s;flex-shrink:0}
+.meal-chevron.open{transform:rotate(180deg)}
+.meal-body{padding:0 14px 14px;display:none}
+.meal-body.open{display:block}
+
+/* INGREDIENTS */
+.ing-list{margin-bottom:10px}
+.ing-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--gris-borde)}
+.ing-row:last-child{border-bottom:none}
+.ing-name{flex:1;font-size:13px;color:var(--antracita)}
+.ing-name input{width:100%;border:none;font-size:13px;background:transparent;color:var(--antracita);font-family:inherit;outline:none}
+.ing-amount{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.ing-amount input{width:48px;border:1px solid var(--gris-borde);border-radius:6px;padding:3px 5px;font-size:12px;text-align:center;font-family:inherit}
+.ing-unit{font-size:11px;color:var(--gris);width:16px}
+.ing-del{width:22px;height:22px;border:none;background:none;cursor:pointer;color:var(--gris);font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.alt-label{font-size:10px;font-weight:700;color:var(--dorado);background:var(--dorado-light);padding:2px 7px;border-radius:4px;margin:6px 0 4px;display:inline-block}
+.btn-add-ing{width:100%;padding:7px;border:1.5px dashed var(--verde);border-radius:var(--radio-sm);background:none;color:var(--verde);font-size:12px;font-weight:600;cursor:pointer;margin-top:6px}
+
+/* CHATGPT BUTTON */
+.gpt-btn{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#10a37f;border-radius:var(--radio-sm);color:white;text-decoration:none;font-size:13px;font-weight:600;margin:8px 0;cursor:pointer;border:none;width:100%;justify-content:center}
+.gpt-icon{font-size:16px}
+
+/* MEDIA SECTION */
+.media-section{margin-top:10px}
+.media-actions{display:flex;gap:6px;flex-wrap:wrap}
+.media-btn{display:flex;align-items:center;gap:5px;padding:7px 10px;border-radius:var(--radio-sm);border:1.5px solid var(--gris-borde);background:white;font-size:12px;font-weight:600;color:var(--antracita);cursor:pointer;flex:1;justify-content:center;white-space:nowrap}
+.media-btn .icon{font-size:15px}
+.url-input-wrap{margin-top:8px;display:none}
+.url-input-wrap.open{display:flex;gap:6px}
+.url-input-wrap input{flex:1;border:1px solid var(--gris-borde);border-radius:var(--radio-sm);padding:8px 10px;font-size:13px;font-family:inherit}
+.url-input-wrap button{padding:8px 12px;background:var(--verde);color:white;border:none;border-radius:var(--radio-sm);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.media-carousel{display:flex;gap:10px;overflow-x:auto;padding:10px 0 4px;scrollbar-width:none;scroll-snap-type:x mandatory}
+.media-carousel::-webkit-scrollbar{display:none}
+.media-item{flex-shrink:0;width:120px;border-radius:var(--radio-sm);overflow:hidden;position:relative;background:var(--gris-claro);border:1px solid var(--gris-borde);scroll-snap-align:start}
+.media-img{width:120px;height:90px;object-fit:cover;display:block}
+.media-video-thumb{width:120px;height:90px;background:#000;display:flex;align-items:center;justify-content:center;color:white;font-size:28px;cursor:pointer}
+.media-label{font-size:10px;padding:4px 6px;color:var(--gris);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.media-del{position:absolute;top:4px;right:4px;width:20px;height:20px;background:rgba(0,0,0,0.6);border-radius:50%;border:none;color:white;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* SHOPPING LIST */
+.shop-section{padding:12px}
+.shop-progress{background:var(--verde);color:white;border-radius:var(--radio);padding:14px;margin-bottom:12px}
+.shop-prog-title{font-size:14px;font-weight:700;margin-bottom:8px}
+.shop-prog-bar{height:8px;background:rgba(255,255,255,0.3);border-radius:4px;overflow:hidden}
+.shop-prog-fill{height:100%;background:white;border-radius:4px;transition:width .5s}
+.shop-prog-text{font-size:12px;opacity:0.9;margin-top:5px}
+.shop-cat{background:white;border-radius:var(--radio);margin-bottom:8px;border:1px solid var(--gris-borde);overflow:hidden}
+.shop-cat-head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;background:var(--gris-claro)}
+.shop-cat-name{font-size:13px;font-weight:700;color:var(--antracita)}
+.shop-cat-count{font-size:11px;color:var(--gris)}
+.shop-items{padding:4px 14px 10px;display:none}
+.shop-items.open{display:block}
+.shop-item{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--gris-borde)}
+.shop-item:last-child{border-bottom:none}
+.shop-cb{width:20px;height:20px;border-radius:5px;border:2px solid var(--gris-borde);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.shop-cb.checked{background:var(--verde);border-color:var(--verde)}
+.shop-item-name{flex:1;font-size:13px;transition:all .2s}
+.shop-item-name.checked{color:var(--gris);text-decoration:line-through}
+.shop-item-del{width:20px;height:20px;border:none;background:none;cursor:pointer;color:var(--gris);font-size:14px}
+.btn-add-shop{width:100%;padding:9px;border:1.5px dashed var(--verde);border-radius:var(--radio-sm);background:none;color:var(--verde);font-size:12px;font-weight:600;cursor:pointer;margin-top:6px}
+.shop-add-row{display:none;gap:6px;margin-top:6px}
+.shop-add-row.open{display:flex}
+.shop-add-row input{flex:1;border:1px solid var(--gris-borde);border-radius:var(--radio-sm);padding:7px 10px;font-size:13px;font-family:inherit}
+.shop-add-row button{padding:7px 12px;background:var(--verde);color:white;border:none;border-radius:var(--radio-sm);font-size:12px;font-weight:700;cursor:pointer}
+
+/* INFO TAB */
+.info-section{padding:12px}
+.info-card{background:white;border-radius:var(--radio);border:1px solid var(--gris-borde);margin-bottom:12px;overflow:hidden}
+.info-card-head{padding:12px 14px;background:var(--verde);color:white;font-weight:700;font-size:14px}
+.info-card-head.gold{background:var(--dorado)}
+.info-card-head.dark{background:var(--antracita)}
+.info-body{padding:12px 14px}
+.info-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--gris-borde);font-size:13px}
+.info-row:last-child{border-bottom:none}
+.info-label{color:var(--gris)}
+.info-value{font-weight:700;color:var(--antracita)}
+.macro-pills{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:10px 14px}
+.macro-pill{border-radius:var(--radio-sm);padding:10px;text-align:center}
+.macro-pill.p1{background:var(--verde);color:white}
+.macro-pill.p2{background:var(--antracita);color:white}
+.macro-pill.p3{background:#4A90A4;color:white}
+.macro-pill.p4{background:#B8864E;color:white}
+.macro-val{font-size:20px;font-weight:700}
+.macro-sub{font-size:10px;opacity:0.8;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+
+/* SETUP MODAL */
+#setup-modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px}
+#setup-modal.hidden{display:none!important}
+.setup-box{background:white;border-radius:var(--radio);padding:24px;width:100%;max-width:380px;max-height:90vh;overflow-y:auto}
+.setup-title{font-size:18px;font-weight:700;color:var(--verde);margin-bottom:4px}
+.setup-sub{font-size:13px;color:var(--gris);margin-bottom:18px;line-height:1.5}
+.setup-label{font-size:12px;font-weight:700;color:var(--antracita);margin-bottom:5px;display:block}
+.setup-input{width:100%;border:1.5px solid var(--gris-borde);border-radius:var(--radio-sm);padding:10px 12px;font-size:13px;font-family:inherit;margin-bottom:12px}
+.setup-input:focus{outline:none;border-color:var(--verde)}
+.setup-btn{width:100%;padding:12px;background:var(--verde);color:white;border:none;border-radius:var(--radio-sm);font-size:14px;font-weight:700;cursor:pointer;margin-top:4px}
+.setup-instructions{background:var(--dorado-light);border-radius:var(--radio-sm);padding:12px;margin-bottom:16px;font-size:12px;line-height:1.6;color:var(--antracita)}
+.setup-instructions b{color:var(--verde)}
+.setup-instructions a{color:var(--verde);font-weight:700}
+
+/* TOASTS */
+#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--antracita);color:white;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:600;z-index:500;transition:opacity .3s;opacity:0;pointer-events:none;white-space:nowrap}
+#toast.show{opacity:1}
+
+/* UTILS */
+.section-label{font-size:11px;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;padding:14px 14px 6px}
+.separator{height:1px;background:var(--gris-borde);margin:4px 14px}
+.empty-state{text-align:center;padding:40px 20px;color:var(--gris)}
+.hidden{display:none!important}
+.mt-4{margin-top:4px}
+.mt-8{margin-top:8px}
+.text-verde{color:var(--verde)}
+.text-rojo{color:var(--rojo)}
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- SETUP MODAL -->
+  <div id="setup-modal" class="hidden">
+    <div class="setup-box">
+      <div class="setup-title">⚙️ Configuración inicial</div>
+      <div class="setup-sub">Necesitas configurar el almacenamiento en la nube para sincronizar el plan. Solo se hace una vez.</div>
+      <div class="setup-instructions">
+        <b>Cómo obtener tu API Key de JSONBin.io:</b><br>
+        1. Ve a <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign Up (gratis)<br>
+        2. En tu perfil → <b>API Keys</b> → copia la <b>Master Key</b><br>
+        3. Pégala aquí abajo y pulsa Guardar
+      </div>
+      <label class="setup-label">JSONBin.io Master Key</label>
+      <input class="setup-input" id="setup-key" type="text" placeholder="$2a$10$...">
+      <label class="setup-label">BIN ID (vacío = crear nuevo automáticamente)</label>
+      <input class="setup-input" id="setup-bin" type="text" placeholder="Dejar vacío para crear nuevo">
+      <button class="setup-btn" onclick="saveSetup()">✅ Guardar y continuar</button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div id="app-header">
+    <div class="header-inner">
+      <div>
+        <div class="header-name" id="header-name">Rocío Chillaron Vela</div>
+        <div class="header-sub">Plan Nutricional · Danicoach</div>
+      </div>
+      <div class="header-right">
+        <div class="sync-badge">
+          <div class="sync-dot" id="sync-dot"></div>
+          <span id="sync-label">...</span>
+        </div>
+        <div class="role-badge" id="role-badge" style="display:none">COACH</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="content">
+    <!-- TAB: SEGUIMIENTO -->
+    <div id="tab-seguimiento" class="tab-panel active">
+      <div class="week-section">
+        <div class="week-tabs" id="week-tabs"></div>
+      </div>
+      <div class="day-pills-wrap">
+        <div class="day-pills" id="day-pills"></div>
+      </div>
+      <div id="day-view"></div>
+      <div style="height:20px"></div>
+    </div>
+
+    <!-- TAB: COMPRA -->
+    <div id="tab-compra" class="tab-panel">
+      <div class="shop-section" id="shop-content"></div>
+    </div>
+
+    <!-- TAB: INFO -->
+    <div id="tab-info" class="tab-panel">
+      <div class="info-section" id="info-content"></div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div id="bottom-nav">
+    <button class="nav-btn active" id="nav-seguimiento" onclick="switchTab('seguimiento')">
+      <div class="nav-icon">📅</div>
+      <div class="nav-label">Seguimiento</div>
+    </button>
+    <button class="nav-btn" id="nav-compra" onclick="switchTab('compra')">
+      <div class="nav-icon">🛒</div>
+      <div class="nav-label">Compra</div>
+    </button>
+    <button class="nav-btn" id="nav-info" onclick="switchTab('info')">
+      <div class="nav-icon">📋</div>
+      <div class="nav-label">Info</div>
+    </button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- HIDDEN FILE INPUTS -->
+<input type="file" id="file-camera" accept="image/*" capture="environment" style="display:none">
+<input type="file" id="file-gallery" accept="image/*,video/*" multiple style="display:none">
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const JSONBIN_BASE = 'https://api.jsonbin.io/v3';
+let JSONBIN_KEY = '';
+let BIN_ID = '';
+
+// ============================================================
+// INITIAL DATA TEMPLATE
+// ============================================================
+function buildInitialData() {
+  const days = [
+    { dayName:'Lunes', shortName:'Lun', targetKcal:2310 },
+    { dayName:'Martes', shortName:'Mar', targetKcal:2280 },
+    { dayName:'Miércoles', shortName:'Mié', targetKcal:2300 },
+    { dayName:'Jueves', shortName:'Jue', targetKcal:2340 },
+    { dayName:'Viernes', shortName:'Vie', targetKcal:2260 },
+    { dayName:'Sábado', shortName:'Sáb', targetKcal:2320 },
+    { dayName:'Domingo', shortName:'Dom', targetKcal:2290 },
+  ];
+
+  const mealTemplates = [
+    // DAY 1
+    [
+      { id:'des', name:'Desayuno', time:'08:00', kcal:410, gpt:false,
+        ingredients:[{n:'Pan integral',a:'120',u:'g'},{n:'Pavo en lonchas',a:'80',u:'g'},{n:'Tomate natural',a:'60',u:'g'},{n:'AOVE',a:'5',u:'ml'}],
+        alt:[{n:'Tofu firme a la plancha',a:'100',u:'g'}]},
+      { id:'mm', name:'Media mañana',time:'11:00',kcal:440,gpt:false,
+        ingredients:[{n:'Leche sin lactosa',a:'250',u:'ml'},{n:'Plátano maduro',a:'120',u:'g'},{n:'Avena en copos',a:'50',u:'g'},{n:'Miel',a:'10',u:'g'}],alt:[]},
+      { id:'com', name:'Comida',time:'14:00',kcal:720,gpt:true,
+        ingredients:[{n:'Arroz blanco crudo',a:'85',u:'g'},{n:'Pechuga de pollo',a:'150',u:'g'},{n:'Brócoli',a:'150',u:'g'},{n:'Zanahoria',a:'80',u:'g'},{n:'AOVE',a:'10',u:'ml'}],
+        alt:[{n:'Soja texturizada hidratada',a:'150',u:'g'}]},
+      { id:'mer', name:'Merienda',time:'17:30',kcal:330,gpt:false,
+        ingredients:[{n:'Pan integral',a:'100',u:'g'},{n:'Hummus',a:'50',u:'g'},{n:'Pepino',a:'80',u:'g'}],
+        alt:[{n:'Pavo en lonchas',a:'60',u:'g'}]},
+      { id:'cen', name:'Cena',time:'21:00',kcal:410,gpt:true,
+        ingredients:[{n:'Patata cocida',a:'250',u:'g'},{n:'Salmón a la plancha',a:'140',u:'g'},{n:'Calabacín',a:'150',u:'g'},{n:'AOVE',a:'8',u:'ml'}],
+        alt:[{n:'Tempeh',a:'150',u:'g'}]},
+    ],
+    // DAY 2
+    [
+      { id:'des', name:'Desayuno',time:'08:00',kcal:400,gpt:false,
+        ingredients:[{n:'Pan integral',a:'120',u:'g'},{n:'Jamón york',a:'80',u:'g'},{n:'Aguacate',a:'50',u:'g'},{n:'Tomate',a:'50',u:'g'}],
+        alt:[{n:'Tofu ahumado',a:'80',u:'g'}]},
+      { id:'mm', name:'Media mañana',time:'11:00',kcal:420,gpt:false,
+        ingredients:[{n:'Leche sin lactosa',a:'250',u:'ml'},{n:'Fresas',a:'100',u:'g'},{n:'Plátano',a:'80',u:'g'},{n:'Avena',a:'50',u:'g'}],alt:[]},
+      { id:'com', name:'Comida',time:'14:00',kcal:710,gpt:true,
+        ingredients:[{n:'Pasta integral cruda',a:'90',u:'g'},{n:'Pechuga de pavo',a:'140',u:'g'},{n:'Espinacas',a:'100',u:'g'},{n:'Pimiento rojo',a:'100',u:'g'},{n:'AOVE',a:'10',u:'ml'}],
+        alt:[{n:'Soja texturizada hidratada',a:'150',u:'g'}]},
+      { id:'mer', name:'Merienda',time:'17:30',kcal:330,gpt:false,
+        ingredients:[{n:'Yogur sin lactosa',a:'200',u:'g'},{n:'Plátano',a:'80',u:'g'},{n:'Nueces',a:'20',u:'g'}],
+        alt:[{n:'Yogur de coco',a:'200',u:'g'}]},
+      { id:'cen', name:'Cena',time:'21:00',kcal:420,gpt:true,
+        ingredients:[{n:'Arroz blanco crudo',a:'80',u:'g'},{n:'Merluza al horno',a:'160',u:'g'},{n:'Judías verdes',a:'150',u:'g'},{n:'Tomate cherry',a:'80',u:'g'},{n:'AOVE',a:'8',u:'ml'}],
+        alt:[{n:'Tofu a la plancha',a:'150',u:'g'}]},
+    ],
+    // DAY 3
+    [
+      { id:'des', name:'Desayuno',time:'08:00',kcal:395,gpt:false,
+        ingredients:[{n:'Pan integral',a:'120',u:'g'},{n:'Huevo revuelto',a:'2 uds (100',u:'g)'},{n:'Tomate',a:'60',u:'g'},{n:'AOVE',a:'5',u:'ml'}],
+        alt:[{n:'Revuelto de tofu firme',a:'120',u:'g'}]},
+      { id:'mm', name:'Media mañana',time:'11:00',kcal:430,gpt:false,
+        ingredients:[{n:'Leche sin lactosa',a:'250',u:'ml'},{n:'Mango',a:'100',u:'g'},{n:'Avena',a:'50',u:'g'},{n:'Miel',a:'10',u:'g'}],alt:[]},
+      { id:'com', name:'Comida',time:'14:00',kcal:730,gpt:true,
+        ingredients:[{n:'Patata cocida',a:'280',u:'g'},{n:'Pechuga de pollo',a:'160',u:'g'},{n:'Brócoli',a:'120',u:'g'},{n:'Zanahoria',a:'80',u:'g'},{n:'AOVE',a:'10',u:'ml'}],
+        alt:[{n:'Soja texturizada hidratada',a:'150',u:'g'}]},
+      { id:'mer', name:'Merienda',time:'17:30',kcal:310,gpt:false,
+        ingredients:[{n:'Pan integral',a:'100',u:'g'},{n:'Pavo en lonchas',a:'60',u:'g'},{n:'Pimiento asado',a:'60',u:'g'}],
+        alt:[{n:'Hummus',a:'50',u:'g'}]},
+      { id:'cen', name:'Cena',time:'21:00',kcal:435,gpt:true,
+        ingredients:[{n:'Quinoa cruda',a:'80',u:'g'},{n:'Atún al natural',a:'140',u:'g'},{n:'Lechuga',a:'80',u:'g'},{n:'Pepino',a:'80',u:'g'},{n:'Tomate',a:'80',u:'g'},{n:'AOVE',a:'8',u:'ml'}],
+        alt:[{n:'Garbanzo cocido',a:'140',u:'g'}]},
+    ],
+    // DAY 4
+    [
+      { id:'des', name:'Desayuno',time:'08:00',kcal:420,gpt:false,
+        ingredients:[{n:'Pan integral tostado',a:'120',u:'g'},{n:'AOVE',a:'8',u:'ml'},{n:'Jamón serrano',a:'60',u:'g'},{n:'Tomate rallado',a:'80',u:'g'}],
+        alt:[{n:'Aguacate',a:'60',u:'g'}]},
+      { id:'mm', name:'Batido de chocolate',time:'11:00',kcal:460,gpt:false,
+        ingredients:[{n:'Leche sin lactosa',a:'250',u:'ml'},{n:'Plátano maduro',a:'120',u:'g'},{n:'Avena',a:'50',u:'g'},{n:'Cacao puro en polvo',a:'10',u:'g'}],alt:[]},
+      { id:'com', name:'Comida',time:'14:00',kcal:720,gpt:true,
+        ingredients:[{n:'Arroz blanco crudo',a:'85',u:'g'},{n:'Salmón a la plancha',a:'150',u:'g'},{n:'Brócoli',a:'150',u:'g'},{n:'Pimiento rojo',a:'80',u:'g'},{n:'AOVE',a:'10',u:'ml'}],
+        alt:[{n:'Tempeh a la plancha',a:'150',u:'g'}]},
+      { id:'mer', name:'Merienda',time:'17:30',kcal:315,gpt:false,
+        ingredients:[{n:'Pan integral',a:'100',u:'g'},{n:'Hummus',a:'50',u:'g'},{n:'Zanahoria cruda',a:'80',u:'g'}],
+        alt:[{n:'Guacamole casero',a:'50',u:'g'}]},
+      { id:'cen', name:'Cena',time:'21:00',kcal:425,gpt:true,
+        ingredients:[{n:'Pasta integral cruda',a:'90',u:'g'},{n:'Huevo entero',a:'2 uds (100',u:'g)'},{n:'Espinacas',a:'100',u:'g'},{n:'Tomate',a:'100',u:'g'},{n:'AOVE',a:'8',u:'ml'}],
+        alt:[{n:'Tofu firme',a:'120',u:'g'}]},
+    ],
+    // DAY 5
+    [
+      { id:'des', name:'Desayuno',time:'08:00',kcal:390,gpt:false,
+        ingredients:[{n:'Pan integral',a:'120',u:'g'},{n:'Pavo en lonchas',a:'80',u:'g'},{n:'Aguacate',a:'50',u:'g'}],alt:[]},
+      { id:'mm', name:'Media mañana',time:'11:00',kcal:420,gpt:false,
+        ingredients:[{n:'Leche sin lactosa',a:'250',u:'ml'},{n:'Fresas',a:'80',u:'g'},{n:'Plátano',a:'100',u:'g'},{n:'Avena',a:'50',u:'g'}],alt:[]},
+      { id:'com', name:'Comida',time:'14:00',kcal:695,gpt:true,
+        ingredients:[{n:'Arroz blanco crudo',a:'85',u:'g'},{n:'Pechuga de pollo',a:'150',u:'g'},{n:'Judías verdes',a:'150',u:'g'},{n:'Tomate',a:'100',u:'g'},{n:'AOVE',a:'10',u:'ml'}],
+        alt:[{n:'Soja texturizada hidratada',a:'150',u:'g'}]},
+      { id:'mer', name:'Merienda',time:'17:30',kcal:340,gpt:false,
+        ingredients:[{n:'Yogur sin lactosa',a:'200',u:'g'},{n:'Fruta variada',a:'100',u:'g'},{n:'Nueces',a:'20',u:'g'}],
+        alt:[{n:'Almendras',a:'20',u:'g'}]},
+      { id:'cen', name:'Cena',time:'21:00',kcal:415,gpt:true,
+        ingredients:[{n:'Patata cocida',a:'250',u:'g'},{n:'Merluza al horno',a:'160',u:'g'},{n:'Calabacín',a:'150',u:'g'},{n:'Cebolla pochada',a:'50',u:'g'},{n:'AOVE',a:'8',u:'ml'}],
+        alt:[{n:'Tofu firme a la plancha',a:'160',u:'g'}]},
+    ],
+    // DAY 6
+    [
+      { id:'des', name:'Desayuno',time:'08:30',kcal:405,gpt:false,
+        ingredients:[{n:'Pan integral',a:'120',u:'g'},{n:'Jamón york',a:'80',u:'g'},{n:'Tomate',a:'60',u:'g'},{n:'AOVE',a:'5',u:'ml'}],
+        alt:[{n:'Tofu ahumado',a:'80',u:'g'}]},
+      { id:'mm', name:'Batido con canela',time:'11:30',kcal:430,gpt:false,
+        ingredients:[{n:'Leche sin lactosa',a:'250',u:'ml'},{n:'Plátano',a:'120',u:'g'},{n:'Avena',a:'50',u:'g'},{n:'Miel',a:'10',u:'g'},{n:'Canela',a:'al gusto',u:''}],alt:[]},
+      { id:'com', name:'Comida',time:'14:30',kcal:740,gpt:true,
+        ingredients:[{n:'Arroz blanco crudo',a:'85',u:'g'},{n:'Ternera magra',a:'140',u:'g'},{n:'Pimiento rojo y verde',a:'100',u:'g'},{n:'Cebolla',a:'80',u:'g'},{n:'Champiñones',a:'100',u:'g'},{n:'AOVE',a:'10',u:'ml'}],
+        alt:[{n:'Seitán',a:'140',u:'g'}]},
+      { id:'mer', name:'Merienda',time:'18:00',kcal:320,gpt:false,
+        ingredients:[{n:'Pan integral',a:'100',u:'g'},{n:'Hummus',a:'50',u:'g'},{n:'Zanahoria',a:'80',u:'g'}],
+        alt:[{n:'Aguacate',a:'60',u:'g'}]},
+      { id:'cen', name:'Cena',time:'21:30',kcal:425,gpt:true,
+        ingredients:[{n:'Patata cocida',a:'250',u:'g'},{n:'Salmón al horno',a:'150',u:'g'},{n:'Brócoli',a:'150',u:'g'},{n:'AOVE',a:'8',u:'ml'}],
+        alt:[{n:'Tempeh a la plancha',a:'150',u:'g'}]},
+    ],
+    // DAY 7
+    [
+      { id:'des', name:'Desayuno',time:'09:00',kcal:410,gpt:false,
+        ingredients:[{n:'Pan integral',a:'120',u:'g'},{n:'Huevo revuelto',a:'2 uds (100',u:'g)'},{n:'Pimiento salteado',a:'60',u:'g'},{n:'Tomate cherry',a:'60',u:'g'},{n:'AOVE',a:'5',u:'ml'}],
+        alt:[{n:'Revuelto de tofu',a:'120',u:'g'}]},
+      { id:'mm', name:'Media mañana',time:'12:00',kcal:420,gpt:false,
+        ingredients:[{n:'Leche sin lactosa',a:'250',u:'ml'},{n:'Fresas',a:'100',u:'g'},{n:'Plátano',a:'80',u:'g'},{n:'Avena',a:'50',u:'g'}],alt:[]},
+      { id:'com', name:'Comida',time:'14:30',kcal:710,gpt:true,
+        ingredients:[{n:'Pasta integral cruda',a:'90',u:'g'},{n:'Pechuga de pollo',a:'150',u:'g'},{n:'Espinacas',a:'100',u:'g'},{n:'Zanahoria',a:'80',u:'g'},{n:'AOVE',a:'10',u:'ml'}],
+        alt:[{n:'Soja texturizada hidratada',a:'150',u:'g'}]},
+      { id:'mer', name:'Merienda',time:'18:00',kcal:290,gpt:false,
+        ingredients:[{n:'Fruta variada',a:'150',u:'g'},{n:'Nueces',a:'25',u:'g'}],
+        alt:[{n:'Almendras',a:'25',u:'g'}]},
+      { id:'cen', name:'Cena',time:'21:00',kcal:460,gpt:true,
+        ingredients:[{n:'Arroz blanco crudo',a:'80',u:'g'},{n:'Merluza al horno',a:'160',u:'g'},{n:'Calabacín',a:'150',u:'g'},{n:'Tomate cherry',a:'80',u:'g'},{n:'AOVE',a:'8',u:'ml'}],
+        alt:[{n:'Tofu a la plancha',a:'160',u:'g'}]},
+    ],
+  ];
+
+  const builtDays = days.map((d, i) => ({
+    id: `d${i+1}`,
+    dayName: d.dayName,
+    shortName: d.shortName,
+    targetKcal: d.targetKcal,
+    status: 'pending', // pending | completed | skipped
+    skippedNotes: '',
+    meals: mealTemplates[i].map(m => ({
+      ...m,
+      completed: false,
+      media: [],
+      ingredients: m.ingredients.map((ing,j) => ({ id:`i${j}`, n:ing.n, a:ing.a, u:ing.u })),
+      alt: (m.alt||[]).map((ing,j) => ({ id:`a${j}`, n:ing.n, a:ing.a, u:ing.u })),
+    }))
+  }));
+
+  return {
+    meta: {
+      clientName: 'Rocío Chillaron Vela',
+      coachName: 'Dani Chillarón',
+      createdAt: new Date().toISOString().slice(0,10),
+      lastUpdated: null,
+    },
+    weeks: [{
+      id: 'w1',
+      number: 1,
+      label: 'Semana 1',
+      startDate: new Date().toISOString().slice(0,10),
+      days: builtDays,
+    }],
+    shopping: {
+      categories: [
+        { id:'sc1', name:'🌾 Cereales y pan', open:true, items:[
+          {id:'si1',name:'Pan integral de molde',checked:false},
+          {id:'si2',name:'Pan integral baguette',checked:false},
+          {id:'si3',name:'Arroz blanco',checked:false},
+          {id:'si4',name:'Pasta integral',checked:false},
+          {id:'si5',name:'Avena en copos',checked:false},
+          {id:'si6',name:'Quinoa',checked:false},
+        ]},
+        { id:'sc2', name:'🥩 Proteínas animales', open:false, items:[
+          {id:'si10',name:'Pechuga de pollo',checked:false},
+          {id:'si11',name:'Pavo en lonchas',checked:false},
+          {id:'si12',name:'Jamón york bajo en grasa',checked:false},
+          {id:'si13',name:'Jamón serrano',checked:false},
+          {id:'si14',name:'Salmón fresco o congelado',checked:false},
+          {id:'si15',name:'Merluza fresca o congelada',checked:false},
+          {id:'si16',name:'Atún al natural (latas)',checked:false},
+          {id:'si17',name:'Huevos L (docena)',checked:false},
+          {id:'si18',name:'Ternera magra',checked:false},
+        ]},
+        { id:'sc3', name:'🌿 Proteínas vegetales', open:false, items:[
+          {id:'si20',name:'Tofu firme',checked:false},
+          {id:'si21',name:'Tofu ahumado',checked:false},
+          {id:'si22',name:'Tempeh',checked:false},
+          {id:'si23',name:'Soja texturizada fina',checked:false},
+          {id:'si24',name:'Hummus',checked:false},
+          {id:'si25',name:'Garbanzos cocidos (tarro)',checked:false},
+          {id:'si26',name:'Seitán (opcional)',checked:false},
+        ]},
+        { id:'sc4', name:'🥛 Lácteos', open:false, items:[
+          {id:'si30',name:'Leche sin lactosa semidesnatada',checked:false},
+          {id:'si31',name:'Yogur natural sin lactosa',checked:false},
+        ]},
+        { id:'sc5', name:'🍌 Frutas', open:false, items:[
+          {id:'si40',name:'Plátanos maduros',checked:false},
+          {id:'si41',name:'Fresas (frescas o congeladas)',checked:false},
+          {id:'si42',name:'Mango (fresco o congelado)',checked:false},
+          {id:'si43',name:'Fruta variada de temporada',checked:false},
+        ]},
+        { id:'sc6', name:'🥦 Verduras', open:false, items:[
+          {id:'si50',name:'Brócoli',checked:false},
+          {id:'si51',name:'Calabacín',checked:false},
+          {id:'si52',name:'Zanahoria',checked:false},
+          {id:'si53',name:'Pepino',checked:false},
+          {id:'si54',name:'Espinacas frescas',checked:false},
+          {id:'si55',name:'Judías verdes',checked:false},
+          {id:'si56',name:'Pimiento rojo y verde',checked:false},
+          {id:'si57',name:'Tomate natural',checked:false},
+          {id:'si58',name:'Tomate cherry',checked:false},
+          {id:'si59',name:'Cebolla',checked:false},
+          {id:'si60',name:'Champiñones',checked:false},
+          {id:'si61',name:'Lechuga romana',checked:false},
+          {id:'si62',name:'Patatas',checked:false},
+          {id:'si63',name:'Aguacate',checked:false},
+        ]},
+        { id:'sc7', name:'🫒 Grasas y condimentos', open:false, items:[
+          {id:'si70',name:'AOVE (aceite oliva virgen extra)',checked:false},
+          {id:'si71',name:'Nueces peladas',checked:false},
+          {id:'si72',name:'Almendras tostadas sin sal',checked:false},
+          {id:'si73',name:'Miel',checked:false},
+          {id:'si74',name:'Cacao puro en polvo',checked:false},
+          {id:'si75',name:'Canela en polvo',checked:false},
+        ]},
+        { id:'sc8', name:'🥤 Bebidas alternativas', open:false, items:[
+          {id:'si80',name:'Bebida de avena sin azúcar',checked:false},
+          {id:'si81',name:'Bebida de soja sin azúcar',checked:false},
+          {id:'si82',name:'Bebida de coco sin azúcar',checked:false},
+        ]},
+      ]
+    },
+    generalInfo: {
+      age: 20, weight: 51, height: 173,
+      waist: 64, hip: 87, arm: 23, thigh: 47,
+      targetKcal: 2300, protein: 135, carbs: 295, fat: 65,
+      objective: 'Ganancia de masa muscular (+5 kg)',
+      meals: 5, trainingType: 'Fuerza', medication: 'Eutirox (hipotiroidismo)',
+      restrictions: 'Sin lactosa · Sin queso de cabra · Sin alubias',
+    }
+  };
+}
+
+// ============================================================
+// APP STATE
+// ============================================================
+let appData = null;
+let state = {
+  role: 'client',
+  activeTab: 'seguimiento',
+  activeWeek: 0,
+  activeDay: 0,
+  syncing: false,
+  saveTimeout: null,
+  activeMealMedia: null, // { weekIdx, dayIdx, mealId }
+};
+
+// ============================================================
+// JSONBIN API
+// ============================================================
+async function loadFromCloud() {
+  updateSyncUI('syncing', 'Cargando...');
+  try {
+    const url = `${JSONBIN_BASE}/b/${BIN_ID}/latest`;
+    const r = await fetch(url, { headers: { 'X-Master-Key': JSONBIN_KEY } });
+    if (!r.ok) throw new Error('Error al cargar');
+    const json = await r.json();
+    const record = json.record;
+    // Validate structure — if corrupt/empty, rebuild and resave
+    if (!record || !record.meta || !record.weeks || !Array.isArray(record.weeks) || record.weeks.length === 0) {
+      console.warn('Datos en la nube corruptos o vacíos. Reconstruyendo....');
+      appData = buildInitialData();
+      // Fix the bin immediately with valid data
+      try {
+        await fetch(`${JSONBIN_BASE}/b/${BIN_ID}`, {
+          method: 'PUT',
+          headers: { 'X-Master-Key': JSONBIN_KEY, 'Content-Type': 'application/json', 'X-Bin-Versioning': 'false' },
+          body: JSON.stringify(appData)
+        });
+        console.log('Bin reparado con datos iniciales.');
+      } catch(e2) { console.warn('No se pudo reparar el bin:', e2); }
+    } else {
+      appData = record;
+    }
+    updateSyncUI('ok', 'Sincronizado');
+    return true;
+  } catch(e) {
+    updateSyncUI('error', 'Sin conexión');
+    return false;
+  }
+}
+
+async function saveToCloud(immediate=false) {
+  if (!JSONBIN_KEY || !BIN_ID) return;
+  clearTimeout(state.saveTimeout);
+  const doSave = async () => {
+    state.syncing = true;
+    updateSyncUI('syncing', 'Guardando...');
+    try {
+      const r = await fetch(`${JSONBIN_BASE}/b/${BIN_ID}`, {
+        method: 'PUT',
+        headers: { 'X-Master-Key': JSONBIN_KEY, 'Content-Type': 'application/json', 'X-Bin-Versioning': 'false' },
+        body: JSON.stringify(appData)
+      });
+      if (!r.ok) throw new Error('Error al guardar');
+      appData.meta.lastUpdated = new Date().toISOString();
+      updateSyncUI('ok', 'Guardado ✓');
+    } catch(e) {
+      updateSyncUI('error', 'Error al guardar');
+      showToast('❌ Error al guardar. Revisa tu conexión.');
+    }
+    state.syncing = false;
+  };
+  if (immediate) {
+    await doSave();
+  } else {
+    state.saveTimeout = setTimeout(doSave, 1200);
+  }
+}
+
+async function createNewBin() {
+  updateSyncUI('syncing', 'Creando bin...');
+  const initData = buildInitialData();
+  try {
+    const r = await fetch(`${JSONBIN_BASE}/b`, {
+      method: 'POST',
+      headers: { 'X-Master-Key': JSONBIN_KEY, 'Content-Type': 'application/json', 'X-Bin-Name': 'PlanNutricionalRocio', 'X-Bin-Private': 'true' },
+      body: JSON.stringify(initData)
+    });
+    if (!r.ok) throw new Error();
+    const json = await r.json();
+    BIN_ID = json.metadata.id;
+    localStorage.setItem('pn_bin_id', BIN_ID);
+    appData = initData;
+    updateSyncUI('ok', 'Listo ✓');
+    return true;
+  } catch(e) {
+    updateSyncUI('error', 'Error creando bin');
+    return false;
+  }
+}
+
+function updateSyncUI(status, label) {
+  const dot = document.getElementById('sync-dot');
+  const lbl = document.getElementById('sync-label');
+  dot.className = 'sync-dot' + (status==='syncing'?' syncing':status==='error'?' error':'');
+  lbl.textContent = label || '–';
+}
+
+// ============================================================
+// SETUP
+// ============================================================
+async function saveSetup() {
+  const key = document.getElementById('setup-key').value.trim();
+  const binId = document.getElementById('setup-bin').value.trim();
+  if (!key) { alert('Introduce tu API Key'); return; }
+  JSONBIN_KEY = key;
+  localStorage.setItem('pn_key', key);
+  if (binId) {
+    BIN_ID = binId;
+    localStorage.setItem('pn_bin_id', binId);
+    const ok = await loadFromCloud();
+    if (!ok) { alert('No se pudo conectar. Revisa tu API Key y BIN ID.'); return; }
+  } else {
+    const ok = await createNewBin();
+    if (!ok) { alert('No se pudo crear el bin. Revisa tu API Key.'); return; }
+  }
+  document.getElementById('setup-modal').classList.add('hidden');
+  renderAll();
+  showToast('✅ Configuración guardada');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+async function init() {
+  // Detect role from URL
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('role') === 'coach') {
+    state.role = 'coach';
+    document.getElementById('role-badge').style.display = 'flex';
+  }
+
+  // STEP 1: Always render immediately with fallback data
+  appData = buildInitialData();
+  renderAll();
+  updateSyncUI('', 'Sin conexión');
+
+  // STEP 2: Load config from localStorage
+  JSONBIN_KEY = localStorage.getItem('pn_key') || '';
+  BIN_ID = localStorage.getItem('pn_bin_id') || '';
+
+  if (!JSONBIN_KEY) {
+    // Show setup modal over the rendered content
+    document.getElementById('setup-modal').classList.remove('hidden');
+    updateSyncUI('error', 'Configurar');
+    return;
+  }
+
+  // STEP 3: Sync from cloud in background (non-blocking)
+  updateSyncUI('syncing', 'Cargando...');
+  const ok = await loadFromCloud();
+  if (ok) {
+    renderAll();
+    showToast('✅ Plan cargado desde la nube');
+  } else {
+    updateSyncUI('error', 'Sin conexión');
+    showToast('⚠️ Usando datos locales');
+  }
+
+  // Auto-refresh every 30s for client
+  if (state.role === 'client') {
+    setInterval(async () => {
+      const r = await loadFromCloud();
+      if (r) renderAll();
+    }, 30000);
+  }
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function renderAll() {
+  try {
+    if (!appData || !appData.meta || !appData.weeks) return;
+    document.getElementById('header-name').textContent = appData.meta.clientName || 'Cliente';
+    renderWeekTabs();
+    renderDayPills();
+    renderDayView();
+    renderShopping();
+    renderInfo();
+  } catch(e) {
+    console.error('renderAll error:', e);
+    document.getElementById('day-view').innerHTML = '<div style="padding:20px;color:red;font-size:13px;">Error al renderizar: ' + e.message + '<br><small>Revisa la consola del navegador (F12)</small></div>';
+  }
+}
+
+// ---- WEEK TABS ----
+function renderWeekTabs() {
+  const container = document.getElementById('week-tabs');
+  let html = '';
+  appData.weeks.forEach((w, i) => {
+    html += `<button class="week-tab${state.activeWeek===i?' active':''}" onclick="selectWeek(${i})">${w.label}</button>`;
+  });
+  if (state.role === 'coach') {
+    html += `<button class="week-tab add-week" onclick="addWeek()">+ Semana ${appData.weeks.length+1}</button>`;
+  }
+  container.innerHTML = html;
+}
+
+function selectWeek(i) {
+  state.activeWeek = i;
+  state.activeDay = 0;
+  renderWeekTabs();
+  renderDayPills();
+  renderDayView();
+}
+
+function addWeek() {
+  const base = buildInitialData();
+  const newWeek = { ...base.weeks[0], id:`w${Date.now()}`, number:appData.weeks.length+1, label:`Semana ${appData.weeks.length+1}`, startDate:new Date().toISOString().slice(0,10) };
+  appData.weeks.push(newWeek);
+  state.activeWeek = appData.weeks.length - 1;
+  state.activeDay = 0;
+  saveToCloud();
+  renderAll();
+  showToast('✅ Semana añadida');
+}
+
+// ---- DAY PILLS ----
+function renderDayPills() {
+  const week = appData.weeks[state.activeWeek];
+  const container = document.getElementById('day-pills');
+  let html = '';
+  week.days.forEach((d,i) => {
+    let cls = 'day-pill';
+    if (i===state.activeDay) cls += ' active';
+    if (d.status==='completed') cls += ' completed';
+    if (d.status==='skipped') cls += ' skipped';
+    html += `<div class="${cls}" onclick="selectDay(${i})">
+      <div class="day-pill-name">${d.shortName}</div>
+      <div class="day-pill-num">${i+1}</div>
+      <div class="day-pill-dot"></div>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function selectDay(i) {
+  state.activeDay = i;
+  renderDayPills();
+  renderDayView();
+}
+
+// ---- DAY VIEW ----
+function renderDayView() {
+  if (!appData || !appData.weeks || !appData.weeks[state.activeWeek]) return;
+  const week = appData.weeks[state.activeWeek];
+  if (!week.days || !week.days[state.activeDay]) return;
+  const day = week.days[state.activeDay];
+  const totalMeals = day.meals.length;
+  const doneMeals = day.meals.filter(m=>m.completed).length;
+  const pct = Math.round((doneMeals/totalMeals)*100);
+  const isCoach = state.role === 'coach';
+
+  let statusColor = day.status==='skipped' ? 'red' : '';
+
+  let html = `
+    <div class="day-header">
+      <div class="day-title-row">
+        <div class="day-title">${day.dayName} · Semana ${week.number}</div>
+        <div class="day-kcal"><span>${day.targetKcal}</span> kcal</div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-label">
+          <span>${doneMeals}/${totalMeals} comidas completadas</span>
+          <span>${pct}%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill ${statusColor}" style="width:${pct}%"></div>
+        </div>
+      </div>
+    </div>`;
+
+  // Meal cards
+  day.meals.forEach(meal => {
+    html += renderMealCard(meal, state.activeWeek, state.activeDay, isCoach);
+  });
+
+  // Day actions
+  const doneActive = day.status==='completed' ? ' active-done' : '';
+  const skipActive = day.status==='skipped' ? ' active-skip' : '';
+  const doneDisabled = (!isCoach && day.status!=='pending') ? ' style="opacity:0.5;pointer-events:none"' : '';
+  html += `<div class="day-actions">
+    <button class="day-action-btn done${doneActive}" onclick="markDay('completed')"${doneDisabled}>✅ Día completado</button>
+    <button class="day-action-btn skip${skipActive}" onclick="markDay('skipped')"${doneDisabled}>❌ Día saltado</button>
+  </div>`;
+
+  if (day.status==='skipped') {
+    html += `<div class="skipped-input-wrap">
+      <div class="skipped-label">📝 ¿Qué comiste realmente?</div>
+      <textarea class="skipped-textarea" rows="3" placeholder="Describe lo que consumiste..." onchange="saveSkippedNotes(this.value)">${day.skippedNotes||''}</textarea>
+    </div>`;
+  }
+
+  document.getElementById('day-view').innerHTML = html;
+}
+
+function renderMealCard(meal, weekIdx, dayIdx, isCoach) {
+  const iid = `meal_${weekIdx}_${dayIdx}_${meal.id}`;
+  const isOpen = true; // all open by default for now
+  const mealDone = meal.completed;
+
+  let ingHtml = '';
+  meal.ingredients.forEach((ing, i) => {
+    ingHtml += renderIngRow(ing, i, weekIdx, dayIdx, meal.id, false, isCoach);
+  });
+  if (meal.alt && meal.alt.length > 0) {
+    ingHtml += `<div class="alt-label">🔄 Alternativa vegetal</div>`;
+    meal.alt.forEach((ing, i) => {
+      ingHtml += renderIngRow(ing, i, weekIdx, dayIdx, meal.id, true, isCoach);
+    });
+  }
+  if (isCoach) {
+    ingHtml += `<button class="btn-add-ing" onclick="addIngredient(${weekIdx},${dayIdx},'${meal.id}',false)">+ Añadir ingrediente</button>`;
+  }
+
+  // ChatGPT button
+  let gptHtml = '';
+  if (meal.gpt) {
+    const prompt = buildGptPrompt(meal);
+    const url = `https://chatgpt.com/?q=${encodeURIComponent(prompt)}`;
+    gptHtml = `<a class="gpt-btn" href="${url}" target="_blank" rel="noopener">
+      <span class="gpt-icon">🤖</span>
+      <span>Obtener receta con estos ingredientes</span>
+    </a>`;
+  }
+
+  // Media
+  let mediaHtml = renderMedia(meal, weekIdx, dayIdx, isCoach);
+
+  // Check circle
+  const checkmark = mealDone ? '✓' : '';
+  const checkClass = mealDone ? 'meal-check checked' : 'meal-check';
+  const headBg = mealDone ? 'done-head' : '';
+  const cardBg = mealDone ? 'meal-card done-meal' : 'meal-card';
+
+  return `<div class="${cardBg}" id="${iid}">
+    <div class="meal-card-head ${headBg}" onclick="toggleMealOpen('${iid}')">
+      <div class="${checkClass}" onclick="event.stopPropagation();toggleMeal(${weekIdx},${dayIdx},'${meal.id}')">${checkmark}</div>
+      <span class="meal-time-badge">${meal.time}</span>
+      <div class="meal-name-wrap">
+        <div class="meal-name">${meal.name}</div>
+        <div class="meal-kcal">~${meal.kcal} kcal</div>
+      </div>
+      <div class="meal-chevron open" id="chev_${iid}">▾</div>
+    </div>
+    <div class="meal-body open" id="body_${iid}">
+      <div class="ing-list">${ingHtml}</div>
+      ${gptHtml}
+      ${mediaHtml}
+    </div>
+  </div>`;
+}
+
+function renderIngRow(ing, i, weekIdx, dayIdx, mealId, isAlt, isCoach) {
+  const key = `${weekIdx}_${dayIdx}_${mealId}_${isAlt?'a':'i'}_${i}`;
+  if (isCoach) {
+    return `<div class="ing-row" id="ing_${key}">
+      <div class="ing-name"><input type="text" value="${escHtml(ing.n)}" onchange="updateIng(${weekIdx},${dayIdx},'${mealId}',${i},${isAlt},'n',this.value)"></div>
+      <div class="ing-amount">
+        <input type="text" value="${escHtml(ing.a)}" onchange="updateIng(${weekIdx},${dayIdx},'${mealId}',${i},${isAlt},'a',this.value)">
+        <span class="ing-unit">${ing.u||'g'}</span>
+      </div>
+      <button class="ing-del" onclick="deleteIng(${weekIdx},${dayIdx},'${mealId}',${i},${isAlt})">✕</button>
+    </div>`;
+  } else {
+    return `<div class="ing-row">
+      <div class="ing-name">${escHtml(ing.n)}</div>
+      <div class="ing-amount"><span style="font-weight:700;color:var(--verde)">${ing.a}</span> <span class="ing-unit">${ing.u||'g'}</span></div>
+    </div>`;
+  }
+}
+
+function renderMedia(meal, weekIdx, dayIdx, isCoach) {
+  let html = '<div class="media-section">';
+
+  // Action buttons (coach only)
+  if (isCoach) {
+    const mid = `${weekIdx}_${dayIdx}_${meal.id}`;
+    html += `<div class="media-actions">
+      <button class="media-btn" onclick="openUrlInput('${mid}')"><span class="icon">🎬</span> Video receta</button>
+      <button class="media-btn" onclick="openCamera('${mid}')"><span class="icon">📷</span> Cámara</button>
+      <button class="media-btn" onclick="openGallery('${mid}')"><span class="icon">🖼</span> Galería</button>
+    </div>
+    <div class="url-input-wrap" id="url_${mid}">
+      <input type="text" placeholder="URL de YouTube, Instagram..." id="url_input_${mid}">
+      <button onclick="addVideoUrl('${mid}')">Añadir</button>
+    </div>`;
+  }
+
+  // Carousel
+  if (meal.media && meal.media.length > 0) {
+    html += '<div class="media-carousel">';
+    meal.media.forEach((m, mi) => {
+      if (m.type === 'video_url') {
+        const thumb = getYtThumb(m.url);
+        html += `<div class="media-item">
+          <div class="media-video-thumb" onclick="openUrl('${escAttr(m.url)}')">
+            ${thumb ? `<img src="${thumb}" style="width:120px;height:90px;object-fit:cover">` : '▶️'}
+          </div>
+          <div class="media-label">${escHtml(m.label||'Video')}</div>
+          ${isCoach ? `<button class="media-del" onclick="deleteMedia(${weekIdx},${dayIdx},'${meal.id}',${mi})">×</button>` : ''}
+        </div>`;
+      } else if (m.type === 'image') {
+        html += `<div class="media-item">
+          <img class="media-img" src="${m.data}" alt="foto">
+          ${isCoach ? `<button class="media-del" onclick="deleteMedia(${weekIdx},${dayIdx},'${meal.id}',${mi})">×</button>` : ''}
+        </div>`;
+      }
+    });
+    html += '</div>';
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function buildGptPrompt(meal) {
+  const ings = meal.ingredients.map(i=>`${i.n} ${i.a}${i.u||'g'}`).join(', ');
+  return `Tengo estos ingredientes para ${meal.name.toLowerCase()}: ${ings}. ¿Cuál es la mejor receta saludable que puedo preparar para una chica joven de 20 años que entrena fuerza y quiere ganar masa muscular? Dame instrucciones paso a paso, con tiempos de cocinado y consejos para que quede bien.`;
+}
+
+// ============================================================
+// SHOPPING
+// ============================================================
+function renderShopping() {
+  const s = appData.shopping;
+  const allItems = s.categories.flatMap(c=>c.items);
+  const total = allItems.length;
+  const done = allItems.filter(i=>i.checked).length;
+  const pct = total > 0 ? Math.round((done/total)*100) : 0;
+  const isCoach = state.role === 'coach';
+
+  let html = `<div class="shop-progress">
+    <div class="shop-prog-title">🛒 Lista de la compra</div>
+    <div class="shop-prog-bar"><div class="shop-prog-fill" style="width:${pct}%"></div></div>
+    <div class="shop-prog-text">${done} de ${total} productos marcados (${pct}%)</div>
+  </div>`;
+
+  s.categories.forEach((cat, ci) => {
+    const catDone = cat.items.filter(i=>i.checked).length;
+    html += `<div class="shop-cat">
+      <div class="shop-cat-head" onclick="toggleShopCat(${ci})">
+        <div class="shop-cat-name">${cat.name}</div>
+        <div class="shop-cat-count">${catDone}/${cat.items.length} ✓</div>
+      </div>
+      <div class="shop-items${cat.open?' open':''}" id="shop_cat_${ci}">`;
+    cat.items.forEach((item, ii) => {
+      html += `<div class="shop-item">
+        <div class="shop-cb${item.checked?' checked':''}" onclick="toggleShopItem(${ci},${ii})">${item.checked?'✓':''}</div>
+        <div class="shop-item-name${item.checked?' checked':''}">${escHtml(item.name)}</div>
+        ${isCoach ? `<button class="shop-item-del" onclick="deleteShopItem(${ci},${ii})">✕</button>` : ''}
+      </div>`;
+    });
+    if (isCoach) {
+      html += `<button class="btn-add-shop" onclick="showAddShop(${ci})">+ Añadir producto</button>
+      <div class="shop-add-row" id="shop_add_${ci}">
+        <input type="text" placeholder="Nombre del producto" id="shop_new_${ci}">
+        <button onclick="addShopItem(${ci})">OK</button>
+      </div>`;
+    }
+    html += `</div></div>`;
+  });
+
+  document.getElementById('shop-content').innerHTML = html;
+}
+
+// ============================================================
+// INFO
+// ============================================================
+function renderInfo() {
+  const g = appData.generalInfo;
+  const html = `
+    <div class="info-card">
+      <div class="info-card-head">👤 Datos personales</div>
+      <div class="info-body">
+        <div class="info-row"><span class="info-label">Nombre</span><span class="info-value">${appData.meta.clientName}</span></div>
+        <div class="info-row"><span class="info-label">Edad</span><span class="info-value">${g.age} años</span></div>
+        <div class="info-row"><span class="info-label">Peso actual</span><span class="info-value">${g.weight} kg</span></div>
+        <div class="info-row"><span class="info-label">Altura</span><span class="info-value">${g.height} cm</span></div>
+        <div class="info-row"><span class="info-label">Objetivo</span><span class="info-value">${g.objective}</span></div>
+        <div class="info-row"><span class="info-label">Medicación</span><span class="info-value">${g.medication}</span></div>
+        <div class="info-row"><span class="info-label">Restricciones</span><span class="info-value">${g.restrictions}</span></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-head gold">📏 Medidas</div>
+      <div class="info-body">
+        <div class="info-row"><span class="info-label">Cintura</span><span class="info-value">${g.waist} cm</span></div>
+        <div class="info-row"><span class="info-label">Cadera</span><span class="info-value">${g.hip} cm</span></div>
+        <div class="info-row"><span class="info-label">Brazo</span><span class="info-value">${g.arm} cm</span></div>
+        <div class="info-row"><span class="info-label">Muslo</span><span class="info-value">${g.thigh} cm</span></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-head dark">📊 Objetivos nutricionales</div>
+      <div class="macro-pills">
+        <div class="macro-pill p1"><div class="macro-val">${g.targetKcal}</div><div class="macro-sub">kcal/día</div></div>
+        <div class="macro-pill p2"><div class="macro-val">${g.protein}g</div><div class="macro-sub">Proteína</div></div>
+        <div class="macro-pill p3"><div class="macro-val">${g.carbs}g</div><div class="macro-sub">Hidratos</div></div>
+        <div class="macro-pill p4"><div class="macro-val">${g.fat}g</div><div class="macro-sub">Grasas</div></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-head">ℹ️ Notas del coach</div>
+      <div class="info-body">
+        <div style="font-size:13px;line-height:1.7;color:#444">
+          <b>💊 Eutirox:</b> Tomar en ayunas 30 min antes del desayuno.<br>
+          <b>🥛 Lactosa:</b> Usar siempre leche sin lactosa o bebida vegetal.<br>
+          <b>🔄 Alternativas:</b> Las opciones vegetales en dorado son equivalentes en proteína.<br>
+          <b>📅 Revisión:</b> Cada 2-4 semanas con tu coach.<br>
+          <b>⚖️ Pesaje:</b> Lunes por la mañana, en ayunas, misma ropa.
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;padding:16px 0;font-size:12px;color:#aaa">
+      Plan creado por ${appData.meta.coachName} · ${appData.meta.createdAt}
+    </div>`;
+  document.getElementById('info-content').innerHTML = html;
+}
+
+// ============================================================
+// EVENT HANDLERS
+// ============================================================
+function switchTab(tab) {
+  state.activeTab = tab;
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(`tab-${tab}`).classList.add('active');
+  document.getElementById(`nav-${tab}`).classList.add('active');
+}
+
+function toggleMealOpen(iid) {
+  const body = document.getElementById(`body_${iid}`);
+  const chev = document.getElementById(`chev_${iid}`);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+function toggleMeal(weekIdx, dayIdx, mealId) {
+  const meal = getMeal(weekIdx, dayIdx, mealId);
+  meal.completed = !meal.completed;
+  saveToCloud();
+  renderDayPills();
+  renderDayView();
+}
+
+function markDay(status) {
+  const day = appData.weeks[state.activeWeek].days[state.activeDay];
+  day.status = day.status === status ? 'pending' : status;
+  if (status === 'completed') {
+    day.meals.forEach(m => m.completed = true);
+  }
+  saveToCloud();
+  renderDayPills();
+  renderDayView();
+}
+
+function saveSkippedNotes(val) {
+  const day = appData.weeks[state.activeWeek].days[state.activeDay];
+  day.skippedNotes = val;
+  saveToCloud();
+}
+
+function updateIng(weekIdx, dayIdx, mealId, i, isAlt, field, val) {
+  const meal = getMeal(weekIdx, dayIdx, mealId);
+  const list = isAlt ? meal.alt : meal.ingredients;
+  list[i][field] = val;
+  saveToCloud();
+}
+
+function deleteIng(weekIdx, dayIdx, mealId, i, isAlt) {
+  const meal = getMeal(weekIdx, dayIdx, mealId);
+  const list = isAlt ? meal.alt : meal.ingredients;
+  list.splice(i, 1);
+  saveToCloud();
+  renderDayView();
+}
+
+function addIngredient(weekIdx, dayIdx, mealId, isAlt) {
+  const meal = getMeal(weekIdx, dayIdx, mealId);
+  const list = isAlt ? meal.alt : meal.ingredients;
+  list.push({ id:`i${Date.now()}`, n:'Nuevo ingrediente', a:'100', u:'g' });
+  saveToCloud();
+  renderDayView();
+}
+
+// SHOPPING
+function toggleShopCat(ci) {
+  appData.shopping.categories[ci].open = !appData.shopping.categories[ci].open;
+  renderShopping();
+}
+
+function toggleShopItem(ci, ii) {
+  appData.shopping.categories[ci].items[ii].checked = !appData.shopping.categories[ci].items[ii].checked;
+  saveToCloud();
+  renderShopping();
+}
+
+function deleteShopItem(ci, ii) {
+  appData.shopping.categories[ci].items.splice(ii, 1);
+  saveToCloud();
+  renderShopping();
+}
+
+function showAddShop(ci) {
+  const row = document.getElementById(`shop_add_${ci}`);
+  row.classList.toggle('open');
+  if (row.classList.contains('open')) document.getElementById(`shop_new_${ci}`).focus();
+}
+
+function addShopItem(ci) {
+  const input = document.getElementById(`shop_new_${ci}`);
+  const name = input.value.trim();
+  if (!name) return;
+  appData.shopping.categories[ci].items.push({ id:`si${Date.now()}`, name, checked:false });
+  input.value = '';
+  saveToCloud();
+  renderShopping();
+}
+
+// MEDIA
+let pendingMediaKey = null;
+
+function openUrlInput(mKey) {
+  const el = document.getElementById(`url_${mKey}`);
+  if (el) { el.classList.toggle('open'); }
+}
+
+function addVideoUrl(mKey) {
+  const input = document.getElementById(`url_input_${mKey}`);
+  const url = input.value.trim();
+  if (!url) return;
+  const [weekIdx, dayIdx, mealId] = parseMKey(mKey);
+  const meal = getMeal(weekIdx, dayIdx, mealId);
+  meal.media.push({ type:'video_url', url, label: getVideoLabel(url) });
+  input.value = '';
+  document.getElementById(`url_${mKey}`).classList.remove('open');
+  saveToCloud(true);
+  renderDayView();
+}
+
+function openCamera(mKey) {
+  pendingMediaKey = mKey;
+  document.getElementById('file-camera').click();
+}
+
+function openGallery(mKey) {
+  pendingMediaKey = mKey;
+  document.getElementById('file-gallery').click();
+}
+
+document.getElementById('file-camera').addEventListener('change', function(e) {
+  if (!pendingMediaKey || !e.target.files[0]) return;
+  handleFileUpload(e.target.files[0], pendingMediaKey);
+  e.target.value = '';
+});
+
+document.getElementById('file-gallery').addEventListener('change', function(e) {
+  if (!pendingMediaKey) return;
+  Array.from(e.target.files).forEach(f => handleFileUpload(f, pendingMediaKey));
+  e.target.value = '';
+});
+
+function handleFileUpload(file, mKey) {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const [weekIdx, dayIdx, mealId] = parseMKey(mKey);
+    const meal = getMeal(weekIdx, dayIdx, mealId);
+    // Compress image
+    if (file.type.startsWith('image/')) {
+      compressImage(e.target.result, 400, 0.65, (compressed) => {
+        meal.media.push({ type:'image', data:compressed, label:file.name });
+        saveToCloud(true);
+        renderDayView();
+      });
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+function compressImage(dataUrl, maxW, quality, callback) {
+  const img = new Image();
+  img.onload = function() {
+    const canvas = document.createElement('canvas');
+    let w = img.width, h = img.height;
+    if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+    canvas.width = w; canvas.height = h;
+    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+    callback(canvas.toDataURL('image/jpeg', quality));
+  };
+  img.src = dataUrl;
+}
+
+function deleteMedia(weekIdx, dayIdx, mealId, mi) {
+  const meal = getMeal(weekIdx, dayIdx, mealId);
+  meal.media.splice(mi, 1);
+  saveToCloud(true);
+  renderDayView();
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function getMeal(weekIdx, dayIdx, mealId) {
+  return appData.weeks[weekIdx].days[dayIdx].meals.find(m=>m.id===mealId);
+}
+
+function parseMKey(mKey) {
+  const parts = mKey.split('_');
+  return [parseInt(parts[0]), parseInt(parts[1]), parts[2]];
+}
+
+function getYtThumb(url) {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/]+)/);
+  if (match) return `https://img.youtube.com/vi/${match[1]}/mqdefault.jpg`;
+  return null;
+}
+
+function getVideoLabel(url) {
+  if (url.includes('youtube') || url.includes('youtu.be')) return 'YouTube';
+  if (url.includes('instagram')) return 'Instagram';
+  if (url.includes('tiktok')) return 'TikTok';
+  return 'Video';
+}
+
+function openUrl(url) {
+  window.open(url, '_blank', 'noopener');
+}
+
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function escAttr(s) {
+  return String(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+// ============================================================
+// START
+// ============================================================
+init();
+</script>
+</body>
+</html>
