@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>🇲🇦 Fez 2026 — Azahara &amp; Paola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#7DD8E8;--gl:#A6F0FA;--gp:#E3FBFF;
+  --dk:#0B1730;--dk2:#11203F;--mid:#3A5878;
+  --cr:#0E1A33;--cr2:rgba(255,255,255,.12);
+  --red:#FF6B81;--grn:#54E6B5;--blu:#6FA8FF;
+  --glass-bg:rgba(255,255,255,.06);
+  --glass-bd:rgba(255,255,255,.16);
+  --th:56px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;}
+html,body{height:100%;overscroll-behavior:none;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:
+  radial-gradient(ellipse 80% 50% at 15% 0%, rgba(125,216,232,.18), transparent 60%),
+  radial-gradient(ellipse 70% 50% at 90% 20%, rgba(255,107,129,.14), transparent 60%),
+  radial-gradient(ellipse 60% 40% at 50% 100%, rgba(111,168,255,.16), transparent 60%),
+  linear-gradient(160deg,#070D1C 0%,#0B1730 45%,#0E1A33 100%);
+  background-attachment:fixed;
+  color:#EAF6FA;padding-bottom:calc(var(--th) + env(safe-area-inset-bottom,0px) + 8px);}
+
+/* GLASS PANEL BASE */
+.glass{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:16px;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);box-shadow:0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);}
+
+/* HERO (sin foto) */
+.hero{background:linear-gradient(135deg,rgba(125,216,232,.14),rgba(255,107,129,.10));position:relative;padding:30px 16px 22px;text-align:center;border-bottom:1px solid var(--glass-bd);overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(125,216,232,.25),transparent 55%);pointer-events:none;}
+.hero-flag{font-size:38px;display:block;margin-bottom:4px;position:relative;}
+.hero h1{position:relative;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,7vw,2.7rem);font-weight:700;font-style:italic;color:#fff;line-height:1.1;letter-spacing:-.5px;text-shadow:0 0 30px rgba(125,216,232,.35);}
+.hero h1 em{font-style:normal;font-weight:300;color:var(--gl);}
+.hero-sub{position:relative;font-size:.65rem;color:rgba(255,255,255,.55);margin-top:6px;letter-spacing:2.5px;text-transform:uppercase;}
+.hero-pax{position:relative;display:flex;gap:7px;justify-content:center;margin-top:12px;flex-wrap:wrap;}
+.pax{background:rgba(255,255,255,.08);border:1px solid var(--glass-bd);color:var(--gl);padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:600;backdrop-filter:blur(8px);}
+
+/* SYNC */
+.sync-bar{background:rgba(7,13,28,.6);backdrop-filter:blur(14px);padding:6px 16px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--glass-bd);}
+#sync-dot{width:8px;height:8px;border-radius:50%;background:#888;flex-shrink:0;transition:background .3s;box-shadow:0 0 8px currentColor;}
+#sync-txt{color:rgba(255,255,255,.6);font-size:.62rem;flex:1;}
+
+/* PROGRESS */
+.pg-wrap{background:rgba(7,13,28,.6);backdrop-filter:blur(14px);padding:9px 16px;border-bottom:1px solid var(--glass-bd);}
+.pg-txt{color:var(--gp);font-size:.68rem;letter-spacing:.8px;font-weight:600;}
+.pg-bg{background:rgba(255,255,255,.1);border-radius:3px;height:4px;margin-top:5px;overflow:hidden;}
+#pg-fill{height:4px;background:linear-gradient(90deg,var(--gold),var(--blu));border-radius:3px;width:0;transition:width .4s;box-shadow:0 0 10px var(--gold);}
+
+/* TABBAR */
+.tabbar{
+  position:fixed;bottom:0;left:0;right:0;
+  height:calc(var(--th) + env(safe-area-inset-bottom,0px));
+  background:rgba(7,13,28,.78);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);
+  border-top:1px solid var(--glass-bd);
+  display:flex;z-index:9999;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+.tb{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;background:none;border:none;color:rgba(255,255,255,.45);
+  font-size:.54rem;font-weight:700;letter-spacing:.2px;text-transform:uppercase;
+  padding:0 1px;cursor:pointer;
+  touch-action:manipulation;-webkit-appearance:none;
+  min-height:44px;min-width:38px;
+  -webkit-user-select:none;user-select:none;
+  transition:color .15s;
+  font-family:-apple-system,sans-serif;
+}
+.tb .ico{font-size:16px;line-height:1.1;}
+.tb.on{color:var(--gl);}
+.tb.on .ico{background:rgba(125,216,232,.18);border-radius:8px;padding:2px 7px;box-shadow:0 0 12px rgba(125,216,232,.3);}
+
+/* PAGES */
+.pg{display:none;padding:12px 13px 0;}
+.pg.on{display:block;}
+
+/* SECTION TITLE */
+.sec{font-size:.95rem;font-weight:800;margin:16px 0 9px;display:flex;align-items:center;gap:8px;color:#fff;}
+.sec::after{content:'';flex:1;height:1px;background:var(--glass-bd);}
+
+/* INFO CARDS */
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.ic{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:12px;padding:11px 12px;color:#fff;backdrop-filter:blur(14px);}
+.ic-l{font-size:.55rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:2px;}
+.ic-v{font-size:.78rem;line-height:1.4;}
+.ic-v small{font-size:.65rem;color:rgba(255,255,255,.45);display:block;margin-top:1px;}
+.mono{font-family:'Courier New',monospace;color:var(--gl);font-weight:700;font-size:.85rem;letter-spacing:1px;}
+
+/* DAY HEADER */
+.dh{display:flex;align-items:center;gap:10px;margin:4px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--glass-bd);}
+.dn{background:var(--glass-bg);border:2px solid var(--gold);color:var(--gl);font-size:1.1rem;font-weight:800;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;backdrop-filter:blur(10px);box-shadow:0 0 16px rgba(125,216,232,.25);}
+.dt{font-size:1.1rem;font-weight:800;color:#fff;}
+.ds{font-size:.68rem;color:rgba(255,255,255,.5);margin-top:1px;}
+
+/* MAP */
+.mapsec{margin-bottom:12px;}
+.map-links-box{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:12px;padding:11px 12px;backdrop-filter:blur(14px);}
+.map-links-title{font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.map-direct-btn{display:block;background:rgba(125,216,232,.1);border:1px solid var(--glass-bd);border-radius:9px;color:var(--gl);padding:8px 10px;font-size:.75rem;font-weight:600;text-decoration:none;margin-bottom:6px;text-align:center;}
+.map-direct-btn:last-child{margin-bottom:0;}
+
+/* PRICES BOX */
+.price-box{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:14px;padding:12px 14px;margin-bottom:12px;backdrop-filter:blur(14px);}
+.price-box-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:9px;}
+.price-box table{width:100%;border-collapse:collapse;font-size:.74rem;color:#fff;}
+.price-box td{padding:5px 4px;border-bottom:1px solid var(--glass-bd);}
+.price-box td:last-child{text-align:right;font-weight:700;}
+.price-box tr:last-child td{border-bottom:none;background:rgba(125,216,232,.12);font-weight:800;border-radius:8px;}
+
+/* ALERT */
+.alert{background:rgba(255,193,7,.1);border:1px solid rgba(255,193,7,.3);border-left:4px solid #FFC107;border-radius:10px;padding:10px 12px;font-size:.78rem;margin-bottom:12px;line-height:1.5;color:#FFE9A8;backdrop-filter:blur(10px);}
+.alert-red{background:rgba(255,107,129,.1);border-color:rgba(255,107,129,.3);border-left-color:var(--red);color:#FFC1CB;}
+.alert-grn{background:rgba(84,230,181,.1);border-color:rgba(84,230,181,.3);border-left-color:var(--grn);color:#BCF5DE;}
+.alert-blue{background:rgba(111,168,255,.1);border-color:rgba(111,168,255,.3);border-left-color:var(--blu);color:#C2D8FF;}
+
+/* TIMELINE */
+.tl{position:relative;padding-left:20px;border-left:2px solid var(--glass-bd);margin-bottom:14px;}
+.ti{position:relative;margin-bottom:0;padding:0 0 14px 16px;}
+.ti:last-child{padding-bottom:0;}
+.tdot{position:absolute;left:-27px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--cr);flex-shrink:0;box-shadow:0 0 10px var(--gold);}
+.ti.dn2 .tdot{background:var(--grn);}
+.tc{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:13px;padding:11px 12px;backdrop-filter:blur(16px);}
+.cr1{display:flex;align-items:flex-start;gap:7px;flex-wrap:wrap;}
+.ct{font-size:.72rem;font-weight:800;color:var(--gold);white-space:nowrap;padding-top:2px;min-width:36px;}
+.cn{font-size:.84rem;font-weight:700;flex:1;line-height:1.3;color:#fff;}
+.eico,.ckb{background:none;border:none;font-size:1rem;padding:2px 4px;cursor:pointer;flex-shrink:0;min-height:36px;min-width:36px;display:flex;align-items:center;justify-content:center;}
+.cd{font-size:.74rem;color:rgba(255,255,255,.7);margin-top:5px;line-height:1.5;}
+.ctags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.tag{font-size:.62rem;padding:2px 8px;border-radius:50px;font-weight:600;backdrop-filter:blur(6px);}
+.tf{background:rgba(255,158,99,.15);color:#FFC499;border:1px solid rgba(255,158,99,.25);}
+.te{background:rgba(84,230,181,.15);color:#9CF2D4;border:1px solid rgba(84,230,181,.25);}
+.tt{background:rgba(111,168,255,.15);color:#BBD6FF;border:1px solid rgba(111,168,255,.25);}
+.tw{background:rgba(255,107,129,.15);color:#FFB6C2;border:1px solid rgba(255,107,129,.25);}
+.tb2{background:rgba(192,132,252,.15);color:#E4C7FE;border:1px solid rgba(192,132,252,.25);}
+.ts{background:rgba(192,132,252,.15);color:#E4C7FE;border:1px solid rgba(192,132,252,.25);}
+.clnks{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px;}
+.lnk{font-size:.7rem;padding:5px 11px;border-radius:8px;text-decoration:none;font-weight:600;backdrop-filter:blur(8px);}
+.lm{background:rgba(125,216,232,.15);color:var(--gl);border:1px solid rgba(125,216,232,.3);}
+.lw{background:rgba(37,211,102,.2);color:#7CFFA8;border:1px solid rgba(37,211,102,.35);}
+.lgy{background:rgba(66,133,244,.2);color:#A8C8FF;border:1px solid rgba(66,133,244,.35);}
+
+/* GASTO ROW */
+.exp-row{display:flex;align-items:center;gap:5px;margin-top:8px;flex-wrap:wrap;}
+.exp-lbl{font-size:.65rem;color:rgba(255,255,255,.5);font-weight:600;white-space:nowrap;}
+.exp-inp{width:72px;border:1px solid var(--glass-bd);border-radius:7px;padding:4px 6px;font-size:.78rem;text-align:right;background:rgba(255,255,255,.07);color:#fff;}
+.exp-unit{font-size:.72rem;color:rgba(255,255,255,.5);}
+.pay-sel{border:1px solid var(--glass-bd);border-radius:7px;padding:4px 5px;font-size:.68rem;background:rgba(255,255,255,.07);color:#fff;}
+.pay-sel option{background:#11203F;color:#fff;}
+.exp-note-inp{flex:1;min-width:80px;border:1px solid var(--glass-bd);border-radius:7px;padding:4px 7px;font-size:.72rem;background:rgba(255,255,255,.07);color:#fff;}
+.exp-note-inp::placeholder,.exp-inp::placeholder{color:rgba(255,255,255,.35);}
+
+/* EDIT PANEL */
+.ced{display:none;background:rgba(255,255,255,.05);border:1px solid var(--glass-bd);border-radius:10px;padding:10px 11px;margin-top:8px;}
+.ced.op{display:block;}
+.ef{width:100%;border:1px solid var(--glass-bd);border-radius:8px;padding:6px 9px;font-size:.78rem;margin-bottom:6px;font-family:inherit;background:rgba(255,255,255,.06);color:#fff;}
+textarea.ef{min-height:60px;resize:vertical;}
+.eas{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
+.bs{border:none;border-radius:9px;padding:7px 14px;font-size:.76rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.bsave{background:var(--grn);color:#022;}
+.bcanc{background:rgba(255,255,255,.12);color:#fff;}
+.bdel{background:var(--red);color:#fff;}
+
+/* TRANSPORT PILL */
+.trn{padding:4px 0 4px 8px;}
+.trn-pill{display:inline-flex;align-items:flex-start;gap:6px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);font-size:.68rem;padding:6px 12px;border-radius:9px;border:1px solid var(--glass-bd);line-height:1.45;max-width:100%;backdrop-filter:blur(10px);}
+.trn-pill strong{color:var(--gl);font-weight:700;}
+
+/* TI DONE */
+.ti.dn2 .tc{opacity:.5;}
+.ti.dn2 .cn{text-decoration:line-through;}
+
+/* ADD BTN */
+.addbtn{display:block;width:100%;border:2px dashed rgba(125,216,232,.35);background:transparent;border-radius:12px;padding:10px;font-size:.8rem;color:var(--gold);font-weight:700;cursor:pointer;margin:8px 0 18px;font-family:inherit;}
+.addfrm{display:none;background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:13px;padding:13px 13px;margin-bottom:14px;backdrop-filter:blur(14px);}
+.addfrm.op{display:block;}
+.addfrm h4{font-size:.85rem;font-weight:800;margin-bottom:10px;color:#fff;}
+.addfrm label{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.6);display:block;margin-bottom:3px;margin-top:8px;}
+.addfrm input,.addfrm textarea{width:100%;border:1px solid var(--glass-bd);border-radius:8px;padding:7px 10px;font-size:.78rem;font-family:inherit;background:rgba(255,255,255,.06);color:#fff;}
+.addfrm textarea{min-height:55px;resize:vertical;}
+.afrm-acts{display:flex;gap:7px;margin-top:10px;}
+
+/* CURRENCY CALC */
+.calc-box{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:14px;padding:14px 15px;margin-bottom:14px;color:#fff;backdrop-filter:blur(16px);}
+.calc-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.calc-inp{flex:1;border:1px solid var(--glass-bd);border-radius:9px;padding:9px 12px;font-size:1rem;font-weight:700;text-align:right;background:rgba(255,255,255,.08);color:#fff;}
+.calc-inp::placeholder{color:rgba(255,255,255,.35);}
+.calc-lbl{font-size:.75rem;font-weight:700;color:var(--gl);min-width:40px;}
+.calc-arrow{color:var(--gold);font-size:1rem;text-align:center;}
+
+/* FOOD TABLE */
+.food-table{width:100%;border-collapse:collapse;font-size:.77rem;color:#fff;}
+.food-table th{background:rgba(125,216,232,.12);color:var(--gl);padding:7px 9px;text-align:left;font-size:.68rem;letter-spacing:.8px;}
+.food-table td{padding:7px 9px;border-bottom:1px solid var(--glass-bd);}
+.food-table tr:nth-child(even) td{background:rgba(255,255,255,.03);}
+
+/* GASTOS PAGE */
+.recalc-btn{display:block;width:100%;background:var(--glass-bg);border:1px solid var(--glass-bd);color:var(--gl);border-radius:12px;padding:11px;font-size:.85rem;font-weight:700;cursor:pointer;margin-bottom:14px;font-family:inherit;backdrop-filter:blur(14px);}
+.exp-summary{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:13px;padding:12px 14px;margin-bottom:14px;overflow-x:auto;backdrop-filter:blur(14px);}
+.exp-sumhdr{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:9px;}
+.exp-table{width:100%;border-collapse:collapse;font-size:.72rem;color:#fff;}
+.exp-table th{background:rgba(125,216,232,.12);color:var(--gl);padding:6px 8px;text-align:left;font-size:.63rem;}
+.exp-table td{padding:5px 8px;border-bottom:1px solid var(--glass-bd);}
+.exp-table .exp-amt{text-align:right;font-family:monospace;font-weight:700;}
+.exp-table .day-row td{background:rgba(255,255,255,.06);font-weight:800;font-size:.7rem;}
+.exp-table .total-row td{background:rgba(125,216,232,.15);color:#fff;font-weight:800;}
+.pair-card{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:11px;padding:12px 13px;backdrop-filter:blur(14px);}
+.pair-total{text-align:right;font-family:monospace;font-weight:800;font-size:.9rem;}
+
+/* ═══ SPLASH ═══ */
+#splash{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9000;background:radial-gradient(ellipse 80% 60% at 50% 40%,#0E1A33 0%,#070D1C 100%);padding:32px 28px;overflow:hidden;}
+#splash-canvas{position:absolute;inset:0;pointer-events:none;}
+.sp-rose{position:relative;z-index:2;font-size:64px;line-height:1;margin-bottom:22px;animation:roseFloat 3s ease-in-out infinite;filter:drop-shadow(0 0 24px rgba(125,216,232,.5));}
+@keyframes roseFloat{0%,100%{transform:translateY(0) rotate(-4deg);}50%{transform:translateY(-10px) rotate(4deg);}}
+.sp-for{position:relative;z-index:2;font-family:'Inter',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:0;margin-bottom:8px;animation:spFadeUp .8s ease forwards .4s;}
+.sp-name{position:relative;z-index:2;font-family:'Playfair Display',serif;font-size:clamp(2.4rem,11vw,3.8rem);font-weight:700;font-style:italic;color:#fff;line-height:1.05;opacity:0;text-align:center;animation:spFadeUp .9s ease forwards .7s;text-shadow:0 0 40px rgba(125,216,232,.4);}
+.sp-line{position:relative;z-index:2;width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto;opacity:0;animation:spFadeUp .7s ease forwards 1.1s;}
+.sp-msg{position:relative;z-index:2;font-family:'Playfair Display',serif;font-size:clamp(.9rem,3.8vw,1.05rem);font-style:italic;color:rgba(255,255,255,.82);line-height:1.85;text-align:center;max-width:340px;opacity:0;animation:spFadeUp .9s ease forwards 1.4s;}
+.sp-msg strong{color:var(--gl);font-style:normal;font-weight:700;}
+.sp-btn-wrap{position:relative;z-index:2;margin-top:32px;opacity:0;animation:spFadeUp .8s ease forwards 2.7s;}
+.sp-btn{font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#06212B;background:linear-gradient(135deg,var(--gl),var(--gold));border:none;border-radius:50px;padding:15px 38px;cursor:pointer;box-shadow:0 4px 28px rgba(125,216,232,.5);transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;}
+.sp-btn:active{transform:scale(.96);}
+.sp-btn:hover{box-shadow:0 8px 36px rgba(125,216,232,.65);transform:translateY(-2px);}
+.sp-skip-wrap{position:relative;z-index:2;display:flex;align-items:center;gap:8px;margin-top:22px;opacity:0;animation:spFadeUp .8s ease forwards 3.1s;cursor:pointer;-webkit-user-select:none;user-select:none;}
+.sp-skip-wrap input[type="checkbox"]{width:16px;height:16px;accent-color:var(--gold);cursor:pointer;flex-shrink:0;}
+.sp-skip-wrap span{font-family:'Inter',sans-serif;font-size:.68rem;color:rgba(255,255,255,.45);letter-spacing:.3px;}
+@keyframes spFadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+/* Curtain */
+#sp-curtain{position:fixed;inset:0;background:#070D1C;z-index:8500;clip-path:circle(0% at 50% 50%);pointer-events:none;}
+#sp-curtain.sp-closing{animation:spCurtainClose .75s cubic-bezier(.7,0,.3,1) forwards;}
+#sp-curtain.sp-opening{clip-path:circle(150% at 50% 50%);animation:spCurtainOpen .9s cubic-bezier(.7,0,.3,1) forwards .1s;}
+@keyframes spCurtainClose{to{clip-path:circle(150% at 50% 50%);}}
+@keyframes spCurtainOpen{to{clip-path:circle(0% at 50% 50%);}}
+.sp-petal{position:fixed;font-size:1.5rem;pointer-events:none;z-index:9500;animation:spPetal var(--dur) ease forwards;opacity:0;}
+@keyframes spPetal{0%{transform:translate(0,0) rotate(0deg) scale(0);opacity:1;}70%{opacity:1;}100%{transform:translate(var(--tx),var(--ty)) rotate(var(--rot)) scale(.3);opacity:0;}}
+
+/* RESUMEN DÍA */
+.day-summary{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:14px;padding:13px 15px;margin-bottom:14px;border-left:4px solid var(--gold);backdrop-filter:blur(16px);}
+.day-summary-title{font-size:.6rem;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.day-summary-items{display:flex;flex-direction:column;gap:5px;}
+.dsi{display:flex;align-items:flex-start;gap:8px;font-size:.76rem;color:rgba(255,255,255,.82);line-height:1.4;}
+.dsi-ico{flex-shrink:0;width:18px;text-align:center;}
+
+/* ══════════ FOTOS & VÍDEOS ══════════ */
+.media-section{margin-top:10px;padding-top:9px;border-top:1px solid var(--glass-bd);}
+.media-btns{display:flex;gap:6px;}
+.media-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;background:none;border:1.5px dashed rgba(125,216,232,.35);border-radius:9px;padding:7px 8px;font-size:.7rem;color:var(--gold);font-weight:600;cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s;}
+.media-btn:active{background:rgba(125,216,232,.1);border-color:var(--gold);}
+.media-carousel{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:6px 0 4px;scrollbar-width:none;margin-top:8px;}
+.media-carousel::-webkit-scrollbar{display:none;}
+.media-slide{flex:0 0 auto;scroll-snap-align:start;position:relative;border-radius:11px;overflow:hidden;cursor:pointer;background:#0a1020;}
+.media-carousel.one .media-slide{width:min(320px,calc(100vw - 60px));height:196px;}
+.media-carousel.many .media-slide:first-child{width:min(200px,calc(100vw - 130px));height:156px;}
+.media-carousel.many .media-slide{width:110px;height:156px;}
+.media-slide img,.media-slide video{width:100%;height:100%;object-fit:cover;display:block;}
+.media-slide-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.72));padding:18px 7px 5px;font-size:.6rem;color:rgba(255,255,255,.9);line-height:1.3;pointer-events:none;}
+.media-del{position:absolute;top:4px;right:4px;background:rgba(255,107,129,.85);border:none;border-radius:50%;width:22px;height:22px;color:#fff;font-size:.65rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;}
+.media-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;}
+.media-play span{font-size:2rem;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6));}
+.media-badge{position:absolute;top:4px;left:4px;background:rgba(111,168,255,.85);color:#fff;font-size:.5rem;padding:2px 5px;border-radius:3px;font-weight:700;}
+.media-dots{display:flex;justify-content:center;gap:5px;margin-top:3px;}
+.media-dot{width:5px;height:5px;border-radius:50%;background:var(--glass-bd);}
+.media-dot.on{background:var(--gold);}
+/* Lightbox */
+#mlb{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9800;display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px;}
+#mlb.on{display:flex;}
+#mlb-media{max-width:100%;max-height:72vh;}
+#mlb-media img{max-width:100%;max-height:72vh;border-radius:10px;object-fit:contain;display:block;}
+#mlb-media video{max-width:100%;max-height:72vh;border-radius:10px;outline:none;}
+.mlb-cap{color:rgba(255,255,255,.75);font-size:.78rem;text-align:center;margin-top:10px;line-height:1.5;max-width:340px;}
+.mlb-info{color:var(--gold);font-size:.62rem;letter-spacing:1px;text-transform:uppercase;margin-top:5px;text-align:center;}
+.mlb-x{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.15);border:none;border-radius:50%;width:38px;height:38px;font-size:1.2rem;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+/* Álbum */
+.alb-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.alb-item{position:relative;border-radius:11px;overflow:hidden;aspect-ratio:1;cursor:pointer;background:#0a1020;}
+.alb-item img,.alb-item video{width:100%;height:100%;object-fit:cover;display:block;}
+.alb-item-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.78));padding:16px 6px 5px;font-size:.58rem;color:rgba(255,255,255,.9);line-height:1.3;}
+.alb-item .media-play{font-size:1.6rem;}
+.alb-empty{text-align:center;padding:30px 20px;color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.7;}
+/* Selector cámara/fototeca */
+.media-picker{position:fixed;inset:0;z-index:9700;display:none;align-items:flex-end;}
+.media-picker.on{display:flex;}
+.media-picker-bg{position:absolute;inset:0;background:rgba(0,0,0,.6);}
+.media-picker-sheet{position:relative;background:rgba(14,26,51,.92);backdrop-filter:blur(24px);border:1px solid var(--glass-bd);border-radius:18px 18px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom));width:100%;z-index:1;}
+.media-picker-title{font-size:.85rem;font-weight:700;text-align:center;margin-bottom:16px;color:#fff;}
+.media-picker-opts{display:flex;flex-direction:column;gap:10px;}
+.media-picker-opt{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid var(--glass-bd);border-radius:12px;padding:13px 16px;cursor:pointer;width:100%;font-family:inherit;text-align:left;}
+.media-picker-opt-ico{font-size:1.5rem;flex-shrink:0;}
+.media-picker-opt-txt{font-size:.85rem;font-weight:600;color:#fff;}
+.media-picker-opt-sub{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:2px;}
+.media-picker-cancel{margin-top:10px;width:100%;padding:13px;background:rgba(255,255,255,.08);border:none;border-radius:12px;font-size:.85rem;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;}
+
+/* Sugerencias page */
+.sug-card{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:14px;padding:13px 14px;margin-bottom:12px;backdrop-filter:blur(16px);}
+.sug-title{font-size:.85rem;font-weight:800;color:#fff;margin-bottom:5px;}
+.sug-body{font-size:.76rem;color:rgba(255,255,255,.72);line-height:1.55;}
+
+</style>
+</head>
+<body>
+
+<!-- CURTAIN -->
+<div id="sp-curtain"></div>
+
+<!-- ═══ SPLASH ═══ -->
+<div id="splash">
+  <canvas id="splash-canvas"></canvas>
+  <div class="sp-rose">🇲🇦</div>
+  <div class="sp-for">Bienvenidas a</div>
+  <div class="sp-name">Fez</div>
+  <div class="sp-line"></div>
+  <p class="sp-msg">
+    Calles que se pierden en mil colores,<br>
+    té a la menta y atardeceres en el desierto.<br><br>
+    <strong>Azahara &amp; Paola, que empiece la aventura. 🌙✨</strong>
+  </p>
+  <div class="sp-btn-wrap">
+    <button class="sp-btn" onclick="spLaunch()">✨ &nbsp;Empezar el viaje</button>
+  </div>
+  <label class="sp-skip-wrap">
+    <input type="checkbox" id="sp-skip-cb">
+    <span>No volver a mostrar esta bienvenida</span>
+  </label>
+</div>
+
+<!-- HERO SIN FOTO -->
+<div class="hero">
+  <div class="hero-flag">🇲🇦</div>
+  <h1>Fez <em>2026</em></h1>
+  <div class="hero-sub">29 Julio — 2 Agosto · 4 noches · 5 días</div>
+  <div class="hero-pax">
+    <span class="pax">👯 Azahara &amp; Paola</span>
+    <span class="pax">✈️ FR5373 · FR5372</span>
+  </div>
+  <div class="hero-pax" style="margin-top:6px;">
+    <span class="pax">🏨 Riad Amor — Suite &amp; Spa</span>
+  </div>
+</div>
+
+<!-- SYNC -->
+<div class="sync-bar">
+  <div id="sync-dot"></div>
+  <div id="sync-txt">Cargando...</div>
+  <div id="cld-dot" style="width:8px;height:8px;border-radius:50%;background:#888;flex-shrink:0;margin-left:8px;transition:background .3s;" title="Cloudinary"></div>
+  <div id="cld-txt" style="color:rgba(255,255,255,.45);font-size:.58rem;">📸 ...</div>
+</div>
+
+<!-- PROGRESS -->
+<div class="pg-wrap">
+  <div class="pg-txt" id="pg-txt">0 de 0 paradas completadas (0%)</div>
+  <div class="pg-bg"><div id="pg-fill"></div></div>
+</div>
+
+<!-- TABBAR -->
+<div class="tabbar">
+  <button type="button" class="tb on" id="tb-info" onclick="ST('info')"><span class="ico">ℹ️</span>Info</button>
+  <button type="button" class="tb" id="tb-d1" onclick="ST('d1')"><span class="ico">✈️</span>Mar29</button>
+  <button type="button" class="tb" id="tb-d2" onclick="ST('d2')"><span class="ico">🏛️</span>Mié30</button>
+  <button type="button" class="tb" id="tb-d3" onclick="ST('d3')"><span class="ico">🏜️</span>Jue31</button>
+  <button type="button" class="tb" id="tb-d4" onclick="ST('d4')"><span class="ico">🚆</span>Vie1</button>
+  <button type="button" class="tb" id="tb-d5" onclick="ST('d5')"><span class="ico">🛫</span>Sáb2</button>
+  <button type="button" class="tb" id="tb-sug" onclick="ST('sug')"><span class="ico">🐪</span>Sug.</button>
+  <button type="button" class="tb" id="tb-alb" onclick="ST('alb')"><span class="ico">📸</span>Álbum</button>
+  <button type="button" class="tb" id="tb-exp" onclick="ST('exp')"><span class="ico">💶</span>Gastos</button>
+</div>
+
+
+<!-- ═══ PAGE INFO ═══ -->
+<div class="pg on" id="pg-info">
+  <div class="sec">✈️ Vuelos</div>
+  <div class="igrid">
+    <div class="ic"><div class="ic-l">Ida — Mar 7 Jul*</div><div class="ic-v"><span class="mono">FR5373</span><small>VLC 08:45 → Fez 09:15 · 1h30</small></div></div>
+    <div class="ic"><div class="ic-l">Vuelta — Vie 10 Jul*</div><div class="ic-v"><span class="mono">FR5372</span><small>Fez 14:20 → VLC 16:45 · 1h25</small></div></div>
+    <div class="ic"><div class="ic-l">Localizador Ryanair</div><div class="ic-v"><span class="mono">W893HX</span></div></div>
+    <div class="ic"><div class="ic-l">Viajeras</div><div class="ic-v">Azahara &amp; Paola</div></div>
+  </div>
+  <div class="alert alert-blue">ℹ️ *Las fechas del billete (7–10 Jul) se han mapeado al calendario real del viaje (29 Jul–2 Ago). Verifica las fechas exactas en tu localizador antes de viajar.</div>
+
+  <div class="sec">🏨 Alojamiento</div>
+  <div class="ic" style="margin-bottom:8px;"><div class="ic-l">Riad Amor — Suite &amp; Spa</div><div class="ic-v">Check-in: Miércoles 29 Jul<br>Confirmación Booking.com: <span class="mono">5519877076</span> · PIN: <span class="mono">4696</span><small>Reserva pagada con Booking.com. Cancelación gratuita hasta el 22 jun 2026.</small></div></div>
+  <div class="alert alert-grn">🔑 <strong>Cómo acceder:</strong> las llaves se recogen en la recepción del alojamiento.</div>
+  <div class="clnks" style="margin-bottom:14px;">
+    <a href="https://maps.google.com/?q=Riad+Amor+Suite+Spa+Fez" target="_blank" class="lnk lm">📍 Maps Riad Amor</a>
+  </div>
+
+  <div class="sec">🏜️ Excursión al desierto — PENDIENTE</div>
+  <div class="alert">🐪 Aún no tenéis excursión al desierto reservada. Tenéis una pestaña dedicada de <strong>🐪 Sugerencias</strong> con opciones para investigar y reservar — el día propuesto en el itinerario es el <strong>Jueves 31 Julio</strong> (Desierto de Merzouga en versión exprés / Agafay-Midelt según disponibilidad desde Fez).</div>
+
+  <div class="sec">🚆 Tren a Tánger — Viernes 1 Agosto</div>
+  <div class="ic" style="margin-bottom:8px;"><div class="ic-l">ONCF — Fez → Tánger → Fez</div><div class="ic-v">Trayecto directo en tren de alta velocidad Al Boraq (vía Kenitra) o tren convencional directo Fez–Tánger.<br>Duración aprox.: 3h45–4h15 cada trayecto.<small>Comprar billetes online en oncf-voyages.ma o en taquilla de la estación de Fez con antelación (recomendado: 1–2 semanas antes, sobre todo en temporada alta).</small></div></div>
+  <div class="igrid">
+    <div class="ic"><div class="ic-l">Web oficial</div><div class="ic-v" style="font-size:.72rem;"><a href="https://www.oncf-voyages.ma" target="_blank" style="color:var(--gl);font-weight:700;">oncf-voyages.ma</a></div></div>
+    <div class="ic"><div class="ic-l">Estación Fez</div><div class="ic-v" style="font-size:.72rem;">Gare de Fès — Av. des Almohades</div></div>
+  </div>
+  <div class="alert alert-blue" style="margin-bottom:14px;">💡 Llevad pasaporte para la compra/recogida de billetes. Reservad asiento con antelación en temporada alta. Salida recomendada con el primer tren de la mañana para aprovechar el día completo en Tánger.</div>
+
+  <div class="sec">💱 Calculadora EUR ↔ MAD</div>
+  <div class="calc-box">
+    <div style="font-size:.65rem;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:10px;">TIPO DE CAMBIO · 10,7 MAD = 1€</div>
+    <div class="calc-row">
+      <span class="calc-lbl">EUR €</span>
+      <input type="number" class="calc-inp" id="eur-inp" placeholder="0.00" oninput="convEUR(this.value)">
+    </div>
+    <div class="calc-arrow">⇅</div>
+    <div class="calc-row" style="margin-top:8px;">
+      <span class="calc-lbl">MAD د.م.</span>
+      <input type="number" class="calc-inp" id="mad-inp" placeholder="0" oninput="convMAD(this.value)">
+    </div>
+  </div>
+
+  <div class="sec">🍽️ Gastronomía marroquí — para degustar</div>
+  <div style="overflow-x:auto;margin-bottom:14px;">
+    <table class="food-table">
+      <thead><tr><th>Plato</th><th>Descripción</th><th>Precio orient.</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tajine de pollo/limón</strong></td><td>Estofado con limón confitado y aceitunas</td><td>70–120 MAD</td></tr>
+        <tr><td><strong>Cuscús del viernes</strong></td><td>Sémola con siete verduras, cordero o pollo</td><td>60–110 MAD</td></tr>
+        <tr><td><strong>Harira</strong></td><td>Sopa de lentejas y tomate, típica al anochecer</td><td>15–25 MAD</td></tr>
+        <tr><td><strong>Pastilla fasí</strong></td><td>Hojaldre de pichón/pollo con almendras — especialidad de Fez</td><td>90–160 MAD</td></tr>
+        <tr><td><strong>Mechoui</strong></td><td>Cordero asado lentamente al horno</td><td>100–180 MAD</td></tr>
+        <tr><td><strong>Brochetas (kefta/merguez)</strong></td><td>Pinchos de carne especiada a la brasa</td><td>40–80 MAD</td></tr>
+        <tr><td><strong>Msemen y Beghrir</strong></td><td>Panes hojaldrados y "panqueques de mil agujeros" — desayuno</td><td>5–12 MAD/ud</td></tr>
+        <tr><td><strong>Chebakia</strong></td><td>Pastelito de sésamo y miel, frito y crujiente</td><td>5–10 MAD/ud</td></tr>
+        <tr><td><strong>Té a la menta fasí</strong></td><td>Ritual imprescindible, servido con ceremonial</td><td>10–20 MAD</td></tr>
+        <tr><td><strong>Zumo de naranja recién hecho</strong></td><td>Clásico de cualquier plaza o medina</td><td>5–8 MAD</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec">🌙 Cada noche: degustación + salida nocturna</div>
+  <div class="alert alert-grn">✨ Cada día del itinerario termina con una cena de degustación típica seguida de una salida nocturna (azotea, plaza, música en vivo o paseo por la medina iluminada) para cerrar bien la jornada.</div>
+
+  <div class="sec">📸 Fotos &amp; Vídeos del Viaje</div>
+  <div class="alert alert-grn" style="margin-bottom:8px;">✅ <strong>Cloudinary configurado</strong> — las fotos y vídeos se sincronizan entre los dos móviles automáticamente.<br><small>Cloud: <code>dtjgzeezk</code> · Preset: <code>Marrakech 26</code></small></div>
+  <div class="sec">📋 Datos prácticos</div>
+  <div class="alert alert-blue" style="margin-bottom:8px;">💡 <strong>Moneda:</strong> Dirham (MAD). Llevad efectivo para la medina y propinas. Los cajeros del aeropuerto dan buen cambio.</div>
+  <div class="alert" style="margin-bottom:8px;">⚠️ <strong>Negociación:</strong> Regatear en la medina es habitual. Ofreced el 50% del precio inicial.</div>
+  <div class="alert alert-grn" style="margin-bottom:14px;">🌡️ <strong>Julio/Agosto:</strong> Temperatura ~33–37°C. Salid temprano, descansad en horas centrales, salid de nuevo al atardecer.</div>
+
+  <button type="button" onclick="spReEnable()" style="display:block;width:100%;border:1px solid var(--glass-bd);background:rgba(255,255,255,.05);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(255,255,255,.6);cursor:pointer;margin-bottom:10px;font-family:inherit;">🌙 Volver a mostrar la pantalla de bienvenida</button>
+  <button type="button" onclick="resetAll()" style="display:block;width:100%;border:1px solid var(--glass-bd);background:rgba(255,255,255,.05);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(255,255,255,.6);cursor:pointer;margin-bottom:20px;font-family:inherit;">🗑️ Borrar todos los datos (reset)</button>
+</div>
+
+<!-- ═══ PAGE DÍA 1 — MARTES 29 JULIO ═══ -->
+<div class="pg" id="pg-d1">
+  <div class="dh"><div class="dn">1</div><div><div class="dt">Martes 29 Julio ✈️🏨</div><div class="ds">Llegada · FR5373 · Check-in Riad Amor</div></div></div>
+  <div class="day-summary">
+    <div class="day-summary-title">📋 Resumen del día — Martes 29 Jul</div>
+    <div class="day-summary-items">
+      <div class="dsi"><span class="dsi-ico">✈️</span><span><strong>08:45</strong> Vuelo VLC→Fez · Llegada 09:15 al aeropuerto Saïss</span></div>
+      <div class="dsi"><span class="dsi-ico">🚕</span><span>Taxi al Riad Amor · dejar maletas · primer té de bienvenida</span></div>
+      <div class="dsi"><span class="dsi-ico">☕</span><span>Brunch ligero cerca del riad antes de salir a explorar</span></div>
+      <div class="dsi"><span class="dsi-ico">🕌</span><span>Primer contacto con la Medina de Fez el-Bali (Patrimonio UNESCO)</span></div>
+      <div class="dsi"><span class="dsi-ico">🚪</span><span>Bab Boujloud — la "Puerta Azul", entrada icónica a la medina</span></div>
+      <div class="dsi"><span class="dsi-ico">🍲</span><span>Cena de bienvenida: tajine + harira en un restaurante con terraza</span></div>
+      <div class="dsi"><span class="dsi-ico">🌙</span><span>Salida nocturna: paseo por Place Seffarine y azotea con vistas a la medina</span></div>
+    </div>
+  </div>
+  <div class="alert">⚠️ <strong>Vuelo 08:45.</strong> Estar en VLC aeropuerto a las 07:15. Salir de casa con tiempo de sobra.</div>
+  <div class="mapsec">
+    <div class="map-links-box">
+      <div class="map-links-title">🗺️ Mapas del día 1</div>
+      <a href="https://www.google.com/maps/dir/Aeropuerto+Fez+Saiss/Riad+Amor+Fez" target="_blank" class="map-direct-btn">🛣️ Aeropuerto → Riad Amor</a>
+      <a href="https://maps.google.com/?q=Bab+Boujloud+Fez" target="_blank" class="map-direct-btn">🚪 Bab Boujloud (Puerta Azul)</a>
+      <a href="https://maps.google.com/?q=Place+Seffarine+Fez" target="_blank" class="map-direct-btn">🔨 Place Seffarine</a>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-box-lbl">💶 Precios orientativos — Martes</div>
+    <table>
+      <tr><td>🚕 Taxi aeropuerto → riad</td><td>100–150 MAD · <span style="color:var(--grn)">≈9–14€</span>/trayecto</td></tr>
+      <tr><td>☕ Brunch ligero</td><td>40–70 MAD · <span style="color:var(--grn)">≈4–6,5€</span>/p</td></tr>
+      <tr><td>🍲 Cena de bienvenida</td><td>90–130 MAD · <span style="color:var(--grn)">≈8,5–12€</span>/p</td></tr>
+      <tr><td>💰 Total estimado día/pareja amigas</td><td>≈ <span style="font-size:.9rem;">35–55€</span></td></tr>
+    </table>
+  </div>
+  <div class="tl" id="tl-d1">
+    <div class="ti" id="d1-1">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">08:45</span><span class="cn">✈️ Vuelo FR5373 VLC → Fez</span><button type="button" class="eico" onclick="OE('d1-1')">✏️</button><button type="button" class="ckb" onclick="CD('d1-1')">⬜</button></div>
+        <div class="cd">Llegada 09:15 al Aeropuerto Saïss de Fez. Localizador W893HX. Pasaportes en mano.</div>
+        <div class="ctags"><span class="tag tt">✈ FR5373 · W893HX</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-1" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-1')"><span class="exp-unit">€</span><select id="pay-d1-1" class="pay-sel" onchange="saveExp('d1-1')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d1-1" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-1')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d1-1')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d1-1"></div>
+        </div>
+        <div class="ced" id="ced-d1-1"><input class="ef" data-f="time" value="08:45"><input class="ef" data-f="name" value="✈️ Vuelo FR5373 VLC → Fez"><textarea class="ef" data-f="desc">Llegada 09:15 al Aeropuerto Saïss de Fez. Localizador W893HX.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-1')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-1')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-1')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚕 <strong>Taxi al riad</strong> — Coged un taxi oficial en la terminal de llegadas. Negociad el precio antes de subir: 100–150 MAD. Unos 20–25 min hasta el Riad Amor.</div></div>
+    <div class="ti" id="d1-2">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">10:00</span><span class="cn">🏨 Check-in Riad Amor — Suite &amp; Spa</span><button type="button" class="eico" onclick="OE('d1-2')">✏️</button><button type="button" class="ckb" onclick="CD('d1-2')">⬜</button></div>
+        <div class="cd">Confirmación 5519877076 · PIN 4696. Las llaves se recogen en recepción. Té de bienvenida y dejar el equipaje.</div>
+        <div class="ctags"><span class="tag tf">🏨 Riad Amor</span></div>
+        <div class="clnks"><a href="https://maps.google.com/?q=Riad+Amor+Suite+Spa+Fez" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-2" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-2')"><span class="exp-unit">€</span><select id="pay-d1-2" class="pay-sel" onchange="saveExp('d1-2')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d1-2" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-2')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d1-2')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d1-2"></div>
+        </div>
+        <div class="ced" id="ced-d1-2"><input class="ef" data-f="time" value="10:00"><input class="ef" data-f="name" value="🏨 Check-in Riad Amor — Suite &amp; Spa"><textarea class="ef" data-f="desc">Confirmación 5519877076 · PIN 4696. Las llaves se recogen en recepción.</textarea><input class="ef" data-f="map" value="https://maps.google.com/?q=Riad+Amor+Suite+Spa+Fez"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-2')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-2')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-2')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 10 min</strong> — Desde el riad, preguntad por la ruta más corta hacia Bab Boujloud; la medina antigua es peatonal y angosta, mejor sin maletas.</div></div>
+    <div class="ti" id="d1-3">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">12:00</span><span class="cn">🚪 Bab Boujloud — la Puerta Azul</span><button type="button" class="eico" onclick="OE('d1-3')">✏️</button><button type="button" class="ckb" onclick="CD('d1-3')">⬜</button></div>
+        <div class="cd">Entrada monumental a Fez el-Bali, azulejos azules por fuera y verdes por dentro. Punto de partida perfecto para perderse en la medina.</div>
+        <div class="ctags"><span class="tag tf">🚪 Icónico</span><span class="tag te">Gratis</span></div>
+        <div class="clnks"><a href="https://maps.google.com/?q=Bab+Boujloud+Fez" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-3" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-3')"><span class="exp-unit">€</span><select id="pay-d1-3" class="pay-sel" onchange="saveExp('d1-3')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d1-3" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-3')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d1-3')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d1-3"></div>
+        </div>
+        <div class="ced" id="ced-d1-3"><input class="ef" data-f="time" value="12:00"><input class="ef" data-f="name" value="🚪 Bab Boujloud — la Puerta Azul"><textarea class="ef" data-f="desc">Entrada monumental a Fez el-Bali, azulejos azules por fuera y verdes por dentro.</textarea><input class="ef" data-f="map" value="https://maps.google.com/?q=Bab+Boujloud+Fez"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-3')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-3')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-3')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 15 min</strong> — Adentraos por Talaa Kebira, la calle principal de la medina, repleta de talleres y puestos.</div></div>
+    <div class="ti" id="d1-4">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">14:00</span><span class="cn">☕ Brunch + paseo libre por Talaa Kebira</span><button type="button" class="eico" onclick="OE('d1-4')">✏️</button><button type="button" class="ckb" onclick="CD('d1-4')">⬜</button></div>
+        <div class="cd">Parada en cualquier puesto de la calle: msemen, zumo natural o café. Tiempo libre para perderse en los callejones.</div>
+        <div class="ctags"><span class="tag tf">☕ Brunch</span><span class="tag te">~40–70 MAD/p</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-4" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-4')"><span class="exp-unit">€</span><select id="pay-d1-4" class="pay-sel" onchange="saveExp('d1-4')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d1-4" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-4')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d1-4')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d1-4"></div>
+        </div>
+        <div class="ced" id="ced-d1-4"><input class="ef" data-f="time" value="14:00"><input class="ef" data-f="name" value="☕ Brunch + paseo libre por Talaa Kebira"><textarea class="ef" data-f="desc">Parada en cualquier puesto de la calle: msemen, zumo natural o café.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-4')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-4')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-4')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 12 min</strong> — Volved hacia el riad para refrescaros antes de la cena; el calor de la tarde en julio es intenso.</div></div>
+    <div class="ti" id="d1-5">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">17:00</span><span class="cn">🛁 Descanso en el riad / spa opcional</span><button type="button" class="eico" onclick="OE('d1-5')">✏️</button><button type="button" class="ckb" onclick="CD('d1-5')">⬜</button></div>
+        <div class="cd">Aprovechad el spa del Riad Amor para relajaros tras el viaje y el primer paseo por la medina.</div>
+        <div class="ctags"><span class="tag tf">🏨 Descanso</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-5" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-5')"><span class="exp-unit">€</span><select id="pay-d1-5" class="pay-sel" onchange="saveExp('d1-5')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d1-5" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-5')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d1-5')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d1-5"></div>
+        </div>
+        <div class="ced" id="ced-d1-5"><input class="ef" data-f="time" value="17:00"><input class="ef" data-f="name" value="🛁 Descanso en el riad / spa opcional"><textarea class="ef" data-f="desc">Aprovechad el spa del Riad Amor para relajaros tras el viaje.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-5')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-5')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-5')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 8 min</strong> — Hacia un restaurante con terraza cerca de Place Seffarine, en pleno corazón de la medina.</div></div>
+    <div class="ti" id="d1-6">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">20:30</span><span class="cn">🍲 Cena de bienvenida — Tajine &amp; Harira</span><button type="button" class="eico" onclick="OE('d1-6')">✏️</button><button type="button" class="ckb" onclick="CD('d1-6')">⬜</button></div>
+        <div class="cd">Primera degustación típica del viaje: harira para empezar, tajine de pollo o cordero de plato principal y té a la menta.</div>
+        <div class="ctags"><span class="tag tf">🍲 Degustación</span><span class="tag te">~90–130 MAD/p</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-6" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-6')"><span class="exp-unit">€</span><select id="pay-d1-6" class="pay-sel" onchange="saveExp('d1-6')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d1-6" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-6')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d1-6')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d1-6"></div>
+        </div>
+        <div class="ced" id="ced-d1-6"><input class="ef" data-f="time" value="20:30"><input class="ef" data-f="name" value="🍲 Cena de bienvenida — Tajine &amp; Harira"><textarea class="ef" data-f="desc">Harira de entrante, tajine de plato principal y té a la menta.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-6')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-6')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-6')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 5 min</strong> — Subid a una azotea cercana para la salida nocturna, vistas a los tejados iluminados de la medina.</div></div>
+    <div class="ti" id="d1-7">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">22:30</span><span class="cn">🌙 Salida nocturna — Azotea con vistas a la medina</span><button type="button" class="eico" onclick="OE('d1-7')">✏️</button><button type="button" class="ckb" onclick="CD('d1-7')">⬜</button></div>
+        <div class="cd">Copa o té en una terraza con vistas a los tejados iluminados de Fez el-Bali. Cierre perfecto del primer día.</div>
+        <div class="ctags"><span class="tag ts">🌙 Nocturna</span><span class="tag te">~40–80 MAD/p</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d1-7" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d1-7')"><span class="exp-unit">€</span><select id="pay-d1-7" class="pay-sel" onchange="saveExp('d1-7')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d1-7" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d1-7')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d1-7')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d1-7"></div>
+        </div>
+        <div class="ced" id="ced-d1-7"><input class="ef" data-f="time" value="22:30"><input class="ef" data-f="name" value="🌙 Salida nocturna — Azotea con vistas a la medina"><textarea class="ef" data-f="desc">Copa o té en una terraza con vistas a los tejados iluminados de Fez el-Bali.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d1-7')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d1-7')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d1-7')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="addbtn" onclick="TAF('add-d1')">➕ Añadir parada al día</button>
+  <div class="addfrm" id="add-d1">
+    <h4>Nueva parada — Martes</h4>
+    <label>Hora</label><input id="add-d1-time" placeholder="HH:MM">
+    <label>Nombre</label><input id="add-d1-name" placeholder="🏛️ Nombre de la parada">
+    <label>Descripción</label><textarea id="add-d1-desc" placeholder="Detalles..."></textarea>
+    <label>Link de Google Maps (opcional)</label><input id="add-d1-map" placeholder="https://maps.google.com/?q=...">
+    <div class="afrm-acts"><button type="button" class="bs bsave" onclick="addStop('d1')">✅ Añadir</button><button type="button" class="bs bcanc" onclick="TAF('add-d1')">Cancelar</button></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE DÍA 2 — MIÉRCOLES 30 JULIO ═══ -->
+<div class="pg" id="pg-d2">
+  <div class="dh"><div class="dn">2</div><div><div class="dt">Miércoles 30 Julio 🏛️</div><div class="ds">Día completo en Fez el-Bali</div></div></div>
+  <div class="day-summary">
+    <div class="day-summary-title">📋 Resumen del día — Miércoles 30 Jul</div>
+    <div class="day-summary-items">
+      <div class="dsi"><span class="dsi-ico">🍳</span><span>Desayuno en el riad — msemen, beghrir, mermeladas caseras</span></div>
+      <div class="dsi"><span class="dsi-ico">🎓</span><span>Universidad Al-Qarawiyyin — la más antigua del mundo en funcionamiento</span></div>
+      <div class="dsi"><span class="dsi-ico">🧵</span><span>Madraza Bou Inania — joya del arte mereniense</span></div>
+      <div class="dsi"><span class="dsi-ico">🧴</span><span>Curtidurías Chouara — las famosas tenerías de Fez</span></div>
+      <div class="dsi"><span class="dsi-ico">🛍️</span><span>Tarde de zoco: cuero, cerámica azul de Fez, especias</span></div>
+      <div class="dsi"><span class="dsi-ico">🍽️</span><span>Cena degustación: pastilla fasí y mechoui</span></div>
+      <div class="dsi"><span class="dsi-ico">🎶</span><span>Salida nocturna: música andalusí en vivo en un café cultural</span></div>
+    </div>
+  </div>
+  <div class="mapsec">
+    <div class="map-links-box">
+      <div class="map-links-title">🗺️ Mapas del día 2</div>
+      <a href="https://maps.google.com/?q=Al+Qarawiyyin+University+Fez" target="_blank" class="map-direct-btn">🎓 Universidad Al-Qarawiyyin</a>
+      <a href="https://maps.google.com/?q=Bou+Inania+Madrasa+Fez" target="_blank" class="map-direct-btn">🧵 Madraza Bou Inania</a>
+      <a href="https://maps.google.com/?q=Chouara+Tannery+Fez" target="_blank" class="map-direct-btn">🧴 Curtidurías Chouara</a>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-box-lbl">💶 Precios orientativos — Miércoles</div>
+    <table>
+      <tr><td>🧵 Madraza Bou Inania (entrada)</td><td>20–30 MAD · <span style="color:var(--grn)">≈2–3€</span>/p</td></tr>
+      <tr><td>🧴 Curtidurías (acceso + menta)</td><td>Propina 20–30 MAD · <span style="color:var(--grn)">≈2–3€</span>/p</td></tr>
+      <tr><td>🍽️ Cena pastilla + mechoui</td><td>120–180 MAD · <span style="color:var(--grn)">≈11–17€</span>/p</td></tr>
+      <tr><td>💰 Total estimado día/pareja amigas</td><td>≈ <span style="font-size:.9rem;">45–65€</span></td></tr>
+    </table>
+  </div>
+  <div class="tl" id="tl-d2">
+    <div class="ti" id="d2-1">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">09:00</span><span class="cn">🍳 Desayuno en el Riad Amor</span><button type="button" class="eico" onclick="OE('d2-1')">✏️</button><button type="button" class="ckb" onclick="CD('d2-1')">⬜</button></div>
+        <div class="cd">Msemen, beghrir y mermeladas caseras en la terraza del riad antes de salir a explorar.</div>
+        <div class="ctags"><span class="tag tf">🍳 Desayuno</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-1" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-1')"><span class="exp-unit">€</span><select id="pay-d2-1" class="pay-sel" onchange="saveExp('d2-1')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d2-1" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-1')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d2-1')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d2-1"></div>
+        </div>
+        <div class="ced" id="ced-d2-1"><input class="ef" data-f="time" value="09:00"><input class="ef" data-f="name" value="🍳 Desayuno en el Riad Amor"><textarea class="ef" data-f="desc">Msemen, beghrir y mermeladas caseras en la terraza del riad.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-1')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-1')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-1')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 15 min</strong> — Adentraos en la medina hacia el corazón académico de Fez el-Bali.</div></div>
+    <div class="ti" id="d2-2">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">10:30</span><span class="cn">🎓 Universidad Al-Qarawiyyin (exterior)</span><button type="button" class="eico" onclick="OE('d2-2')">✏️</button><button type="button" class="ckb" onclick="CD('d2-2')">⬜</button></div>
+        <div class="cd">Fundada en el año 859, reconocida como la universidad más antigua del mundo en funcionamiento continuo. Solo se puede ver el patio desde la puerta (no musulmanes).</div>
+        <div class="ctags"><span class="tag tf">🎓 Histórico</span><span class="tag te">Gratis (exterior)</span></div>
+        <div class="clnks"><a href="https://maps.google.com/?q=Al+Qarawiyyin+University+Fez" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-2" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-2')"><span class="exp-unit">€</span><select id="pay-d2-2" class="pay-sel" onchange="saveExp('d2-2')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d2-2" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-2')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d2-2')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d2-2"></div>
+        </div>
+        <div class="ced" id="ced-d2-2"><input class="ef" data-f="time" value="10:30"><input class="ef" data-f="name" value="🎓 Universidad Al-Qarawiyyin (exterior)"><textarea class="ef" data-f="desc">Fundada en el año 859, la universidad más antigua del mundo en funcionamiento.</textarea><input class="ef" data-f="map" value="https://maps.google.com/?q=Al+Qarawiyyin+University+Fez"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-2')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-2')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-2')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 5 min</strong> — Muy cerca, una de las joyas arquitectónicas de la medina.</div></div>
+    <div class="ti" id="d2-3">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">11:30</span><span class="cn">🧵 Madraza Bou Inania</span><button type="button" class="eico" onclick="OE('d2-3')">✏️</button><button type="button" class="ckb" onclick="CD('d2-3')">⬜</button></div>
+        <div class="cd">Escuela coránica del s.XIV con tallas de madera de cedro, mosaicos zellige y un reloj de agua único. Considerada la madraza más bella de Marruecos.</div>
+        <div class="ctags"><span class="tag tf">🧵 Arquitectura</span><span class="tag te">~20–30 MAD/p</span></div>
+        <div class="clnks"><a href="https://maps.google.com/?q=Bou+Inania+Madrasa+Fez" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-3" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-3')"><span class="exp-unit">€</span><select id="pay-d2-3" class="pay-sel" onchange="saveExp('d2-3')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d2-3" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-3')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d2-3')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d2-3"></div>
+        </div>
+        <div class="ced" id="ced-d2-3"><input class="ef" data-f="time" value="11:30"><input class="ef" data-f="name" value="🧵 Madraza Bou Inania"><textarea class="ef" data-f="desc">Escuela coránica del s.XIV con tallas de cedro y mosaicos zellige.</textarea><input class="ef" data-f="map" value="https://maps.google.com/?q=Bou+Inania+Madrasa+Fez"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-3')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-3')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-3')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 12 min</strong> — Seguid el olor a cuero curtido; un guía local de confianza es recomendable para esta zona.</div></div>
+    <div class="ti" id="d2-4">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">13:00</span><span class="cn">🧴 Curtidurías Chouara</span><button type="button" class="eico" onclick="OE('d2-4')">✏️</button><button type="button" class="ckb" onclick="CD('d2-4')">⬜</button></div>
+        <div class="cd">Las tenerías más antiguas del mundo árabe, en funcionamiento desde el s.XI. Pedid una ramita de menta para el olfato al subir a las terrazas con vistas.</div>
+        <div class="ctags"><span class="tag tf">🧴 Icónico</span><span class="tag te">Propina 20–30 MAD</span></div>
+        <div class="clnks"><a href="https://maps.google.com/?q=Chouara+Tannery+Fez" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-4" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-4')"><span class="exp-unit">€</span><select id="pay-d2-4" class="pay-sel" onchange="saveExp('d2-4')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d2-4" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-4')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d2-4')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d2-4"></div>
+        </div>
+        <div class="ced" id="ced-d2-4"><input class="ef" data-f="time" value="13:00"><input class="ef" data-f="name" value="🧴 Curtidurías Chouara"><textarea class="ef" data-f="desc">Tenerías en funcionamiento desde el s.XI. Pedid menta para el olfato.</textarea><input class="ef" data-f="map" value="https://maps.google.com/?q=Chouara+Tannery+Fez"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-4')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-4')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-4')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 10 min</strong> — Comida ligera en algún puesto cercano antes de dedicar la tarde de compras.</div></div>
+    <div class="ti" id="d2-5">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">15:30</span><span class="cn">🛍️ Tarde de zoco — cuero, cerámica azul, especias</span><button type="button" class="eico" onclick="OE('d2-5')">✏️</button><button type="button" class="ckb" onclick="CD('d2-5')">⬜</button></div>
+        <div class="cd">Tiempo libre para comprar: babuchas de cuero, la famosa cerámica azul de Fez, especias y tejidos. Regateo recomendado.</div>
+        <div class="ctags"><span class="tag tf">🛍️ Compras</span><span class="tag te">Según presupuesto</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-5" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-5')"><span class="exp-unit">€</span><select id="pay-d2-5" class="pay-sel" onchange="saveExp('d2-5')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d2-5" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-5')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d2-5')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d2-5"></div>
+        </div>
+        <div class="ced" id="ced-d2-5"><input class="ef" data-f="time" value="15:30"><input class="ef" data-f="name" value="🛍️ Tarde de zoco — cuero, cerámica azul, especias"><textarea class="ef" data-f="desc">Tiempo libre para comprar babuchas, cerámica azul de Fez y especias.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-5')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-5')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-5')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 10 min</strong> — Hacia un restaurante tradicional para la cena degustación de la noche.</div></div>
+    <div class="ti" id="d2-6">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">20:30</span><span class="cn">🍽️ Cena degustación — Pastilla fasí &amp; Mechoui</span><button type="button" class="eico" onclick="OE('d2-6')">✏️</button><button type="button" class="ckb" onclick="CD('d2-6')">⬜</button></div>
+        <div class="cd">Especialidad de Fez: pastilla de pollo o pichón con almendras y azúcar glas, y mechoui de cordero asado lentamente.</div>
+        <div class="ctags"><span class="tag tf">🍽️ Degustación</span><span class="tag te">~120–180 MAD/p</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-6" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-6')"><span class="exp-unit">€</span><select id="pay-d2-6" class="pay-sel" onchange="saveExp('d2-6')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d2-6" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-6')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d2-6')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d2-6"></div>
+        </div>
+        <div class="ced" id="ced-d2-6"><input class="ef" data-f="time" value="20:30"><input class="ef" data-f="name" value="🍽️ Cena degustación — Pastilla fasí &amp; Mechoui"><textarea class="ef" data-f="desc">Especialidad de Fez: pastilla y mechoui de cordero.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-6')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-6')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-6')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 8 min</strong> — Hacia un café cultural con música en vivo en la medina.</div></div>
+    <div class="ti" id="d2-7">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">22:30</span><span class="cn">🎶 Salida nocturna — Música andalusí en vivo</span><button type="button" class="eico" onclick="OE('d2-7')">✏️</button><button type="button" class="ckb" onclick="CD('d2-7')">⬜</button></div>
+        <div class="cd">Café cultural con música andalusí tradicional en vivo, té a la menta y ambiente local auténtico.</div>
+        <div class="ctags"><span class="tag ts">🌙 Nocturna</span><span class="tag te">~30–60 MAD/p</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d2-7" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d2-7')"><span class="exp-unit">€</span><select id="pay-d2-7" class="pay-sel" onchange="saveExp('d2-7')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d2-7" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d2-7')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d2-7')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d2-7"></div>
+        </div>
+        <div class="ced" id="ced-d2-7"><input class="ef" data-f="time" value="22:30"><input class="ef" data-f="name" value="🎶 Salida nocturna — Música andalusí en vivo"><textarea class="ef" data-f="desc">Café cultural con música andalusí tradicional en vivo.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d2-7')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d2-7')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d2-7')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="addbtn" onclick="TAF('add-d2')">➕ Añadir parada al día</button>
+  <div class="addfrm" id="add-d2">
+    <h4>Nueva parada — Miércoles</h4>
+    <label>Hora</label><input id="add-d2-time" placeholder="HH:MM">
+    <label>Nombre</label><input id="add-d2-name" placeholder="🏛️ Nombre de la parada">
+    <label>Descripción</label><textarea id="add-d2-desc" placeholder="Detalles..."></textarea>
+    <label>Link de Google Maps (opcional)</label><input id="add-d2-map" placeholder="https://maps.google.com/?q=...">
+    <div class="afrm-acts"><button type="button" class="bs bsave" onclick="addStop('d2')">✅ Añadir</button><button type="button" class="bs bcanc" onclick="TAF('add-d2')">Cancelar</button></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE DÍA 3 — JUEVES 31 JULIO — DESIERTO ═══ -->
+<div class="pg" id="pg-d3">
+  <div class="dh"><div class="dn">3</div><div><div class="dt">Jueves 31 Julio 🏜️</div><div class="ds">Excursión al desierto (a confirmar — ver pestaña Sugerencias)</div></div></div>
+  <div class="day-summary">
+    <div class="day-summary-title">📋 Resumen del día — Jueves 31 Jul</div>
+    <div class="day-summary-items">
+      <div class="dsi"><span class="dsi-ico">🚐</span><span>Recogida temprano en el riad para la excursión al desierto</span></div>
+      <div class="dsi"><span class="dsi-ico">🏜️</span><span>Dunas, paisajes del Atlas Medio o Merzouga/Agafay según tour elegido</span></div>
+      <div class="dsi"><span class="dsi-ico">🐪</span><span>Paseo en camello y/o quad por las dunas</span></div>
+      <div class="dsi"><span class="dsi-ico">🌅</span><span>Atardecer en el desierto — uno de los momentos más especiales del viaje</span></div>
+      <div class="dsi"><span class="dsi-ico">🍽️</span><span>Cena beréber con música en vivo bajo las estrellas</span></div>
+      <div class="dsi"><span class="dsi-ico">🌙</span><span>Salida nocturna: noche de campamento o regreso nocturno a Fez</span></div>
+    </div>
+  </div>
+  <div class="alert">🐪 <strong>Día pendiente de confirmar.</strong> Consultad la pestaña <strong>Sugerencias</strong> para opciones de tour al desierto desde Fez y reservadlo con antelación — las plazas en temporada alta vuelan.</div>
+  <div class="mapsec">
+    <div class="map-links-box">
+      <div class="map-links-title">🗺️ Referencia</div>
+      <a href="https://maps.google.com/?q=Merzouga+Morocco" target="_blank" class="map-direct-btn">🏜️ Merzouga (dunas Erg Chebbi)</a>
+      <a href="https://maps.google.com/?q=Agafay+Desert" target="_blank" class="map-direct-btn">🏜️ Desierto de Agafay (más cerca de Marrakech)</a>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-box-lbl">💶 Precios orientativos — Jueves</div>
+    <table>
+      <tr><td>🐪 Tour desierto (día completo)</td><td>desde 350–700 MAD · <span style="color:var(--grn)">≈33–65€</span>/p</td></tr>
+      <tr><td>🍽️ Cena incluida en el tour</td><td>Normalmente incluida</td></tr>
+      <tr><td>💰 Total estimado día/pareja amigas</td><td>≈ <span style="font-size:.9rem;">70–130€</span> (según tour)</td></tr>
+    </table>
+  </div>
+  <div class="tl" id="tl-d3">
+    <div class="ti" id="d3-1">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">07:00</span><span class="cn">🚐 Recogida para la excursión al desierto</span><button type="button" class="eico" onclick="OE('d3-1')">✏️</button><button type="button" class="ckb" onclick="CD('d3-1')">⬜</button></div>
+        <div class="cd">Recogida en el Riad Amor o punto cercano acordado con el operador elegido (ver pestaña Sugerencias).</div>
+        <div class="ctags"><span class="tag tw">⚠ Pendiente de reservar</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-1" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-1')"><span class="exp-unit">€</span><select id="pay-d3-1" class="pay-sel" onchange="saveExp('d3-1')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d3-1" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-1')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d3-1')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d3-1"></div>
+        </div>
+        <div class="ced" id="ced-d3-1"><input class="ef" data-f="time" value="07:00"><input class="ef" data-f="name" value="🚐 Recogida para la excursión al desierto"><textarea class="ef" data-f="desc">Recogida en el Riad Amor según el operador elegido.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-1')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-1')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-1')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚐 <strong>En vehículo — variable</strong> — Duración según destino: Merzouga ~9–10h desde Fez (tour de 2 días recomendado), o alternativas de un día más cercanas.</div></div>
+    <div class="ti" id="d3-2">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">15:00</span><span class="cn">🐪 Paseo en camello + atardecer en las dunas</span><button type="button" class="eico" onclick="OE('d3-2')">✏️</button><button type="button" class="ckb" onclick="CD('d3-2')">⬜</button></div>
+        <div class="cd">Paseo en camello por las dunas al atardecer — uno de los momentos icónicos de cualquier viaje a Marruecos.</div>
+        <div class="ctags"><span class="tag tf">🐪 Imprescindible</span><span class="tag te">Según tour</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-2" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-2')"><span class="exp-unit">€</span><select id="pay-d3-2" class="pay-sel" onchange="saveExp('d3-2')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d3-2" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-2')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d3-2')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d3-2"></div>
+        </div>
+        <div class="ced" id="ced-d3-2"><input class="ef" data-f="time" value="15:00"><input class="ef" data-f="name" value="🐪 Paseo en camello + atardecer en las dunas"><textarea class="ef" data-f="desc">Paseo en camello por las dunas al atardecer.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-2')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-2')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-2')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>Campamento</strong> — Tiempo libre en el campamento antes de la cena.</div></div>
+    <div class="ti" id="d3-3">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">20:00</span><span class="cn">🍽️ Cena beréber con música en vivo bajo las estrellas</span><button type="button" class="eico" onclick="OE('d3-3')">✏️</button><button type="button" class="ckb" onclick="CD('d3-3')">⬜</button></div>
+        <div class="cd">Cena tradicional beréber en el campamento, con percusión y cantos tradicionales alrededor del fuego.</div>
+        <div class="ctags"><span class="tag tf">🍽️ Degustación</span><span class="tag te">Incluido en tour</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-3" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-3')"><span class="exp-unit">€</span><select id="pay-d3-3" class="pay-sel" onchange="saveExp('d3-3')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d3-3" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-3')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d3-3')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d3-3"></div>
+        </div>
+        <div class="ced" id="ced-d3-3"><input class="ef" data-f="time" value="20:00"><input class="ef" data-f="name" value="🍽️ Cena beréber con música en vivo bajo las estrellas"><textarea class="ef" data-f="desc">Cena tradicional beréber con percusión y cantos alrededor del fuego.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-3')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-3')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-3')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">⛺ <strong>Noche en el campamento o regreso</strong> — Decidid según el tour elegido si pernoctáis en jaimas o volvéis a Fez de madrugada.</div></div>
+    <div class="ti" id="d3-4">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">22:30</span><span class="cn">🌙 Salida nocturna — Noche bajo las estrellas del desierto</span><button type="button" class="eico" onclick="OE('d3-4')">✏️</button><button type="button" class="ckb" onclick="CD('d3-4')">⬜</button></div>
+        <div class="cd">Cielo estrellado lejos de la contaminación lumínica — un momento único para cerrar el día más especial del viaje.</div>
+        <div class="ctags"><span class="tag ts">🌙 Nocturna</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d3-4" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d3-4')"><span class="exp-unit">€</span><select id="pay-d3-4" class="pay-sel" onchange="saveExp('d3-4')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d3-4" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d3-4')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d3-4')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d3-4"></div>
+        </div>
+        <div class="ced" id="ced-d3-4"><input class="ef" data-f="time" value="22:30"><input class="ef" data-f="name" value="🌙 Salida nocturna — Noche bajo las estrellas del desierto"><textarea class="ef" data-f="desc">Cielo estrellado lejos de la contaminación lumínica.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d3-4')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d3-4')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d3-4')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="addbtn" onclick="TAF('add-d3')">➕ Añadir parada al día</button>
+  <div class="addfrm" id="add-d3">
+    <h4>Nueva parada — Jueves</h4>
+    <label>Hora</label><input id="add-d3-time" placeholder="HH:MM">
+    <label>Nombre</label><input id="add-d3-name" placeholder="🏜️ Nombre de la parada">
+    <label>Descripción</label><textarea id="add-d3-desc" placeholder="Detalles..."></textarea>
+    <label>Link de Google Maps (opcional)</label><input id="add-d3-map" placeholder="https://maps.google.com/?q=...">
+    <div class="afrm-acts"><button type="button" class="bs bsave" onclick="addStop('d3')">✅ Añadir</button><button type="button" class="bs bcanc" onclick="TAF('add-d3')">Cancelar</button></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE DÍA 4 — VIERNES 1 AGOSTO — TÁNGER EN TREN ═══ -->
+<div class="pg" id="pg-d4">
+  <div class="dh"><div class="dn">4</div><div><div class="dt">Viernes 1 Agosto 🚆</div><div class="ds">Día completo en Tánger — ida y vuelta en tren ONCF</div></div></div>
+  <div class="day-summary">
+    <div class="day-summary-title">📋 Resumen del día — Viernes 1 Ago</div>
+    <div class="day-summary-items">
+      <div class="dsi"><span class="dsi-ico">🚆</span><span>Tren temprano Fez → Tánger (ONCF, ~3h45–4h15)</span></div>
+      <div class="dsi"><span class="dsi-ico">🏰</span><span>Kasbah de Tánger y el Museo de la Kasbah</span></div>
+      <div class="dsi"><span class="dsi-ico">🌊</span><span>Cuevas de Hércules — vistas al Estrecho de Gibraltar</span></div>
+      <div class="dsi"><span class="dsi-ico">🛍️</span><span>Medina y Gran Zoco de Tánger</span></div>
+      <div class="dsi"><span class="dsi-ico">🍽️</span><span>Cena con pescado fresco frente al puerto</span></div>
+      <div class="dsi"><span class="dsi-ico">🚆</span><span>Tren de vuelta Tánger → Fez por la noche</span></div>
+    </div>
+  </div>
+  <div class="alert alert-blue">🚆 <strong>Billetes de tren:</strong> comprad con antelación en <a href="https://www.oncf-voyages.ma" target="_blank" style="color:#fff;font-weight:700;">oncf-voyages.ma</a> o en la taquilla de la Gare de Fès. Salida recomendada con el primer tren de la mañana (~06:30-07:30) para tener el día completo en Tánger, y vuelta con el último tren útil de la noche (~21:00-22:00).</div>
+  <div class="mapsec">
+    <div class="map-links-box">
+      <div class="map-links-title">🗺️ Mapas del día 4</div>
+      <a href="https://maps.google.com/?q=Gare+de+Fes" target="_blank" class="map-direct-btn">🚆 Estación de tren de Fez</a>
+      <a href="https://maps.google.com/?q=Kasbah+Museum+Tangier" target="_blank" class="map-direct-btn">🏰 Kasbah de Tánger</a>
+      <a href="https://maps.google.com/?q=Caves+of+Hercules+Tangier" target="_blank" class="map-direct-btn">🌊 Cuevas de Hércules</a>
+      <a href="https://maps.google.com/?q=Grand+Socco+Tangier" target="_blank" class="map-direct-btn">🛍️ Gran Zoco de Tánger</a>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-box-lbl">💶 Precios orientativos — Viernes</div>
+    <table>
+      <tr><td>🚆 Tren Fez↔Tánger (ida y vuelta)</td><td>200–350 MAD · <span style="color:var(--grn)">≈19–33€</span>/p</td></tr>
+      <tr><td>🏰 Museo Kasbah</td><td>20–30 MAD · <span style="color:var(--grn)">≈2–3€</span>/p</td></tr>
+      <tr><td>🌊 Cuevas de Hércules</td><td>10–20 MAD · <span style="color:var(--grn)">≈1–2€</span>/p</td></tr>
+      <tr><td>🍽️ Cena pescado frente al puerto</td><td>100–150 MAD · <span style="color:var(--grn)">≈9–14€</span>/p</td></tr>
+      <tr><td>💰 Total estimado día/pareja amigas</td><td>≈ <span style="font-size:.9rem;">65–105€</span></td></tr>
+    </table>
+  </div>
+  <div class="tl" id="tl-d4">
+    <div class="ti" id="d4-1">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">06:30</span><span class="cn">🚆 Tren de ida — Fez → Tánger</span><button type="button" class="eico" onclick="OE('d4-1')">✏️</button><button type="button" class="ckb" onclick="CD('d4-1')">⬜</button></div>
+        <div class="cd">Tren ONCF (directo o vía Kenitra con Al Boraq). Comprad billetes con antelación en oncf-voyages.ma. Llevad pasaporte.</div>
+        <div class="ctags"><span class="tag tt">🚆 ONCF</span></div>
+        <div class="clnks"><a href="https://maps.google.com/?q=Gare+de+Fes" target="_blank" class="lnk lm">📍 Estación de Fez</a><a href="https://www.oncf-voyages.ma" target="_blank" class="lnk lgy">🎫 Comprar billete</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-1" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-1')"><span class="exp-unit">€</span><select id="pay-d4-1" class="pay-sel" onchange="saveExp('d4-1')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d4-1" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-1')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d4-1')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d4-1"></div>
+        </div>
+        <div class="ced" id="ced-d4-1"><input class="ef" data-f="time" value="06:30"><input class="ef" data-f="name" value="🚆 Tren de ida — Fez → Tánger"><textarea class="ef" data-f="desc">Tren ONCF directo o vía Kenitra. Comprad billetes con antelación.</textarea><input class="ef" data-f="map" value="https://maps.google.com/?q=Gare+de+Fes"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-1')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-1')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-1')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚆 <strong>En tren ~3h45–4h15</strong> — Llegada estimada a media mañana a la estación de Tánger Ville.</div></div>
+    <div class="ti" id="d4-2">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">10:45</span><span class="cn">🏰 Kasbah de Tánger + Museo</span><button type="button" class="eico" onclick="OE('d4-2')">✏️</button><button type="button" class="ckb" onclick="CD('d4-2')">⬜</button></div>
+        <div class="cd">Antigua fortaleza con vistas al Estrecho de Gibraltar. El museo recorre la historia de la ciudad en el antiguo palacio del sultán.</div>
+        <div class="ctags"><span class="tag tf">🏰 Cultura</span><span class="tag te">~20–30 MAD/p</span></div>
+        <div class="clnks"><a href="https://maps.google.com/?q=Kasbah+Museum+Tangier" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-2" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-2')"><span class="exp-unit">€</span><select id="pay-d4-2" class="pay-sel" onchange="saveExp('d4-2')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d4-2" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-2')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d4-2')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d4-2"></div>
+        </div>
+        <div class="ced" id="ced-d4-2"><input class="ef" data-f="time" value="10:45"><input class="ef" data-f="name" value="🏰 Kasbah de Tánger + Museo"><textarea class="ef" data-f="desc">Antigua fortaleza con vistas al Estrecho de Gibraltar.</textarea><input class="ef" data-f="map" value="https://maps.google.com/?q=Kasbah+Museum+Tangier"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-2')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-2')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-2')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚕 <strong>Taxi 20 min</strong> — Hacia las afueras de la ciudad, costa atlántica.</div></div>
+    <div class="ti" id="d4-3">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">13:00</span><span class="cn">🌊 Cuevas de Hércules</span><button type="button" class="eico" onclick="OE('d4-3')">✏️</button><button type="button" class="ckb" onclick="CD('d4-3')">⬜</button></div>
+        <div class="cd">Formación rocosa con una abertura natural en forma del mapa de África, frente al océano Atlántico. Según la leyenda, aquí descansó Hércules.</div>
+        <div class="ctags"><span class="tag tf">🌊 Naturaleza</span><span class="tag te">~10–20 MAD/p</span></div>
+        <div class="clnks"><a href="https://maps.google.com/?q=Caves+of+Hercules+Tangier" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-3" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-3')"><span class="exp-unit">€</span><select id="pay-d4-3" class="pay-sel" onchange="saveExp('d4-3')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d4-3" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-3')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d4-3')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d4-3"></div>
+        </div>
+        <div class="ced" id="ced-d4-3"><input class="ef" data-f="time" value="13:00"><input class="ef" data-f="name" value="🌊 Cuevas de Hércules"><textarea class="ef" data-f="desc">Formación rocosa frente al Atlántico con la silueta del mapa de África.</textarea><input class="ef" data-f="map" value="https://maps.google.com/?q=Caves+of+Hercules+Tangier"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-3')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-3')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-3')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚕 <strong>Taxi 20 min</strong> — Vuelta al centro de Tánger para la tarde de zoco.</div></div>
+    <div class="ti" id="d4-4">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">16:00</span><span class="cn">🛍️ Medina y Gran Zoco de Tánger</span><button type="button" class="eico" onclick="OE('d4-4')">✏️</button><button type="button" class="ckb" onclick="CD('d4-4')">⬜</button></div>
+        <div class="cd">Paseo por el Gran Zoco y la medina blanca y azul de Tánger, con su ambiente bohemio y mirador al puerto.</div>
+        <div class="ctags"><span class="tag tf">🛍️ Compras</span></div>
+        <div class="clnks"><a href="https://maps.google.com/?q=Grand+Socco+Tangier" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-4" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-4')"><span class="exp-unit">€</span><select id="pay-d4-4" class="pay-sel" onchange="saveExp('d4-4')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d4-4" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-4')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d4-4')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d4-4"></div>
+        </div>
+        <div class="ced" id="ced-d4-4"><input class="ef" data-f="time" value="16:00"><input class="ef" data-f="name" value="🛍️ Medina y Gran Zoco de Tánger"><textarea class="ef" data-f="desc">Paseo por el Gran Zoco y la medina blanca y azul de Tánger.</textarea><input class="ef" data-f="map" value="https://maps.google.com/?q=Grand+Socco+Tangier"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-4')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-4')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-4')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 10 min</strong> — Hacia la zona del puerto para la cena.</div></div>
+    <div class="ti" id="d4-5">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">19:00</span><span class="cn">🍽️ Cena de pescado fresco frente al puerto</span><button type="button" class="eico" onclick="OE('d4-5')">✏️</button><button type="button" class="ckb" onclick="CD('d4-5')">⬜</button></div>
+        <div class="cd">Tánger es famosa por su pescado y marisco fresco. Cena con vistas al puerto y al Estrecho antes de coger el tren de vuelta.</div>
+        <div class="ctags"><span class="tag tf">🍽️ Degustación</span><span class="tag te">~100–150 MAD/p</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-5" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-5')"><span class="exp-unit">€</span><select id="pay-d4-5" class="pay-sel" onchange="saveExp('d4-5')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d4-5" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-5')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d4-5')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d4-5"></div>
+        </div>
+        <div class="ced" id="ced-d4-5"><input class="ef" data-f="time" value="19:00"><input class="ef" data-f="name" value="🍽️ Cena de pescado fresco frente al puerto"><textarea class="ef" data-f="desc">Pescado y marisco fresco con vistas al puerto y al Estrecho.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-5')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-5')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-5')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚆 <strong>Tren de vuelta ~3h45–4h15</strong> — Reservad con margen el último tren útil de la noche (~21:00–22:00) hacia Fez.</div></div>
+    <div class="ti" id="d4-6">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">21:30</span><span class="cn">🚆 Tren de vuelta — Tánger → Fez</span><button type="button" class="eico" onclick="OE('d4-6')">✏️</button><button type="button" class="ckb" onclick="CD('d4-6')">⬜</button></div>
+        <div class="cd">Último tren útil de la noche hacia Fez. Reservad billete de vuelta con antelación junto con el de ida.</div>
+        <div class="ctags"><span class="tag tt">🚆 ONCF</span></div>
+        <div class="clnks"><a href="https://www.oncf-voyages.ma" target="_blank" class="lnk lgy">🎫 Comprar billete</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d4-6" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d4-6')"><span class="exp-unit">€</span><select id="pay-d4-6" class="pay-sel" onchange="saveExp('d4-6')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d4-6" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d4-6')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d4-6')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d4-6"></div>
+        </div>
+        <div class="ced" id="ced-d4-6"><input class="ef" data-f="time" value="21:30"><input class="ef" data-f="name" value="🚆 Tren de vuelta — Tánger → Fez"><textarea class="ef" data-f="desc">Último tren útil de la noche hacia Fez.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d4-6')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d4-6')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d4-6')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="addbtn" onclick="TAF('add-d4')">➕ Añadir parada al día</button>
+  <div class="addfrm" id="add-d4">
+    <h4>Nueva parada — Viernes</h4>
+    <label>Hora</label><input id="add-d4-time" placeholder="HH:MM">
+    <label>Nombre</label><input id="add-d4-name" placeholder="🚆 Nombre de la parada">
+    <label>Descripción</label><textarea id="add-d4-desc" placeholder="Detalles..."></textarea>
+    <label>Link de Google Maps (opcional)</label><input id="add-d4-map" placeholder="https://maps.google.com/?q=...">
+    <div class="afrm-acts"><button type="button" class="bs bsave" onclick="addStop('d4')">✅ Añadir</button><button type="button" class="bs bcanc" onclick="TAF('add-d4')">Cancelar</button></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE DÍA 5 — SÁBADO 2 AGOSTO ═══ -->
+<div class="pg" id="pg-d5">
+  <div class="dh"><div class="dn">5</div><div><div class="dt">Sábado 2 Agosto 🛫</div><div class="ds">Últimas compras + vuelo de vuelta</div></div></div>
+  <div class="day-summary">
+    <div class="day-summary-title">📋 Resumen del día — Sábado 2 Ago</div>
+    <div class="day-summary-items">
+      <div class="dsi"><span class="dsi-ico">🍳</span><span>Último desayuno en el riad y check-out</span></div>
+      <div class="dsi"><span class="dsi-ico">🛍️</span><span>Últimas compras: especias, té y recuerdos en la medina</span></div>
+      <div class="dsi"><span class="dsi-ico">🕌</span><span>Visita rápida a Jnan Sbil — los jardines más bonitos de Fez</span></div>
+      <div class="dsi"><span class="dsi-ico">🚕</span><span>Traslado al aeropuerto Saïss</span></div>
+      <div class="dsi"><span class="dsi-ico">✈️</span><span>Vuelo de vuelta Fez → VLC</span></div>
+    </div>
+  </div>
+  <div class="alert alert-red">⚠️ Check-out antes de las 12:00. Guardad tiempo de sobra para el aeropuerto — controles de seguridad pueden ser más lentos en temporada alta.</div>
+  <div class="mapsec">
+    <div class="map-links-box">
+      <div class="map-links-title">🗺️ Mapas del día 5</div>
+      <a href="https://maps.google.com/?q=Jnan+Sbil+Gardens+Fez" target="_blank" class="map-direct-btn">🌳 Jardines Jnan Sbil</a>
+      <a href="https://www.google.com/maps/dir/Riad+Amor+Fez/Aeropuerto+Fez+Saiss" target="_blank" class="map-direct-btn">🛣️ Riad → Aeropuerto Saïss</a>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-box-lbl">💶 Precios orientativos — Sábado</div>
+    <table>
+      <tr><td>🚕 Taxi riad → aeropuerto</td><td>100–150 MAD · <span style="color:var(--grn)">≈9–14€</span>/trayecto</td></tr>
+      <tr><td>🛍️ Recuerdos finales</td><td>Según presupuesto</td></tr>
+      <tr><td>💰 Total estimado día/pareja amigas</td><td>≈ <span style="font-size:.9rem;">20–40€</span> + compras</td></tr>
+    </table>
+  </div>
+  <div class="tl" id="tl-d5">
+    <div class="ti" id="d5-1">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">09:00</span><span class="cn">🍳 Último desayuno y check-out del Riad Amor</span><button type="button" class="eico" onclick="OE('d5-1')">✏️</button><button type="button" class="ckb" onclick="CD('d5-1')">⬜</button></div>
+        <div class="cd">Check-out antes de las 12:00. Dejad equipaje en consigna del riad si queréis aprovechar la mañana.</div>
+        <div class="ctags"><span class="tag tf">🏨 Check-out</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d5-1" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d5-1')"><span class="exp-unit">€</span><select id="pay-d5-1" class="pay-sel" onchange="saveExp('d5-1')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d5-1" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d5-1')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d5-1')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d5-1"></div>
+        </div>
+        <div class="ced" id="ced-d5-1"><input class="ef" data-f="time" value="09:00"><input class="ef" data-f="name" value="🍳 Último desayuno y check-out del Riad Amor"><textarea class="ef" data-f="desc">Check-out antes de las 12:00. Dejad equipaje en consigna si queréis.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d5-1')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d5-1')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d5-1')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 10 min</strong> — Hacia los jardines más bonitos de Fez para una última visita tranquila.</div></div>
+    <div class="ti" id="d5-2">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">10:30</span><span class="cn">🌳 Jardines Jnan Sbil</span><button type="button" class="eico" onclick="OE('d5-2')">✏️</button><button type="button" class="ckb" onclick="CD('d5-2')">⬜</button></div>
+        <div class="cd">Jardines históricos junto a la medina, palmeras centenarias, estanques y mucha sombra — perfecto descanso antes de seguir.</div>
+        <div class="ctags"><span class="tag tf">🌳 Tranquilo</span><span class="tag te">Gratis</span></div>
+        <div class="clnks"><a href="https://maps.google.com/?q=Jnan+Sbil+Gardens+Fez" target="_blank" class="lnk lm">📍 Maps</a></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d5-2" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d5-2')"><span class="exp-unit">€</span><select id="pay-d5-2" class="pay-sel" onchange="saveExp('d5-2')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d5-2" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d5-2')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d5-2')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d5-2"></div>
+        </div>
+        <div class="ced" id="ced-d5-2"><input class="ef" data-f="time" value="10:30"><input class="ef" data-f="name" value="🌳 Jardines Jnan Sbil"><textarea class="ef" data-f="desc">Jardines históricos junto a la medina, palmeras centenarias y estanques.</textarea><input class="ef" data-f="map" value="https://maps.google.com/?q=Jnan+Sbil+Gardens+Fez"><div class="eas"><button type="button" class="bs bsave" onclick="SE('d5-2')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d5-2')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d5-2')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚶 <strong>A pie 10 min</strong> — Última pasada por la medina para recuerdos de último momento.</div></div>
+    <div class="ti" id="d5-3">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">11:30</span><span class="cn">🛍️ Últimas compras — especias, té y recuerdos</span><button type="button" class="eico" onclick="OE('d5-3')">✏️</button><button type="button" class="ckb" onclick="CD('d5-3')">⬜</button></div>
+        <div class="cd">Última vuelta rápida por la medina para comprar especias, té, aceite de argán o algún detalle final.</div>
+        <div class="ctags"><span class="tag tf">🛍️ Compras</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d5-3" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d5-3')"><span class="exp-unit">€</span><select id="pay-d5-3" class="pay-sel" onchange="saveExp('d5-3')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d5-3" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d5-3')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d5-3')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d5-3"></div>
+        </div>
+        <div class="ced" id="ced-d5-3"><input class="ef" data-f="time" value="11:30"><input class="ef" data-f="name" value="🛍️ Últimas compras — especias, té y recuerdos"><textarea class="ef" data-f="desc">Última vuelta por la medina para comprar especias, té o aceite de argán.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d5-3')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d5-3')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d5-3')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+    <div class="trn"><div class="trn-pill">🚕 <strong>Taxi 20–25 min</strong> — Hacia el Aeropuerto Saïss. Salid con margen de seguridad.</div></div>
+    <div class="ti" id="d5-4">
+      <div class="tdot"></div>
+      <div class="tc">
+        <div class="cr1"><span class="ct">14:20</span><span class="cn">✈️ Vuelo FR5372 Fez → VLC</span><button type="button" class="eico" onclick="OE('d5-4')">✏️</button><button type="button" class="ckb" onclick="CD('d5-4')">⬜</button></div>
+        <div class="cd">Salida 14:20 desde Fez, llegada 16:45 a Valencia. Localizador W893HX. Fin del viaje — ¡hasta la próxima aventura!</div>
+        <div class="ctags"><span class="tag tt">✈ FR5372 · W893HX</span></div>
+        <div class="exp-row"><span class="exp-lbl">💶 Gasto:</span><input type="number" class="exp-inp" id="exp-d5-4" placeholder="0.00" min="0" step="0.01" onchange="saveExp('d5-4')"><span class="exp-unit">€</span><select id="pay-d5-4" class="pay-sel" onchange="saveExp('d5-4')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select><input type="text" id="note-d5-4" class="exp-note-inp" placeholder="nota..." onchange="saveExp('d5-4')"></div>
+        <div class="media-section">
+          <div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen('d5-4')">📷🎥 Foto / Vídeo</button></div>
+          <div id="pc-d5-4"></div>
+        </div>
+        <div class="ced" id="ced-d5-4"><input class="ef" data-f="time" value="14:20"><input class="ef" data-f="name" value="✈️ Vuelo FR5372 Fez → VLC"><textarea class="ef" data-f="desc">Salida 14:20 desde Fez, llegada 16:45 a Valencia.</textarea><input class="ef" data-f="map" value=""><div class="eas"><button type="button" class="bs bsave" onclick="SE('d5-4')">✅ Guardar</button><button type="button" class="bs bcanc" onclick="CE('d5-4')">Cancelar</button><button type="button" class="bs bdel" onclick="DEL('d5-4')">🗑 Eliminar</button></div></div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="addbtn" onclick="TAF('add-d5')">➕ Añadir parada al día</button>
+  <div class="addfrm" id="add-d5">
+    <h4>Nueva parada — Sábado</h4>
+    <label>Hora</label><input id="add-d5-time" placeholder="HH:MM">
+    <label>Nombre</label><input id="add-d5-name" placeholder="✈️ Nombre de la parada">
+    <label>Descripción</label><textarea id="add-d5-desc" placeholder="Detalles..."></textarea>
+    <label>Link de Google Maps (opcional)</label><input id="add-d5-map" placeholder="https://maps.google.com/?q=...">
+    <div class="afrm-acts"><button type="button" class="bs bsave" onclick="addStop('d5')">✅ Añadir</button><button type="button" class="bs bcanc" onclick="TAF('add-d5')">Cancelar</button></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE SUGERENCIAS — DESIERTO ═══ -->
+<div class="pg" id="pg-sug">
+  <div class="dh"><div class="dn">🐪</div><div><div class="dt">Sugerencias para el Desierto</div><div class="ds">Investigad y reservad para el Jueves 31 Julio</div></div></div>
+  <div class="alert">🏜️ Esta excursión todavía no está reservada. Aquí tenéis opciones para investigar y comparar antes de decidir cuál encaja mejor con vuestro presupuesto y tiempo disponible.</div>
+
+  <div class="sug-card">
+    <div class="sug-title">🐪 Opción A — Tour de 1 día a Merzouga / Erg Chebbi (exprés)</div>
+    <div class="sug-body">La opción más auténtica de "verdadero" desierto del Sahara, pero también la más larga: ~9–10h de coche solo de ida desde Fez. Solo recomendable si hacéis noche en jaima (campamento) y volvéis al día siguiente — encajaría mejor como excursión de 2 días en lugar de uno. Buscad operadores en GetYourGuide, Viator o agencias locales en Fez (muchos riads ofrecen el contacto directo).</div>
+  </div>
+
+  <div class="sug-card">
+    <div class="sug-title">🏜️ Opción B — Desierto de Agafay (más cercano, versión "mini desierto")</div>
+    <div class="sug-body">Más habitual desde Marrakech que desde Fez (suele requerir traslado adicional), pero si encontráis un tour combinado Fez-Agafay-Fez en el día, es la alternativa más cómoda en tiempo: dunas de arcilla rojiza, camellos, quads y cena con música bajo las estrellas, todo en una jornada de ~7h sin pernoctar.</div>
+  </div>
+
+  <div class="sug-card">
+    <div class="sug-title">🚐 Opción C — Tour combinado Fez–Ifrane–Azrou–Atlas Medio</div>
+    <div class="sug-body">Si el desierto puro queda demasiado lejos para encajarlo en un solo día, una alternativa es un tour de paisajes del Atlas Medio: bosques de cedros, monos de Berbería, pueblos bereberes y paisajes semidesérticos cerca de Fez. Menos "desierto de dunas" pero mucho más viable en una jornada.</div>
+  </div>
+
+  <div class="sug-card">
+    <div class="sug-title">📋 Cómo reservar</div>
+    <div class="sug-body">Buscad "Fez desert tour" o "Merzouga from Fez" en GetYourGuide, Viator o Civitatis. Comparad: duración real, si incluye pernocta o es de un solo día, número de personas por vehículo, y reseñas recientes. Reservad con al menos 1–2 semanas de antelación en temporada alta (julio-agosto).</div>
+  </div>
+
+  <div class="sug-card">
+    <div class="sug-title">🎒 Qué llevar</div>
+    <div class="sug-body">Ropa cómoda y que cubra hombros/piernas, calzado cerrado, gafas de sol, pañuelo o turbante para el polvo, protector solar, una chaqueta ligera para la noche (el desierto refresca mucho al anochecer) y batería externa para el móvil.</div>
+  </div>
+</div>
+
+<!-- ═══ PAGE ÁLBUM ═══ -->
+<div class="pg" id="pg-alb">
+  <div class="sec">📸 Álbum del viaje</div>
+  <div id="alb-content"></div>
+</div>
+
+<!-- Lightbox -->
+<div id="mlb">
+  <button type="button" class="mlb-x" onclick="mlbClose()">✕</button>
+  <div id="mlb-media"></div>
+  <div class="mlb-cap" id="mlb-cap"></div>
+  <div class="mlb-info" id="mlb-info"></div>
+</div>
+
+<!-- Media picker -->
+<div class="media-picker" id="media-picker">
+  <div class="media-picker-bg" onclick="pickerClose()"></div>
+  <div class="media-picker-sheet">
+    <div class="media-picker-title">Añadir foto o vídeo</div>
+    <div class="media-picker-opts">
+      <button type="button" class="media-picker-opt" onclick="pickerCamera()">
+        <span class="media-picker-opt-ico">📷</span>
+        <span><span class="media-picker-opt-txt">Hacer foto / vídeo</span><br><span class="media-picker-opt-sub">Usar la cámara del móvil</span></span>
+      </button>
+      <button type="button" class="media-picker-opt" onclick="pickerLibrary()">
+        <span class="media-picker-opt-ico">🖼️</span>
+        <span><span class="media-picker-opt-txt">Elegir de la galería</span><br><span class="media-picker-opt-sub">Seleccionar archivo existente</span></span>
+      </button>
+    </div>
+    <button type="button" class="media-picker-cancel" onclick="pickerClose()">Cancelar</button>
+  </div>
+  <input type="file" id="media-file-camera" accept="image/*,video/*" capture="environment" style="display:none;">
+  <input type="file" id="media-file-library" accept="image/*,video/*" style="display:none;">
+</div>
+
+<!-- ═══ PAGE GASTOS ═══ -->
+<div class="pg" id="pg-exp">
+  <div class="sec">💶 Gastos del viaje</div>
+  <button type="button" class="recalc-btn" onclick="calcExp()">🔄 Actualizar totales</button>
+  <div class="exp-summary">
+    <div class="exp-sumhdr">📊 Detalle por día</div>
+    <div style="overflow-x:auto;">
+      <table class="exp-table">
+        <thead><tr><th>Parada</th><th>Importe</th><th>Pagó</th><th>Debe Azahara</th><th>Debe Paola</th></tr></thead>
+        <tbody id="exp-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div id="exp-pairs"></div>
+</div>
+
+<script>
+var S = {done:{}, edits:{}, exps:{}, payer:{}, notes:{}, photos:{}};
+
+var CLD_CLOUD  = 'dtjgzeezk';
+var CLD_PRESET = 'Marrakech 26';
+var CLD_CONFIGURED = (CLD_CLOUD.indexOf('PEGAR')===-1 && CLD_PRESET.indexOf('PEGAR')===-1);
+var CLD_URL = 'https://api.cloudinary.com/v1_1/'+CLD_CLOUD+'/image/upload';
+var CLD_VID = 'https://api.cloudinary.com/v1_1/'+CLD_CLOUD+'/video/upload';
+
+// ── JSONBin config (mismas credenciales que MarrakechPareja) ──
+var JSONBIN_ID  = '6a465311f5f4af5e29539ac9';
+var JSONBIN_KEY = '$2a$10$vFbnhWMCDqkb4eHXuuPjyOmhB88kcnaQjTnU/zfXL53RdRIcQpx56';
+var JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_ID;
+var saveTimer   = null;
+var CONFIGURED  = (JSONBIN_ID.indexOf('PEGAR') === -1 && JSONBIN_KEY.indexOf('PEGAR') === -1);
+
+function setSyncStatus(st){
+  var el = document.getElementById('sync-dot');
+  var tx = document.getElementById('sync-txt');
+  var map = {
+    loading: {bg:'#888',    txt:'Cargando datos...'},
+    ok:      {bg:'#54E6B5', txt:'✅ Guardado — Azahara y Paola ven los cambios'},
+    saving:  {bg:'#7DD8E8', txt:'💾 Guardando...'},
+    error:   {bg:'#FF6B81', txt:'⚠️ Sin conexión — datos locales'},
+    local:   {bg:'#6FA8FF', txt:'📱 Modo local · Configura JSONBin para sincronizar'}
+  };
+  var m = map[st] || map.local;
+  if(el) el.style.background = m.bg;
+  if(tx) tx.textContent = m.txt;
+}
+
+function lsLoad(){
+  if(!CONFIGURED){ loadFromLS(); return; }
+  setSyncStatus('loading');
+  fetch(JSONBIN_URL + '/latest', {headers:{'X-Master-Key':JSONBIN_KEY}})
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    applyState(data.record || {});
+    setSyncStatus('ok');
+  })
+  .catch(function(){ loadFromLS(); setSyncStatus('error'); });
+}
+
+function lsSave(){
+  try{ localStorage.setItem('fez26', JSON.stringify(S)); } catch(e){}
+  if(!CONFIGURED){ setSyncStatus('local'); return; }
+  clearTimeout(saveTimer);
+  setSyncStatus('saving');
+  saveTimer = setTimeout(function(){
+    fetch(JSONBIN_URL, {
+      method:'PUT',
+      headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY},
+      body:JSON.stringify(S)
+    })
+    .then(function(){ setSyncStatus('ok'); })
+    .catch(function(){ setSyncStatus('error'); });
+  }, 800);
+}
+
+function loadFromLS(){
+  try{
+    var d = localStorage.getItem('fez26');
+    applyState(d ? JSON.parse(d) : {});
+  } catch(e){ applyState({}); }
+  setSyncStatus(CONFIGURED ? 'error' : 'local');
+}
+
+// ─── TAB SWITCH ───
+function ST(id){
+  var pages = document.querySelectorAll('.pg');
+  var tabs  = document.querySelectorAll('.tb');
+  for(var i=0;i<pages.length;i++) pages[i].classList.remove('on');
+  for(var i=0;i<tabs.length;i++)  tabs[i].classList.remove('on');
+  var p = document.getElementById('pg-'+id);
+  var t = document.getElementById('tb-'+id);
+  if(p) p.classList.add('on');
+  if(t) t.classList.add('on');
+  try{ window.scrollTo(0,0); } catch(e){}
+  if(id==='exp') calcExp();
+  if(id==='alb') renderAlbum();
+}
+
+// ─── CURRENCY ───
+var RATE = 10.7;
+function convEUR(v){
+  var eur = parseFloat(v)||0;
+  document.getElementById('eur-inp').value = eur ? eur.toFixed(2) : '';
+  document.getElementById('mad-inp').value = eur ? Math.round(eur * RATE) : '';
+}
+function convMAD(v){
+  var mad = parseFloat(v)||0;
+  document.getElementById('mad-inp').value = mad ? Math.round(mad) : '';
+  document.getElementById('eur-inp').value = mad ? (mad / RATE).toFixed(2) : '';
+}
+
+// ─── CHECK / DONE ───
+function CD(id){
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.classList.toggle('dn2');
+  var btn = el.querySelector('.ckb');
+  if(btn) btn.textContent = el.classList.contains('dn2') ? '✅' : '⬜';
+  S.done[id] = el.classList.contains('dn2');
+  lsSave();
+  updProg();
+}
+
+// ─── EDIT ───
+function OE(id){
+  closeAllEdits();
+  var ed = document.getElementById('ced-'+id);
+  if(ed){ ed.classList.add('op'); ed.style.display='block'; }
+}
+function CE(id){
+  var ed = document.getElementById('ced-'+id);
+  if(ed){ ed.classList.remove('op'); ed.style.display=''; }
+}
+function closeAllEdits(){
+  var eds = document.querySelectorAll('.ced');
+  for(var i=0;i<eds.length;i++){ eds[i].classList.remove('op'); eds[i].style.display=''; }
+}
+function SE(id){
+  var el = document.getElementById(id);
+  var ed = document.getElementById('ced-'+id);
+  if(!el||!ed) return;
+  var tf = ed.querySelector('[data-f="time"]');
+  var nf = ed.querySelector('[data-f="name"]');
+  var df = ed.querySelector('[data-f="desc"]');
+  var mf = ed.querySelector('[data-f="map"]');
+  if(tf){ var ct=el.querySelector('.ct'); if(ct) ct.textContent=tf.value; }
+  if(nf){ var cn=el.querySelector('.cn'); if(cn) cn.textContent=nf.value; }
+  if(df){ var cd=el.querySelector('.cd'); if(cd) cd.textContent=df.value; }
+  if(mf && mf.value){
+    var lnks=el.querySelector('.clnks');
+    if(!lnks){ lnks=document.createElement('div'); lnks.className='clnks'; el.querySelector('.tc').appendChild(lnks); }
+    var ex=lnks.querySelector('.lm');
+    if(ex){ ex.href=mf.value; } else { var a=document.createElement('a'); a.href=mf.value; a.target='_blank'; a.className='lnk lm'; a.textContent='📍 Maps'; lnks.appendChild(a); }
+  }
+  if(!S.edits) S.edits={};
+  S.edits[id]={time:tf?tf.value:'',name:nf?nf.value:'',desc:df?df.value:''};
+  lsSave();
+  CE(id);
+}
+function DEL(id){
+  if(!confirm('¿Eliminar esta parada?')) return;
+  var el = document.getElementById(id);
+  var prev = el ? el.previousElementSibling : null;
+  if(el) el.remove();
+  if(prev && prev.classList.contains('trn')) prev.remove();
+  if(S.done) delete S.done[id];
+  if(S.edits) delete S.edits[id];
+  if(S.exps) delete S.exps[id];
+  lsSave();
+  updProg();
+}
+
+// ─── SAVE EXPENSE ───
+function saveExp(id){
+  var inp  = document.getElementById('exp-'+id);
+  var sel  = document.getElementById('pay-'+id);
+  var note = document.getElementById('note-'+id);
+  if(!S.exps) S.exps={};
+  if(!S.payer) S.payer={};
+  if(!S.notes) S.notes={};
+  S.exps[id]  = inp ? inp.value : '';
+  S.payer[id] = sel ? sel.value : 'split';
+  S.notes[id] = note ? note.value : '';
+  lsSave();
+}
+
+// ─── ADD STOP (template) ───
+function TAF(id){
+  var el = document.getElementById(id);
+  if(el) el.classList.toggle('op');
+}
+function addStop(day){
+  var t = document.getElementById('add-'+day+'-time').value;
+  var n = document.getElementById('add-'+day+'-name').value;
+  var d = document.getElementById('add-'+day+'-desc').value;
+  var m = document.getElementById('add-'+day+'-map').value;
+  if(!n){ alert('Pon al menos un nombre para la parada'); return; }
+  var tl = document.getElementById('tl-'+day);
+  if(!tl) return;
+  var uid = day+'-'+Date.now();
+  var html = '<div class="ti" id="'+uid+'">'
+    +'<div class="tdot"></div>'
+    +'<div class="tc">'
+    +'<div class="cr1"><span class="ct">'+(t||'')+'</span><span class="cn">'+n+'</span>'
+    +'<button type="button" class="eico" onclick="OE(\''+uid+'\')">✏️</button>'
+    +'<button type="button" class="ckb" onclick="CD(\''+uid+'\')">⬜</button></div>'
+    +(d?'<div class="cd">'+d+'</div>':'')
+    +(m?'<div class="clnks"><a href="'+m+'" target="_blank" class="lnk lm">📍 Maps</a></div>':'')
+    +'<div class="exp-row"><span class="exp-lbl">💶 Gasto:</span>'
+    +'<input type="number" class="exp-inp" id="exp-'+uid+'" placeholder="0.00" min="0" step="0.01" onchange="saveExp(\''+uid+'\')">'
+    +'<span class="exp-unit">€</span>'
+    +'<select id="pay-'+uid+'" class="pay-sel" onchange="saveExp(\''+uid+'\')"><option value="split">50/50</option><option value="pn">Paga Azahara</option><option value="pb">Paga Paola</option></select>'
+    +'<input type="text" id="note-'+uid+'" class="exp-note-inp" placeholder="nota..." onchange="saveExp(\''+uid+'\')"></div>'
+    +'<div class="media-section"><div class="media-btns"><button type="button" class="media-btn" onclick="pickerOpen(\''+uid+'\')">📷🎥 Foto / Vídeo</button></div><div id="pc-'+uid+'"></div></div>'
+    +'<div class="ced" id="ced-'+uid+'">'
+    +'<input class="ef" data-f="time" value="'+(t||'')+'">'
+    +'<input class="ef" data-f="name" value="'+n+'">'
+    +'<textarea class="ef" data-f="desc">'+d+'</textarea>'
+    +'<input class="ef" data-f="map" value="'+(m||'')+'">'
+    +'<div class="eas"><button type="button" class="bs bsave" onclick="SE(\''+uid+'\')">✅ Guardar</button>'
+    +'<button type="button" class="bs bcanc" onclick="CE(\''+uid+'\')">Cancelar</button>'
+    +'<button type="button" class="bs bdel" onclick="DEL(\''+uid+'\')">🗑 Eliminar</button></div>'
+    +'</div>'
+    +'</div></div>';
+  tl.insertAdjacentHTML('beforeend', html);
+  ['add-'+day+'-time','add-'+day+'-name','add-'+day+'-desc','add-'+day+'-map'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
+  TAF('add-'+day);
+  updProg();
+  lsSave();
+}
+
+// ─── CALC EXPENSES ───
+function calcExp(){
+  var tbody = document.getElementById('exp-tbody');
+  var pc    = document.getElementById('exp-pairs');
+  if(!tbody) return;
+  tbody.innerHTML = '';
+  var grandTotal = 0;
+  var totalPN = 0;
+  var totalPB = 0;
+  var anyExpenseFound = false;
+  var days = ['d1','d2','d3','d4','d5'];
+  var dayNames = {d1:'Martes 29 Jul ✈️', d2:'Miércoles 30 Jul 🏛️', d3:'Jueves 31 Jul 🏜️', d4:'Viernes 1 Ago 🚆', d5:'Sábado 2 Ago 🛫'};
+  days.forEach(function(day){
+    var tl = document.getElementById('tl-'+day);
+    if(!tl) return;
+    var items = tl.querySelectorAll('.ti');
+    var dayRows = [];
+    items.forEach(function(item){
+      var id = item.id;
+      if(!id) return;
+      var inp = document.getElementById('exp-'+id);
+      var amt = inp ? parseFloat(inp.value)||0 : 0;
+      if(amt > 0){
+        var sel    = document.getElementById('pay-'+id);
+        var payer2 = sel ? sel.value : 'split';
+        var noteEl = document.getElementById('note-'+id);
+        var noteTx = noteEl ? noteEl.value : '';
+        var cn     = item.querySelector('.cn');
+        var nm     = cn ? cn.textContent : id;
+        dayRows.push({name:nm, amt:amt, payer:payer2, note:noteTx});
+        if(payer2==='pn')      totalPN += amt;
+        else if(payer2==='pb') totalPB += amt;
+        else { totalPN += amt/2; totalPB += amt/2; }
+      }
+    });
+    if(dayRows.length>0){
+      var dr = document.createElement('tr');
+      dr.className = 'day-row';
+      dr.innerHTML = '<td colspan="5">📅 '+dayNames[day]+'</td>';
+      tbody.appendChild(dr);
+      anyExpenseFound = true;
+      dayRows.forEach(function(r){
+        var half = r.amt/2;
+        var owePN, owePB;
+        if(r.payer==='pn'){      owePN=0;    owePB=half; }
+        else if(r.payer==='pb'){ owePB=0;    owePN=half; }
+        else {                   owePN=half; owePB=half; }
+        var payLabel = r.payer==='pn' ? '<span style="color:#54E6B5;font-weight:700;">Azahara</span>'
+                     : r.payer==='pb' ? '<span style="color:#6FA8FF;font-weight:700;">Paola</span>'
+                     : '<span style="color:rgba(255,255,255,.5);">50/50</span>';
+        var pnStyle = owePN===0 ? ' style="color:#54E6B5;font-weight:700;"' : '';
+        var pbStyle = owePB===0 ? ' style="color:#6FA8FF;font-weight:700;"' : '';
+        var nameCell = r.name.substring(0,30)+(r.note?'<span style="font-size:.68rem;color:rgba(255,255,255,.5);font-style:italic;"> ('+r.note+')</span>':'');
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td>'+nameCell+'</td>'
+          +'<td class="exp-amt">'+r.amt.toFixed(2)+'&euro;</td>'
+          +'<td>'+payLabel+'</td>'
+          +'<td class="exp-amt"'+pnStyle+'>'+(owePN===0?'&#x2705; 0.00':owePN.toFixed(2))+'&euro;</td>'
+          +'<td class="exp-amt"'+pbStyle+'>'+(owePB===0?'&#x2705; 0.00':owePB.toFixed(2))+'&euro;</td>';
+        tbody.appendChild(tr);
+        grandTotal += r.amt;
+      });
+    }
+  });
+  var half=(grandTotal/2).toFixed(2);
+  var tr=document.createElement('tr');
+  tr.className='total-row';
+  tr.innerHTML='<td><strong>TOTAL VIAJE</strong></td><td class="pair-total">'+grandTotal.toFixed(2)+'€</td><td class="pair-total">'+half+'€</td><td class="pair-total">'+half+'€</td><td></td>';
+  tbody.appendChild(tr);
+
+  var pc = document.getElementById('exp-pairs');
+  if(!anyExpenseFound){
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:22px 10px;color:rgba(255,255,255,.5);font-size:.8rem;">🧾 Todavía no se ha registrado ningún gasto.<br>Añade un importe en cualquier parada del itinerario y pulsa "🔄 Actualizar totales".</td></tr>';
+    if(pc) pc.innerHTML = '<div style="background:var(--glass-bg);border:1px dashed var(--glass-bd);border-radius:13px;padding:20px;text-align:center;margin-bottom:14px;backdrop-filter:blur(14px);"><div style="font-size:1.8rem;margin-bottom:8px;">💶</div><div style="font-size:.85rem;font-weight:700;color:#fff;margin-bottom:4px;">Sin gastos registrados aún</div><div style="font-size:.74rem;color:rgba(255,255,255,.5);line-height:1.5;">Ve a cualquier parada del itinerario, introduce el importe gastado y selecciona quién paga. Vuelve aquí y pulsa "Actualizar totales".</div></div>';
+    return;
+  }
+  if(pc){
+    var mitad = grandTotal/2;
+    var balPN = totalPN - mitad;
+    var balPB = totalPB - mitad;
+    var diff  = Math.abs(balPN);
+    var resumen = '';
+    if(diff < 0.01){
+      resumen = '<div style="background:rgba(84,230,181,.15);border:1px solid rgba(84,230,181,.3);border-radius:13px;padding:18px;text-align:center;margin-bottom:14px;backdrop-filter:blur(14px);"><div style="font-size:1.8rem;margin-bottom:6px;">🤝</div><div style="color:#fff;font-weight:800;font-size:1.1rem;">¡Estáis en paz!</div><div style="color:rgba(255,255,255,.7);font-size:.82rem;margin-top:4px;">Los gastos están perfectamente equilibrados</div></div>';
+    } else if(balPN>0){
+      resumen = '<div class="glass" style="padding:18px;text-align:center;margin-bottom:14px;border:2px solid var(--gold);"><div style="font-size:.65rem;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:700;margin-bottom:10px;">💸 LIQUIDACIÓN FINAL</div><div style="color:rgba(255,255,255,.65);font-size:.88rem;margin-bottom:6px;">Paola debe a</div><div style="color:#fff;font-size:1rem;font-weight:800;margin-bottom:12px;">Azahara</div><div style="font-size:2.8rem;font-weight:900;color:var(--gl);font-family:monospace;line-height:1;">'+diff.toFixed(2)+'€</div></div>';
+    } else {
+      resumen = '<div class="glass" style="padding:18px;text-align:center;margin-bottom:14px;border:2px solid #6FA8FF;"><div style="font-size:.65rem;text-transform:uppercase;letter-spacing:2px;color:#6FA8FF;font-weight:700;margin-bottom:10px;">💸 LIQUIDACIÓN FINAL</div><div style="color:rgba(255,255,255,.65);font-size:.88rem;margin-bottom:6px;">Azahara debe a</div><div style="color:#fff;font-size:1rem;font-weight:800;margin-bottom:12px;">Paola</div><div style="font-size:2.8rem;font-weight:900;color:#6FA8FF;font-family:monospace;line-height:1;">'+diff.toFixed(2)+'€</div></div>';
+    }
+    var cards = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">'
+      +'<div class="pair-card" style="border-left:4px solid #54E6B5;">'
+        +'<div style="font-size:.65rem;font-weight:700;color:#54E6B5;margin-bottom:5px;">AZAHARA</div>'
+        +'<div style="font-size:1.3rem;font-weight:900;font-family:monospace;color:#fff;">'+totalPN.toFixed(2)+'€</div>'
+        +'<div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:2px;">pagado</div>'
+        +'<div style="font-size:.78rem;margin-top:6px;color:rgba(255,255,255,.7);">Mitad justa: <strong>'+mitad.toFixed(2)+'€</strong></div>'
+        +'<div style="font-size:.82rem;font-weight:700;margin-top:3px;color:'+(balPN>=0?'#54E6B5':'#FF6B81')+';"> '+(balPN>0.01?'✅ Pagó '+balPN.toFixed(2)+'€ de más':balPN<-0.01?'⚠️ Debe '+Math.abs(balPN).toFixed(2)+'€':'✅ En paz')+'</div>'
+      +'</div>'
+      +'<div class="pair-card" style="border-left:4px solid #6FA8FF;">'
+        +'<div style="font-size:.65rem;font-weight:700;color:#6FA8FF;margin-bottom:5px;">PAOLA</div>'
+        +'<div style="font-size:1.3rem;font-weight:900;font-family:monospace;color:#fff;">'+totalPB.toFixed(2)+'€</div>'
+        +'<div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:2px;">pagado</div>'
+        +'<div style="font-size:.78rem;margin-top:6px;color:rgba(255,255,255,.7);">Mitad justa: <strong>'+mitad.toFixed(2)+'€</strong></div>'
+        +'<div style="font-size:.82rem;font-weight:700;margin-top:3px;color:'+(balPB>=0?'#54E6B5':'#FF6B81')+';"> '+(balPB>0.01?'✅ Pagó '+balPB.toFixed(2)+'€ de más':balPB<-0.01?'⚠️ Debe '+Math.abs(balPB).toFixed(2)+'€':'✅ En paz')+'</div>'
+      +'</div>'
+    +'</div>';
+    pc.innerHTML = resumen + cards
+      + '<div style="background:rgba(125,216,232,.1);border:1px solid var(--glass-bd);border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:.75rem;color:#fff;backdrop-filter:blur(10px);">💡 Selecciona <strong>Paga Azahara</strong> o <strong>Paga Paola</strong> en cada gasto para calcular quién debe a quién.</div>';
+  }
+}
+
+// ─── PROGRESS ───
+function updProg(){
+  var all  = document.querySelectorAll('.ti');
+  var done = document.querySelectorAll('.ti.dn2');
+  var pct  = all.length ? Math.round(done.length/all.length*100) : 0;
+  var fill = document.getElementById('pg-fill');
+  var txt  = document.getElementById('pg-txt');
+  if(fill) fill.style.width = pct+'%';
+  if(txt)  txt.textContent  = done.length+' de '+all.length+' paradas completadas ('+pct+'%)';
+}
+
+// ─── APPLY STATE ───
+function applyState(saved){
+  if(saved.done)  S.done  = saved.done;
+  if(saved.edits) S.edits = saved.edits;
+  if(saved.exps)  S.exps  = saved.exps;
+  if(saved.payer) S.payer = saved.payer; else if(!S.payer) S.payer={};
+  if(saved.notes) S.notes = saved.notes; else if(!S.notes) S.notes={};
+  if(saved.photos) S.photos = saved.photos; else if(!S.photos) S.photos={};
+
+  Object.keys(S.done).forEach(function(id){
+    if(!S.done[id]) return;
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.classList.add('dn2');
+    var btn = el.querySelector('.ckb');
+    if(btn) btn.textContent='✅';
+  });
+  Object.keys(S.exps).forEach(function(id){
+    var inp = document.getElementById('exp-'+id);
+    if(inp) inp.value = S.exps[id];
+  });
+  Object.keys(S.payer).forEach(function(id){
+    var sel = document.getElementById('pay-'+id);
+    if(sel) sel.value = S.payer[id];
+  });
+  Object.keys(S.notes).forEach(function(id){
+    var nt = document.getElementById('note-'+id);
+    if(nt) nt.value = S.notes[id];
+  });
+  Object.keys(S.edits).forEach(function(id){
+    var e = S.edits[id];
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(e.time){ var ct=el.querySelector('.ct'); if(ct) ct.textContent=e.time; }
+    if(e.name){ var cn=el.querySelector('.cn'); if(cn) cn.textContent=e.name; }
+    if(e.desc){ var cd=el.querySelector('.cd'); if(cd) cd.textContent=e.desc; }
+  });
+  Object.keys(S.photos||{}).forEach(function(sid){ renderMediaCarousel(sid); });
+  updProg();
+}
+
+function resetAll(){
+  if(!confirm('¿Borrar TODOS los datos del viaje? Esta acción no se puede deshacer.')) return;
+  S = {done:{}, edits:{}, exps:{}, payer:{}, notes:{}, photos:{}};
+  try{ localStorage.removeItem('fez26'); }catch(e){}
+  if(CONFIGURED){
+    fetch(JSONBIN_URL, {
+      method:'PUT',
+      headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY},
+      body:JSON.stringify(S)
+    }).then(function(){ location.reload(); }).catch(function(){ location.reload(); });
+  } else {
+    location.reload();
+  }
+}
+
+// ─── SPLASH ───
+function spLaunch(){
+  var skip = document.getElementById('sp-skip-cb');
+  if(skip && skip.checked){
+    try{ localStorage.setItem('fez26_skipSplash','1'); }catch(e){}
+  }
+  var curtain = document.getElementById('sp-curtain');
+  var splash  = document.getElementById('splash');
+  if(curtain){
+    curtain.classList.add('sp-closing');
+    setTimeout(function(){
+      if(splash) splash.style.display='none';
+      curtain.classList.remove('sp-closing');
+      curtain.classList.add('sp-opening');
+      setTimeout(function(){ curtain.style.display='none'; }, 1000);
+    }, 750);
+  } else if(splash){
+    splash.style.display='none';
+  }
+}
+function spReEnable(){
+  try{ localStorage.removeItem('fez26_skipSplash'); }catch(e){}
+  var splash = document.getElementById('splash');
+  var curtain = document.getElementById('sp-curtain');
+  if(splash) splash.style.display='flex';
+  if(curtain){ curtain.style.display='block'; curtain.classList.remove('sp-closing','sp-opening'); }
+  alert('🌙 La pantalla de bienvenida volverá a mostrarse la próxima vez que abras la app.');
+}
+
+// ─── MEDIA PICKER ───
+var _pickerSid = null;
+function pickerOpen(sid){
+  _pickerSid = sid;
+  var p = document.getElementById('media-picker');
+  if(p) p.classList.add('on');
+}
+function pickerClose(){
+  var p = document.getElementById('media-picker');
+  if(p) p.classList.remove('on');
+}
+function pickerCamera(){
+  var sid = _pickerSid;
+  var inp = document.getElementById('media-file-camera');
+  pickerClose();
+  if(!inp) return;
+  inp.onchange = function(){ handleMediaFile(sid, inp.files[0]); inp.value=''; };
+  inp.click();
+}
+function pickerLibrary(){
+  var sid = _pickerSid;
+  var inp = document.getElementById('media-file-library');
+  pickerClose();
+  if(!inp) return;
+  inp.onchange = function(){ handleMediaFile(sid, inp.files[0]); inp.value=''; };
+  inp.click();
+}
+
+function handleMediaFile(sid, file){
+  if(!file || !sid) return;
+  var isVideo = file.type.indexOf('video')===0;
+  if(!CLD_CONFIGURED){
+    var localUrl = URL.createObjectURL(file);
+    storeMedia(sid, {url:localUrl, video:isVideo, local:true, day:sid.split('-')[0], time:new Date().toLocaleTimeString()});
+    return;
+  }
+  var fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', CLD_PRESET);
+  fd.append('folder', 'fez2026/'+sid);
+  var endpoint = isVideo ? CLD_VID : CLD_URL;
+  fetch(endpoint, {method:'POST', body:fd})
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if(d.secure_url){
+      storeMedia(sid, {url:d.secure_url, video:isVideo, local:false, day:sid.split('-')[0], time:new Date().toLocaleTimeString()});
+    } else {
+      alert('Error subiendo el archivo. Inténtalo de nuevo.');
+    }
+  }).catch(function(){ alert('Sin conexión. Inténtalo de nuevo.'); });
+}
+
+function storeMedia(sid, item){
+  if(!S.photos) S.photos = {};
+  if(!S.photos[sid]) S.photos[sid] = [];
+  item.ts = new Date().toLocaleDateString();
+  S.photos[sid].push(item);
+  lsSave();
+  renderMediaCarousel(sid);
+}
+
+function mediaDelete(sid, idx){
+  if(!S.photos || !S.photos[sid]) return;
+  S.photos[sid].splice(idx,1);
+  lsSave();
+  renderMediaCarousel(sid);
+}
+
+function renderMediaCarousel(sid){
+  var pc = document.getElementById('pc-'+sid);
+  if(!pc) return;
+  var items = (S.photos && S.photos[sid]) || [];
+  if(!items.length){ pc.innerHTML=''; return; }
+  var cls = items.length>1 ? 'many' : 'one';
+  var slides = items.map(function(p,i){
+    var thumb, playIcon='';
+    if(p.video){
+      thumb = p.local ? '' : p.url.replace('/video/upload/','/video/upload/w_400,h_300,c_fill,so_0/').replace(/\.\w+$/,'.jpg');
+      if(p.local) thumb='';
+      playIcon = '<div class="media-play"><span>▶️</span></div>';
+    } else {
+      thumb = p.local ? p.url : p.url.replace('/upload/','/upload/w_400,h_300,c_fill/');
+    }
+    var badge = p.local ? '<div class="media-badge">LOCAL</div>' : '';
+    var content = p.video && p.local
+      ? '<video src="'+p.url+'" preload="metadata" style="width:100%;height:100%;object-fit:cover;"></video>'
+      : '<img src="'+(thumb||p.url)+'" loading="lazy" alt="">';
+    return '<div class="media-slide" onclick="mlbOpen(\''+sid+'\','+i+')">'
+      + content + badge + playIcon
+      + '<div class="media-slide-cap">'+(p.video?'🎥 ':'📷 ')+(p.day||'')+(p.time?' · '+p.time:'')+'</div>'
+      + '<button class="media-del" onclick="event.stopPropagation();mediaDelete(\''+sid+'\','+i+')">✕</button>'
+      + '</div>';
+  }).join('');
+
+  var dots = items.length>1
+    ? '<div class="media-dots">'+items.map(function(_,i){
+        return '<div class="media-dot'+(i===0?' on':'')+'" id="mdot-'+sid+'-'+i+'"></div>';
+      }).join('')+'</div>'
+    : '';
+
+  pc.innerHTML = '<div class="media-carousel '+cls+'" onscroll="updMDots(\''+sid+'\')">'
+    + slides + '</div>' + dots;
+}
+
+function updMDots(sid){
+  var cr = document.querySelector('#pc-'+sid+' .media-carousel');
+  if(!cr) return;
+  var slides = cr.querySelectorAll('.media-slide');
+  if(slides.length<2) return;
+  var idx = Math.round(cr.scrollLeft / (slides[0].offsetWidth+8));
+  slides.forEach(function(_,i){
+    var d = document.getElementById('mdot-'+sid+'-'+i);
+    if(d) d.classList.toggle('on', i===idx);
+  });
+}
+
+// Lightbox
+function mlbOpen(sid, idx){
+  var p = ((S.photos&&S.photos[sid])||[])[idx];
+  if(!p) return;
+  var wrap = document.getElementById('mlb-media');
+  if(p.video){
+    wrap.innerHTML = '<video id="mlb-vid" src="'+p.url+'" controls autoplay playsinline style="max-width:100%;max-height:72vh;border-radius:10px;outline:none;"></video>';
+  } else {
+    wrap.innerHTML = '<img src="'+p.url+'" alt="">';
+  }
+  document.getElementById('mlb-cap').textContent  = p.stop || '';
+  document.getElementById('mlb-info').textContent = (p.video?'🎥 Vídeo':'📷 Foto')+' · '+(p.day||'')+(p.time?' · '+p.time:'')+(p.ts?' · '+p.ts:'');
+  document.getElementById('mlb').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function mlbClose(){
+  var v = document.getElementById('mlb-vid');
+  if(v){ v.pause(); }
+  document.getElementById('mlb-media').innerHTML='';
+  document.getElementById('mlb').classList.remove('on');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') mlbClose(); });
+
+// Álbum general
+function renderAlbum(){
+  var el = document.getElementById('alb-content');
+  if(!el) return;
+  var ph = S.photos || {};
+  if(!Object.keys(ph).length){
+    el.innerHTML = '<div class="alb-empty">📷 Aún no hay fotos ni vídeos.<br>Usa el botón 📷🎥 en cualquier parada del itinerario.</div>';
+    return;
+  }
+  var order  = ['d1','d2','d3','d4','d5'];
+  var dnames = {d1:'Martes 29 Jul ✈️', d2:'Miércoles 30 Jul 🏛️', d3:'Jueves 31 Jul 🏜️', d4:'Viernes 1 Ago 🚆', d5:'Sábado 2 Ago 🛫'};
+  var byDay  = {};
+  Object.keys(ph).forEach(function(sid){
+    var day = sid.split('-')[0];
+    if(!byDay[day]) byDay[day]=[];
+    ph[sid].forEach(function(p,i){ byDay[day].push({p:p,sid:sid,i:i}); });
+  });
+  var out='';
+  order.forEach(function(day){
+    if(!byDay[day]||!byDay[day].length) return;
+    out += '<div class="sec">'+(dnames[day]||day)+'</div><div class="alb-grid">';
+    byDay[day].forEach(function(item){
+      var p = item.p;
+      var thumb, playIcon='';
+      if(p.video){
+        thumb = p.local ? '' : p.url.replace('/video/upload/','/video/upload/w_300,h_300,c_fill,so_0/').replace(/\.\w+$/,'.jpg');
+        playIcon = '<div class="media-play"><span>▶️</span></div>';
+      } else {
+        thumb = p.local ? p.url : p.url.replace('/upload/','/upload/w_300,h_300,c_fill/');
+      }
+      var content = (p.video && p.local)
+        ? '<video src="'+p.url+'" preload="metadata" style="width:100%;height:100%;object-fit:cover;"></video>'
+        : '<img src="'+(thumb||p.url)+'" loading="lazy" alt="">';
+      out += '<div class="alb-item" onclick="mlbOpen(\''+item.sid+'\','+item.i+')">'
+        + content + playIcon
+        + '<div class="alb-item-cap">'
+        + (p.video?'🎥 ':'📷 ')+(p.stop?p.stop.substring(0,22):'')+'<br>'
+        + '<span style="color:rgba(255,255,255,.5);">'+(p.time||'')+(p.ts?' · '+p.ts:'')+'</span>'
+        + '</div></div>';
+    });
+    out += '</div>';
+  });
+  el.innerHTML = out;
+}
+
+function cldTest(){
+  var dot = document.getElementById('cld-dot');
+  var txt = document.getElementById('cld-txt');
+  if(!CLD_CONFIGURED){
+    if(dot) dot.style.background='#888';
+    if(txt) txt.textContent='📸 Sin configurar';
+    return;
+  }
+  if(dot) dot.style.background='#7DD8E8';
+  if(txt) txt.textContent='📸 Conectando...';
+  var tiny = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+  fetch(tiny).then(function(r){ return r.blob(); }).then(function(blob){
+    var fd = new FormData();
+    fd.append('file', blob, 'ping.png');
+    fd.append('upload_preset', CLD_PRESET);
+    fd.append('folder', 'fez2026/_test');
+    return fetch(CLD_URL, {method:'POST', body:fd});
+  }).then(function(r){ return r.json(); })
+  .then(function(d){
+    if(d.secure_url){
+      if(dot) dot.style.background='#54E6B5';
+      if(txt) txt.textContent='📸 Cloudinary ✅';
+      console.log('[Cloudinary] Conexión OK');
+    } else {
+      if(dot) dot.style.background='#FF6B81';
+      if(txt) txt.textContent='📸 Error config';
+      console.error('[Cloudinary] Error:', d.error ? d.error.message : d);
+    }
+  }).catch(function(e){
+    if(dot) dot.style.background='#FF6B81';
+    if(txt) txt.textContent='📸 Sin conexión';
+    console.error('[Cloudinary] Sin conexión:', e);
+  });
+}
+
+// ─── INIT ───
+(function spCheckSkip(){
+  var skip = false;
+  try{ skip = localStorage.getItem('fez26_skipSplash') === '1'; }catch(e){}
+  if(skip){
+    var splash  = document.getElementById('splash');
+    var curtain = document.getElementById('sp-curtain');
+    if(splash)  splash.style.display  = 'none';
+    if(curtain) curtain.style.display = 'none';
+  }
+})();
+window.addEventListener('load', function(){ lsLoad(); setTimeout(cldTest, 1500); });
+</script>
+</body>
+</html>
